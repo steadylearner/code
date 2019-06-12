@@ -1,0 +1,16 @@
+{
+  "name": "javascript-and-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "serve": "webpack-dev-server",
+    "deploy": "npx webpack"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.0.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.0"
+  }
+}

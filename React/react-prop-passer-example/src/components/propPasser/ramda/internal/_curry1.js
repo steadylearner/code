@@ -1,0 +1,1 @@
+"use strict";var _isPlaceholder2=_interopRequireDefault(require("./_isPlaceholder"));Object.defineProperty(exports,"__esModule",{value:!0}),exports["default"]=_curry1;function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}function _curry1(b){return function c(d){return 0===arguments.length||(0,_isPlaceholder2["default"])(d)?c:b.apply(this,arguments)}}

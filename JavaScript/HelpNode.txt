@@ -1,0 +1,743 @@
+ Async -> Easy way to make promise 
+
+ You can restart nodemon with "rs"
+ 
+ global in node env is like window in browser
+
+ callback(null, usuuario) - (err, parameter) -> if (err) {
+    return console.log(err);
+ }
+
+ Desctruturing to get data from object easily and you can change the name of object and use it 
+
+ let { name, firstName, lastName } = Object;
+ 
+ console.log(name, firstName, lastName); -> It works
+
+ let { name: someName, firstName, lastName } = Object; 
+
+ console.log(someName, firstName, lastName); -> It works
+
+
+Instead of learning chapter of npm and module -> find information about es6 module import, export related information 
+
+ node --v8-options | grep "in progress" -> You can know what is in progress(https://nodejs.org/en/docs/es6/)
+
+ HTTPS(TLS/SSL, Security related) - Data(SQL, NoSQL, BackEnd)
+
+ - https://www.openssl.org/docs/ and PDF
+ - https://letsencrypt.org/
+ - Learn node crypto moudle
+
+ URL
+ 
+ - https://nodejs.org/en/docs/guides/getting-started-guide/
+ - https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
+ - https://nodejs.org/en/docs/guides/simple-profiling/
+ - https://nodejs.org/api // Other APIs
+
+
+ - https://github.com/maxogden/art-of-node // [ Callback - [ Promise, Generator, Async ], Event ],  Module
+ - https://nodejs.org/en/docs // Stream / HTTP
+ 
+
+ - https://nodejs.org/dist/latest-v9.x/docs/api/          
+
+  // with ES6 and need newest content, node already accept es6 and more, better refer this content and use es6 feature practicing node and other javascript
+ 
+ execute file -> nodemon(https://www.npmjs.com/package/nodemon, nodemon --watch X)
+ regular exepression -> node
+ simple javascript testing -> node + .editor
+  
+
+
+
+ What to do? 
+
+ -> End learnyounode part(Delete learnyounode after pass it)
+ -> Learn Stream parts and offical site node doc
+
+ What I learn(Callback, Event, Module, Stream, HTTP etc)
+
+ - fs // const fs = require('fs')
+
+ - readFile - Async(Decide execution order using callback), read and return binary data
+ - readFileSync - Sync //
+ 
+ - module
+
+ - process.argv -> process[node, filepath, command line arguments 1, command line arguments 2 ........................]
+ - path module -> used for handling (file) path // const path = require('path')
+
+ - map, filter, forEach, reduce etc are used with array in same way array.X
+
+ - Stream -> Related to buffer, You don' have to require them, learn more. 
+ 
+
+=======================================================================================================================================================
+
+
+ CALLBACK
+
+
+ callback - Giving order to asynchronous function
+
+ var fs = require('fs')
+
+fs.readFile('movie.mp4', function finishedReading(error, movieData) {
+  if (error) return console.error(error)
+  // do something with the movieData
+})
+
+
+ var chatClient = require('my-chat-client')
+
+ function onConnect() {
+  // have the UI show we are connected
+}
+
+ function onConnectionError(error) {
+  // show error to the user
+}
+
+ function onDisconnect() {
+ // tell user that they have been disconnected
+}
+
+ function onMessage(message) {
+ // show the chat room message in the UI
+}
+
+ chatClient.connect(
+  'http://mychatserver.com',
+  onConnect,
+  onConnectionError,
+  onDisconnect,
+  onMessage
+)
+
+Compare it to the code below
+
+=======================================================================================================================================================
+  
+ EVENT
+
+
+  on('x', function() {} ) - event
+
+
+ const chatClient = require('my-chat-client').connet()
+
+ chatClient.on('connect', function() {
+    // have the UI show we are connected
+ })
+
+ chatClient.on('connectionError', function() {
+    // show error to the user
+ })
+  
+
+ chatClient.on('disconnect', function() {
+    // tell user that they have been disconnected
+ })
+
+ chatClient.on('message', function() {
+    // show the chat room message in the UI
+ })
+
+
+ You can also subscribe to the same event multiple times with different callbacks -> Because it is asynchrnous
+
+
+ const chatClient = require('my-chat-client').connect()
+chatClient.on('message', logMessage)
+chatClient.on('message', storeMessage)
+
+function logMessage(message) {
+  console.log(message)
+}
+
+
+function storeMessage(message) {
+  myDatabase.save(message)
+}
+
+=======================================================================================================================================================
+
+
+ MODULE -> https://github.com/maxogden/art-of-node
+
+ NPM - Moduels are local, node_modules(special name for module search), moudles can be everything
+
+ Node Packaged Module
+
+ Node core is made up of about two dozen modules, some lower level ones like events and stream some higher level ones like http and crypto.
+
+ This design is intentional. Node core is supposed to be small, and the modules in core should be focused on providing tools for working with common I/O protocols and formats in a way that is cross-platform.
+
+ For everything else there is npm. Anyone can create a new node module that adds some functionality and publish it to npm. As of the time of this writing there are 34,000 modules on npm.
+ 
+ To test out which module actually gets loaded by node, you can use the require.resolve('some_module') command, which will show you the path to the module that node finds as a result of the tree climbing process. require.resolve can be useful when double-checking that the module that you think is getting loaded is actually getting loaded -- sometimes there is another version of the same module closer to your current working directory than the one you intend to load.
+
+
+ How to write a moudle
+
+ what does 'node -pe' do? pathexecution?
+ 
+ node -pe "require('number-one')"
+ 
+ // 1
+
+ node_modules
+  - number-one
+   - index.js 
+   - package.json
+
+ package.json:
+
+{
+  "name": "number-one",
+  "version": "1.0.0"
+}
+
+index.js:
+
+module.exports = 1
+
+An even quicker way to create a module is to run these commands:
+
+mkdir my_module
+cd my_module
+git init
+git remote add git@github.com:yourusername/my_module.git
+npm init
+
+Running npm init will create a valid package.json for you and if you run it in an existing git repo it will set the repositories field inside package.json automatically as well!
+
+ npm install --save request // Install and wrtie depencies in json file
+
+ A module can list any other modules from npm or GitHub in the dependencies field of package.json. To install the request module as a new dependency and automatically add it to package.json run this from your module root directory:
+
+
+
+This installs a copy of request into the closest node_modules folder and makes our package.json look something like this:
+
+{
+  "id": "number-one",
+  "version": "1.0.0",
+  "dependencies": {
+    "request": "~2.22.0"
+  }
+}
+
+By default npm install will grab the latest published version of a module.
+
+ browserify is a utility written in Node that tries to convert any node module into code that can be run in browsers. Not all modules work (browsers can't do things like host an HTTP server), but a lot of modules on NPM will work.(Webpack is similar)
+
+ Like any good tool, node is best suited for a certain set of use cases. For example: Rails, the popular web framework, is great for modeling complex business logic, e.g. using code to represent real life business objects like accounts, loan, itineraries, and inventories. While it is technically possible to do the same type of thing using node, there would be definite drawbacks since node is designed for solving I/O problems and it doesn't know much about 'business logic'. Each tool focuses on different problems. Hopefully this guide will help you gain an intuitive understanding of the strengths of node so that you know when it can be useful to you.
+
+first arguments should be err object and 
+
+ When there is no error pass null as the first argument
+ When there is an error, pass it as the first argument
+ The rest of the arguments can be used for anything (usually data or responses since most stuff in node is reading or writing things)
+
+ ex) Node callback style
+
+fs.readFile('filename.ext', function(err, data) {
+  // handle error, do stuff with data
+})
+
+
+ - module.exports 
+
+  -> You can export multiple modules -> https://stackoverflow.com/questions/16631064/declare-multiple-module-exports-in-node-js
+ 
+  module.exports = {
+   function1,
+   function2,
+   function3
+ }
+  
+  const myFunctions = require("./lib/file.js")
+
+  myFunctions.function1
+  myFunctions.function2
+  myFunctions.function3
+
+  ex) 
+
+  module.exports = {
+    method: function() {},
+    otherMethod: function() {}
+}
+
+  exports.method = function() {};
+  exports.otherMethod = function() {};
+
+
+  var MyMethods = require('./myModule.js');
+  var method = MyMethods.method;
+  var otherMethod = MyMethods.otherMethod;
+
+
+  -> module.exports = $whatever, require($whatever) following some rule, related package - npm, local // Read more this link - https://github.com/maxogden/art-of-node#modules 
+
+  
+  -> Key point is that you can export, import(require) and use for whatever purpose by using module related API. 
+   
+
+
+=======================================================================================================================================================
+
+
+ STREAM 
+
+ 
+ - Linux use | and node use source.pipe(target) // .pipe()
+ - Buffer
+ - .pipe() to pair inputs with outputs // src.pipe(dst)
+
+   a.pipe(b).pipe(c).pipe(d); // returns dst file
+ 
+   a.pipe(b);
+   b.pipe(c);
+   c.pipe(d);
+    
+   a | b | c | d
+ 
+ - 
+
+
+
+ Linux use | for stream and node use pipe(); -> Hear again, Learning linux concepts help you understand node also
+
+ // Useful for large file
+ 
+const http = require('http');
+const fs = require('fs');
+const oppressor = require('oppressor');
+
+const server = http.createServer((req, res) => {
+  let stream = fs.createReadStream(__dirname + '/data.txt');
+  stream.pipe(oppressor(req)).pipe(res); 
+})
+ 
+* In Node.js, __dirname is always the directory in which the currently executing script resides .
+
+* . -> which you ran the node command in your terminal window (i.e. your working directory).
+ 
+// opressor(req) -> delfate or gzip
+
+* There are 5 kinds of streams: readable, writable, transform, duplex, and "classic".
+
+* process - what happen in command line -> show results in process.stdout
+  
+* 'a'.charCodeAt(); // 97, 'z'.charCodeAt(); // 122
+
+
+  READABLE STREAMS // readableStream.pipe(dst), You have to understand that request is already readable data
+
+  ex) req, process.stdin
+
+  Readable streams produce data that can be fed into a writable, transform, or    duplex stream by calling .pipe():
+
+  WRITABLE STREAMS // src.pipe(writableStream), You have to understand that response is already writable data
+
+  ex) res, process.stdout
+
+ 
+const { Writable } = require('stream')
+const ws = Writable();
+ws._write = (chunk, enc, next) => {
+  console.dir(chunk);
+  next();
+};
+
+process.stdin.pipe(ws);
+
+The first argument, chunk is the data that is written by the producer.
+
+The second argument enc is a string with the string encoding, but only when opts.decodeString is false and you've been written a string.
+
+The third argument, next(err) is the callback that tells the consumer that they can write more data. You can optionally pass an error object err, which emits an 'error' event on the stream instance.
+
+If the readable stream you're piping from writes strings, they will be converted into Buffers unless you create your writable stream with Writable({ decodeStrings: false }).
+
+If the readable stream you're piping from writes objects, create your writable stream with Writable({ objectMode: true }).
+
+ 
+ Writing to a writable data // process.stdout.write('beep message\n');
+
+ const fs = require('fs');
+ const ws = fs.createWriteStream('message.txt');
+
+ ws.write('beep ');
+
+ setTimeout(() => {
+   ws.end('message\n');
+}, 1000);
+ 
+
+ Transform
+
+
+ Transform streams are a certain type of duplex stream (both readable and  writable). The distinction is that in Transform streams, the output is in some  way calculated from the input.
+
+You might also hear transform streams referred to as "through streams".
+
+Through streams are simple readable/writable filters that transform input and produce output.
+
+ Duplex
+
+ Duplex streams are readable/writable and both ends of the stream engage in a two-way interaction, sending back and forth messages like a telephone. An rpc exchange is a good example of a duplex stream. Any time you see something like:
+
+a.pipe(b).pipe(a) // a | b | a
+
+you're probably dealing with a duplex stream.
+
+=======================================================================================================================================================
+
+ HTTP - https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
+
+ - const http = require('http');
+ - Use it for internet related thing
+
+ Web application needs web server for internet communication.
+ 
+ -> http.createServer
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LEARNYOUNODE Related 
+=======================================================================================================================================================
+
+ NODE - learnyounode -> npm install -g learnyounode
+
+ 
+
+ - console.log() something using node filename
+ - You can use command line arguments with process.argv // [node, filename(location), command line arguments]
+
+ ->  
+ 
+    const array = process.argv
+   
+   // console.log(array);
+    
+   let sum = 0;
+
+   function findSumFromThird(x){
+     
+     for(let i = 2; i < x.length; i++){
+         sum += new Number(x[i]);
+     }
+     return (sum);
+   };
+
+   console.log(findSumFromThird(array));
+
+ -> processARGV.js 1 2 3 4 5 6 7 8
+    // 36
+ - 
+
+
+ # LEARN YOU THE NODE.JS FOR MUCH WIN!  
+   
+ ## HELLO WORLD (Exercise 1 of 13)  
+   
+  Write a program that prints the text "HELLO WORLD" to the console  
+  (stdout).  
+   
+ ─────────────────────────────────────────────────────────────────────────────  
+   
+ ## HINTS  
+   
+  To make a Node.js program, create a new file with a .js extension and  
+  start writing JavaScript! Execute your program by running it with the node  
+  command. e.g.:  
+   
+     $ node program.js  
+   
+  You can write to the console in the same way as in the browser:  
+   
+     console.log("text")  
+   
+  When you are done, you must run:  
+   
+     $ learnyounode verify program.js  
+   
+  to proceed. Your program will be tested, a report will be generated, and  
+  the lesson will be marked 'completed' if you are successful.  
+   
+ ─────────────────────────────────────────────────────────────────────────────  
+   
+   » To print these instructions again, run: learnyounode print                  
+   » To execute your program in a test environment, run: learnyounode run                                                                            
+     program.js                                                                  
+   » To verify your program, run: learnyounode verify program.js                 
+   » For help run: learnyounode help 
+
+ 
+
+ process.argv is an array containing the command line arguments. The first element will be 'node', the second element will be the name of the JavaScript file. The next elements will be any additional command line arguments.
+
+// print process.argv
+process.argv.forEach(function (val, index, array) {
+  console.log(index + ': ' + val);
+});
+
+This will generate:
+
+$ node process-2.js one two=three four
+0: node
+1: /Users/mjr/work/node/process-2.js
+2: one
+3: two=three
+4: four
+
+ 
+ 
+Buffer(Class -> Objects)
+
+buf.toString([encoding], [start], [end])
+buf.toJSON()
+
+
+
+refer this example
+
+const fs = require('fs')
+
+fs.readFile('file.exe', function finishedReading(error, movieData) {
+  if (error) return console.error(error)
+  // do something with the movieData
+})
+
+
+// Sync 
+
+/* const fs = require('fs');
+ *
+ * const contents = fs.readFileSync(process.argv[2])
+ *  const lines = contents.toString().split('\n').length -1
+ * console.log(lines);
+ */
+
+// or 
+
+ /* const fs = require('fs');
+ *
+ * const contents = fs.readFileSync(process.argv[2], 'utf8');
+ *  const lines = contents.split('\n').length -1
+ *  console.log(lines);
+ */
+
+
+// data read here is binary -> You have to change it to String before you do something with it. 
+
+// to Async
+
+const fs = require('fs');
+
+fs.readFile(process.argv[2], function(err, data) {
+   if(err){
+     throw err;
+   } else {
+     let lines = data.toString().split('').length - 1;
+     console.log(lines);
+   } 
+});
+
+// or read data as string by passing 'utf8' to fs.readFile arguments
+
+/*
+  const fs = require('fs');
+ 
+fs.readFile(process.argv[2], 'utf8', function(err, data) {
+   if(err){
+     throw err;
+   } else {
+     let lines = data.split('\n').length - 1;
+     console.log(lines);
+   } 
+});
+
+ */
+
+
+
+ const fs = require("fs");
+ const path = require("path"); 
+
+ const directoryName = process.argv[2];
+ 
+  // Note that the second argument will not come prefixed with a '.'. 
+ 
+ const fileExtensionToFilter = '.' + process.argv[3];
+ 
+
+  
+
+ fs.readdir(directoryName, function(err, files) {
+   if(err) return (console.error(err));
+
+   let targetFileList = files.filter(function(file){
+       return (path.extname(file).toLowerCase() === fileExtensionToFilter);       
+    });
+
+    for(let i = 0; i < targetFileList.length; i++) {
+       console.log(targetFileList[i]);
+    }
+ }); 
+
+
+ or using slower arrays.forEach(function(array){ statements using array } 
+
+
+ fs.readdir(directoryName, function(err, files) {
+   if(err) return (console.error(err));
+
+   let targetFileList = files.filter(function(file){
+       return (path.extname(file).toLowerCase() === fileExtensionToFilter);       
+    });
+
+    targetFileList.forEach(function(file) {
+      console.log(file);
+    })
+
+
+ or from official answer
+
+    
+    fs.readdir(folder, function (err, files) {
+      if (err) return console.error(err)
+      files.forEach(function (file) {
+        if (path.extname(file) === ext) {
+          console.log(file)
+        }
+      })
+    })
+
+
+Node accepts ES6 and more advanced javascript code(Try to use them as much as you can)
+
+const fs = require('fs');
+const path = require('path');
+
+// function expression with arrow function
+
+const myMoudle = (dir, ext, cb) => {
+     fs.readdir(dir, (err, list) => {
+        return err ? cb(err) : cb(null, list.filter(file => path.extname(file) === `.${ext}`));   
+     });
+};
+
+moudle.exports = myModule;
+
+const myModule = require('./myModule.js');
+const dir = process.argv[2];
+const ext = process.argv[3];
+
+myModule(dir, ext, (err, list) => {
+  return err ? console.error('There is an error:', err) :
+  console.log(list.join('\n')); // err => null, list => list.filter(file => path.extname(file) === `.${ext}`)
+});
+
+
+* For fast solution const array = [1, 2, 3, 4, 5];  instead of looping for console.log separately
+ 
+ -> array.join('\n'); // '\n' between each string member
+ 
+
+ // String 
+
+   "1
+    2
+    3
+    4
+    5"
+
+const http = require('http');
+const url = process.argv[2];
+
+http.get(url, (response) => {
+   response.setEncoding("utf8");
+   response.on("error", (error) => {
+      console.error(error);
+   });
+
+   response.on("data", data => {
+      console.log(data);
+   });
+});
+
+response is a Buffer object that is made by http.get(url.......) part
+
+* Where the response object is a Node Stream object. You can treat Node  
+  Streams as objects that emit events.
+
+* You can catch events like "data", "error", "end" and decide what to do with them. 
+
+ ex) response.on("data", function (data) { /* ... */ }) 
+
+ const http = require('http');
+ const url = process.argv[2];
+
+http.get(url, (response) => {
+   response.setEncoding("utf8");
+   response.on("error", (error) => {
+      console.error(error);
+   });
+
+   response.on("data", data => {
+      console.log(data);
+   });
+});
+
+// Write what to do(encode in "utf8", decide event handlers for it)
+
+* listen to event using .on();
+
+* You can find length with strign and array just by chaning .length
+
+* You need to learn promises and generators or asynch - awaits
+
+-> refer this https://stackoverflow.com/questions/28031289/javascript-asynchronous-programming-promises-vs-generators
+
+
+
+=======================================================================================================================================================

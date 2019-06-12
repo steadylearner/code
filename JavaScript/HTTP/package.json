@@ -1,0 +1,9 @@
+{
+  "name": "HTTP",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "mime": "^2.3.1"
+  }
+}

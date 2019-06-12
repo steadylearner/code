@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>http://www.steadylearner.com/</loc> </url>
+<url> <loc>http://www.steadylearner.com/about</loc> </url>
+<url> <loc>http://www.steadylearner.com/about/:language?</loc> </url>
+<url> <loc>http://www.steadylearner.com/video</loc> </url>
+<url> <loc>http://www.steadylearner.com/video/search/:query?</loc> </url>
+<url> <loc>http://www.steadylearner.com/video/watch/:videoId</loc> </url>
+<url> <loc>http://www.steadylearner.com/video/write/:videoId?</loc> </url>
+<url> <loc>http://www.steadylearner.com/image</loc> </url>
+<url> <loc>http://www.steadylearner.com/image/search/:query?</loc> </url>
+<url> <loc>http://www.steadylearner.com/blog</loc> </url>
+<url> <loc>http://www.steadylearner.com/blog/search/:query?</loc> </url>
+<url> <loc>http://www.steadylearner.com/blog/read/:blogTitle?</loc> </url>
+<url> <loc>http://www.steadylearner.com/code</loc> </url>
+<url> <loc>http://www.steadylearner.com/code/search/:query?</loc> </url>
+<url> <loc>http://www.steadylearner.com/markdown</loc> </url>
+<url> <loc>http://www.steadylearner.com/jsx</loc> </url>
+<url> <loc>http://www.steadylearner.com/slideshow</loc> </url>
+<url> <loc>http://www.steadylearner.com/static/images/:folder</loc> </url>
+</urlset>

@@ -1,0 +1,1 @@
+for(let key in iterable) -> iterate over key | for(let value of iterable) -> iteratae over value of iterable 

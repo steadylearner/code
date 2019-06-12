@@ -1,0 +1,3 @@
+https://www.lifewire.com/example-uses-of-the-linux-gzip-command-4078675
+find . | gzip -d *.gz to unzip all files in the current directory
+find . | gzip *.ext to unzip all files with specific extension(ext) in the current directory

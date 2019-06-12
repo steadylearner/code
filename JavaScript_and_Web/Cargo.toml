@@ -1,0 +1,25 @@
+[package]
+name = "javascript_and_web"
+version = "0.1.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+# When you use it for production() -> dev [unoptimized + debuginfo] target(s) compiler shows this result and I have to verify it later 
+# after learn binaryen
+[profile.release]
+debug = false
+lto = true
+# to focus on size not speed
+# opt-level = 's'
+# https://github.com/WebAssembly/binaryen you can still use it here
+
+[dependencies]
+dotenv = "0.13.0"
+# envy = "0.3.2"
+serde_derive = "1.0.79"
+serde = "1.0.79"
+
+[dependencies.wasm-bindgen]
+version = "^0.2"
+features = ["serde-serialize"]

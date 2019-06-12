@@ -1,0 +1,25 @@
+# https://www.worthe-it.co.za/programming/2018/11/18/compile-time-feature-flags-in-rust.html
+
+[package]
+name = "sitemap_rust"
+version = "0.0.0"
+authors = ["www.steadylearner.com"]
+autobins = false
+
+# SYS
+dotenv = "0.13.0"
+# serialize and deserialize
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+
+# time and others
+chrono = { version = "0.4.6", features = ["serde"] }
+
+# CLI for Blog Post
+console = "0.7.2"
+
+# chat
+sitemap = "0.3.0"
+
+

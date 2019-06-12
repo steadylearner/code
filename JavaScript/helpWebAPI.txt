@@ -1,0 +1,266 @@
+ Regular Expression and pathToRegexp - You have to learn them working with examples.
+ 
+  URL
+
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+- https://github.com/pillarjs/path-to-regexp
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ Regular expression
+
+Regular expressions are patterns used to match character combinations in strings. In JavaScript, regular expressions are also objects. These patterns are used with the exec and test methods of RegExp, and with the match, replace, search, and split methods of String. This chapter describes JavaScript regular expressions.
+ 
+ - exec(), test() with Regexp
+
+ex) 
+
+var a = /a*bc/ 
+
+a.test("abccccccccccccc"); true
+a.exec("abcccccccccc");
+
+[ 'abc', index: 0, input: 'abcccccccccc' ]
+> a.exec("1abcccccccccc");
+[ 'abc', index: 1, input: '1abcccccccccc' ]
+> a.exec("bbbbbbbbbbb1abcccccccccc");
+[ 'abc', index: 12, input: 'bbbbbbbbbbb1abcccccccccc' ]
+
+
+ - match, replace, search, split with String 
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ Starts with / 
+ 
+
+ \ is escape character for nomral characters and special chracters
+
+ 
+ /ab*c/ *means 0 or more occurrences of the preceding item 
+
+
+ ^ is to match beginning of input /^A/ -> "An E", or 
+
+
+ $ is to match end of input  /t$/ -> "Examplet"
+ 
+
+ * {0,}, preceding expression 0 or more times /bo*/ -> 'boast', 'bt'
+ + {1,}, preceding expression 1 or more times /a+/ -> 'caaandy' and no 'cdy'
+
+
+ ? {0, 1} matches the preciding expression 0 or 1 time /e?le/ -> 'l', 'osla', if used immediately after [*, +, ? {}], make them non-greedy.
+ 
+ It is also used in lookahead assertions, as described in the x(?=y) and x(?!y)
+
+ 
+ . any single character execpt the newline character /.n/ -> 'in', 'on' and not 'nay'
+
+
+ (x) Matches 'x' and remembers the match, as the following example shows. The parentheses are called capturing parentheses.
+
+The '(foo)' and '(bar)' in the pattern /(foo) (bar) \1 \2/ match and remember the first two words in the string "foo bar foo bar". The \1 and \2 in the pattern match the string's last two words. Note that \1, \2, ..., \n are used in the matching part of the regex. In the replacement part of a regex the syntax $1, $2, ..., $n must be used, e.g.: 'bar foo'.replace(/(...) (...)/, '$2 $1').  $& means the whole matched string.
+ 
+ 
+ (?:x) Matches 'x' but does not remember the match. The parentheses are called non-capturing parentheses, and let you define subexpressions for regular expression operators to work with. Consider the sample expression /(?:foo){1,2}/. If the expression was /foo{1,2}/, the {1,2} characters would apply only to the last 'o' in 'foo'. With the non-capturing parentheses, the {1,2} applies to the entire word 'foo'. For more information, see Using parentheses below.
+
+ 
+ x(?=y) <-> x(?!y) ! is to negate
+
+ x(?=!y)
+ 
+ Matches 'x' only if 'x' is not followed by 'y'. This is called a negated lookahead.
+
+For example, /\d+(?!\.)/ matches a number only if it is not followed by a decimal point. The regular expression /\d+(?!\.)/.exec("3.141") matches '141' but not '3.141
+ 
+ 
+ x|y
+
+ Matches 'x', or 'y' (if there is no match for 'x').
+
+For example, /green|red/ matches 'green' in "green apple" and 'red' in "red apple." The order of 'x' and 'y' matters. For example a*|b matches the empty string in "b", but b|a* matches "b" in the same string.
+
+
+ {n}, {n, }, {n,m}
+
+ {n}
+
+ Matches exactly n occurrences of the preceding expression. N must be a positive integer.
+
+ [xyz], [^xyz]
+
+ [xyz]
+
+ Character set. This pattern type matches any one of the characters in the brackets, including escape sequences. Special characters like the dot(.) and asterisk (*) are not special inside a character set, so they don't need to be escaped. You can specify a range of characters by using a hyphen, as the following examples illustrate.
+
+ [^xyz]
+
+The pattern [a-d], which performs the same match as [abcd], matches the 'b' in "brisket" and the 'c' in "city". The patterns /[a-z.]+/ and /[\w.]+/ match the entire string "test.i.ng".
+ 
+ A negated or complemented character set. That is, it matches anything that is not enclosed in the brackets. You can specify a range of characters by using a hyphen. Everything that works in the normal character set also works here.
+
+For example, [^abc] is the same as [^a-c]. They initially match 'r' in "brisket" and 'h' in "chop."
+
+
+ [\b] 
+
+Matches a backspace (U+0008). You need to use square brackets if you want to match a literal backspace character. 
+
+ \b 
+
+ a word boundary - think it with word breaks
+
+ 
+ * Capital character of special characters does opposite function of lowercase
+
+ 
+ \B 
+
+ Matches a non-word boundary. This matches the following cases:
+
+    Before the first character of the word, if the first character is not a word character.
+    After the last character of the word, if the last character is not a word character.
+    Between two word characters
+    Between two non-word characters
+    The empty string
+
+The beginning and end of a string are considered non-words.
+
+
+ \cX
+ 
+ Where X is a character ranging from A to Z. Matches a control character in a string.
+
+For example, /\cM/ matches control-M (U+000D) in a string
+
+ 
+ \d 
+
+ Matches a digit character. Equivalent to [0-9].
+
+For example, /\d/ or /[0-9]/ matches '2' in "B2 is the suite number."
+ 
+ \D 
+
+ Matches a non-digit character. Equivalent to [^0-9].
+
+For example, /\D/ or /[^0-9]/ matches 'B' in "B2 is the suite number."
+ 
+
+  \s 
+  
+ Matches a single white space character, including space, tab, form feed, line feed. 
+
+  \S
+  
+ Matches a single character other than white space.
+
+ 
+ \w 
+ 
+ matches any alphanumeric character including the underscore. Equivalent to [A-Za-z0-9_].  
+ For example, /\w/ matches 'a' in "apple," '5' in "$5.28," and '3' in "3D."
+
+ \W
+ 
+ Matches any non-word character. Equivalent to [^A-Za-z0-9_].
+
+For example, /\W/ or /[^A-Za-z0-9_]/ matches '%' in "50%." 
+
+ Methods that use reuglar expressions
+
+RegExp.exec - A RegExp method that executes a search for a match in a string. It returns an array of information or null on a mismatch.
+
+RegExp.test - A RegExp method that tests for a match in a string. It returns true or false.
+
+String.match - A String method that executes a search for a match in a string. It returns an array of information or null on a mismatch.
+
+String.search - A String method that tests for a match in a string. It returns the index of the match, or -1 if the search fails.
+(-1 value is important here for logic)
+
+String.replace - A String method that executes a search for a match in a string, and replaces the matched substring with a replacement substring.
+
+String.split - A String method that uses a regular expression or a fixed string to break a string into an array of substrings.
+ 
+ 
+ Advanced searching with flags 
+
+g 	Global search(Verify whole string and returning all matches)
+i 	Case-insensitive search.(uppercase, lowercase)
+
+ /g
+ /i
+ /gi
+ /ig 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ path-to-regexp 
+
+ - https://github.com/pillarjs/path-to-regexp
+ 
+ Use With route testers
+ 
+ - https://pshrmn.github.io/route-tester/#/
+ - https://forbeslindesay.github.io/express-route-tester/
+
+
+
+
+
+=======================================================================================================================================================
+
+  XMLHTTPRequest, AJAX, Fetch etc 
+ 
+
+  url soruces)
+
+ - https://developer.mozilla.org/en-US/docs/Web/API/
+
+ - https://scotch.io/tutorials/how-to-use-the-javascript-fetch-api-to-get-data -> It is helpful to understand Fetch
+
+ - https://randomuser.me/ you can refer to site get random user api(json)
+
+
+
+=======================================================================================================================================================
+ 
+
+
+ * Promise > Fetch, Generator* , asynch function - await
+ 
+
+ FETCH - Replacement for XMLTHTTPRequest
+ 
+
+
+ * fetch(url) // Call the fetch function passing the url of the API as a parameter
+.then(function() {
+    // Your code for handling the data you get from the API
+})
+.catch(function() {
+    // This is where you run code if the server returns any errors
+});
+
+ -> syntax equal to Promise 
+
+we are calling the Fetch API and passing it the URL we defined as a constant above and since no more parameters are set this is a simple GET request. Then we get a response 
+
+but the response we get is not JSON but an object with a series of methods we can use depending on what we want to do with the information, these methods include
+
+
+ - clone() - As the method implies this method creates a clone of the response.
+ - redirect() - This method creates a new response but with a different URL.
+ - arrayBuffer() - In here we return a promise that resolves with an ArrayBuffer.
+ - formData() - Also returns a promise but one that resolves with FormData object.
+ - blob() - This is one resolves with a Blob. https://developer.mozilla.org/en-US/docs/Web/API/Blob
+ - text() - In this case it resolves with a string.
+ - json() - Lastly we have the method to that resolves the promise with JSON.
+
+ GET request, the default one for the fetch function 
+ but we can do all other types of requests and also change the headers and off course send data,
+ all we need for this is to set our object and pass it as the second argument of the fetch function
+

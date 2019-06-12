@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports["default"]=_has;function _has(a,b){return Object.prototype.hasOwnProperty.call(b,a)}
