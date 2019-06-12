@@ -1,15 +1,13 @@
 <!--
- Post{
-   title: "How to start Rust Chat App",
-   subtitle: "Build your local chat application with it.",
-   image: "post/chat/rust_chat_title.png",
-   image_decription: "Rust Chat App by Steadylearner",
-   tags: "Rust chat app code",
-   theme: "Rust",
- }
+  Post{
+    subtitle: "Build your local chat application with it.",
+    image: "post/chat/rust_chat_title.png",
+    image_decription: "Rust Chat App by Steadylearner",
+    tags: "Rust chat app code",
+  }
 -->
 
-<!-- Link here -->
+<!-- Link  -->
 
 [Steadylearner]: https://www.steadylearner.com
 [Steadylearner Github Repository]: https://github.com/steadylearner/Steadylearner
@@ -37,7 +35,9 @@
 [node-emoji]: https://www.npmjs.com/package/node-emoji
 [has-emoji]: https://www.npmjs.com/package/has-emoji
 
-<!-- Post for this series -->
+<!-- / -->
+
+<!-- Post -->
 
 <!-- / -->
 

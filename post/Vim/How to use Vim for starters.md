@@ -1,14 +1,12 @@
-https://medium.com/me/stats/post/c81da6f5fde8
+<!-- https://medium.com/me/stats/post/c81da6f5fde8 -->
 
-<!-- 
- Post{ 
-   title: "How to learn Vim for beginners",
-   subtitle: "Learn how to use it with examples",
-   image: "code/Rust_r.png",
-   image_decription: "Vim Image",
-   tags: "Rust reqwest GitHub CURL",
-   theme: "Vim",
- }
+<!--
+  Post{
+    subtitle: "Learn how to use it with examples",
+    image: "code/Rust_r.png",
+    image_decription: "Vim Image",
+    tags: "Rust reqwest GitHub CURL",
+  }
 -->
 
 <!-- Steadylearner -->
@@ -22,9 +20,9 @@ https://medium.com/me/stats/post/c81da6f5fde8
 [How to write less code for links in markdown with React]:  s-/blog/read/How-to-write-less-code-for-links-in-markdown-with-React
 [How to turn chars into binary and vice versa with Rust]: https://www.steadylearner.com/blog/read/How-to-turn-chars-into-binary-and-vice-versa-with-Rust
 
-<!-- \Steadylearner -->
+<!-- / -->
 
-<!-- Shortcut -->
+<!-- Link -->
 
 [Rust]: https://www.rust-lang.org/
 [JSON]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON
@@ -33,9 +31,9 @@ https://medium.com/me/stats/post/c81da6f5fde8
 [CURL]: https://curl.haxx.se/
 [git]: https://git-scm.com/
 
-<!-- \Shortcut -->
+<!-- / -->
 
-You should already know how to write [Rust] code before you read on. I also want you to visit 
+You should already know how to write [Rust] code before you read on. I also want you to visit
 
 <h2 class="red-white">[Prerequisite]</h2>
 
@@ -43,7 +41,7 @@ You should already know how to write [Rust] code before you read on. I also want
 2. [Rust Reqwest Crate][Reqwest]
 ---
 
-You should already know how to write [Rust] code before you read on. I also want you to visit 
+You should already know how to write [Rust] code before you read on. I also want you to visit
 
 <br />
 

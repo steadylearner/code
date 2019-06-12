@@ -1,15 +1,15 @@
 <!--
- Post{
-   title: "How to install Rust",
-   subtitle: "Learn how to install Rust and more",
-   image: "post/Rust/how_to_install_rust.png",
-   image_decription: "Made with CSS by Steadylearner",
-   tags: "Rust code install development",
-   theme: "Rust",
- }
+  Post{
+    title: "How to install Rust",
+    subtitle: "Learn how to install Rust and more",
+    image: "post/Rust/how_to_install_rust.png",
+    image_decription: "Made with CSS by Steadylearner",
+    tags: "Rust code install development",
+    theme: "Rust",
+  }
 -->
 
-<!-- Link here -->
+<!-- Link -->
 
 [Rust]: https://www.rust-lang.org/
 [Rust Getting Started Guide]: https://www.rust-lang.org/learn/get-started
@@ -26,7 +26,9 @@
 [prop-passer]: https://github.com/steadylearner/prop-passer
 [react-easy-md]: https://github.com/steadylearner/react-easy-md
 
-<!-- Post for this series -->
+<!-- / -->
+
+<!-- Post -->
 
 <!-- / -->
 

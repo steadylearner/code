@@ -1,15 +1,13 @@
-<!-- 
- Post{ 
-   title: "React Easy Markdown",
-   subtitle:  "Some React components to help you write markdown with ease.",
-   image:  "/code/React.png",
-   image_decription: "React Image from the website",
-   tags: "markdown React NPM react-easy-md",
-   theme: "NPM",
- }
+<!--
+  Post{
+    subtitle:  "Some React components to help you write markdown with ease.",
+    image:  "/code/React.png",
+    image_decription: "React Image from the website",
+    tags: "markdown React NPM react-easy-md",
+  }
 -->
 
-<!-- Shortcut -->
+<!-- Link -->
 
 [react-marked-markdown]: https://github.com/Vincent-P/react-marked-markdown
 [React Easy Markdown Github Repository]: https://github.com/steadylearner/react-easy-md
@@ -19,7 +17,7 @@
 [How to write less code for links in markdown with React]: https://www.steadylearner.com/blog/read/How-to-write-less-code-for-links-in-markdown-with-React
 [marked]: https://github.com/markedjs/marked
 
-<!-- \Shortcut -->
+<!-- / -->
 
 <!-- Steadylearner -->
 
@@ -28,7 +26,7 @@
 [Markdown]: https://www.steadylearner.com/markdown
 [prop-passer]: https://www.npmjs.com/package/prop-passer
 
-<!-- \Steadylearner -->
+<!-- / -->
 
 <!-- [![Travis branch](https://img.shields.io/travis/Steadylearner/react-easy-md/master.svg?maxAge=2592000)]() -->
 

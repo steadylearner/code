@@ -1,14 +1,13 @@
 <!--
- Post{
-   title: "How to automate sitemaps with Rust",
-   subtitle: "Build sitemap automatically with Rust",
-   image: "post/sitemap/automate_sitemap_rust.png",
-   image_decription: "Made with CSS by Steadylearner",
-   tags: "Rust sitemap automate code",
- }
+    Post{
+        subtitle: "Build sitemap automatically with Rust",
+        image: "post/sitemap/automate_sitemap_rust.png",
+        image_decription: "Made with CSS by Steadylearner",
+        tags: "Rust sitemap automate code",
+    }
 -->
 
-<!-- Link here -->
+<!-- Link -->
 
 [Rust Sitemap Crate]: https://github.com/svmk/rust-sitemap
 [Steadylearner]: https://www.steadylearner.com
@@ -19,7 +18,9 @@
 [Sitemap GitHub]: https://github.com/steadylearner/Sitemap
 [What is image sitemap]: https://support.google.com/webmasters/answer/178636
 
-<!-- Post for this series -->
+<!-- / -->
+
+<!-- Post -->
 
 [Your first sitemap with Rust]: https://www.steadylearner.com/blog/read/Your-first-sitemap-with-Rust
 [How to use datas to build sitemap with Rust Diesel]: https://www.steadylearner.com/blog/read/How-to-use-datas-to-build-sitemap-with-Rust-Diesel

@@ -1,15 +1,13 @@
 <!--
- Post{
-   title: "Your first sitemap with Rust",
-   subtitle: "Learn how to build static sitemap with it",
-   image: "post/sitemap/static_sitemap_example.png",
-   image_decription: "static sitemap example by Steadylearner",
-   tags: "Rust sitemap code Steadylearner",
-   theme: "Rust",
- }
+  Post{
+    subtitle: "Learn how to build static sitemap with it",
+    image: "post/sitemap/static_sitemap_example.png",
+    image_decription: "static sitemap example by Steadylearner",
+    tags: "Rust sitemap code Steadylearner",
+  }
 -->
 
-<!-- Link here -->
+<!-- Link -->
 
 [Rust Sitemap Crate]: https://github.com/svmk/rust-sitemap
 [Writing Sitemap with Rust example]: https://github.com/svmk/rust-sitemap/blob/master/tests/test_write_sitemap.rs

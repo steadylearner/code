@@ -1,17 +1,13 @@
-<!-- Write code for Rust CLI read the lines below and remove this comment-->
-
-<!-- 
- { 
-   title: "How to setup Jest to test JavaScript Code",
-   subtitle:  "Learn how to write tests for JavaScript codes with Jest.",
-   image:  "/code/Jest.png",
-   image_decripton: "Jest Official Image",
-   tags: "test JavaScript Jest Steadylearner",
-   theme: "JavaScript"
- }
+<!--
+  Post {
+    subtitle:  "Learn how to write tests for JavaScript codes with Jest.",
+    image:  "/code/Jest.png",
+    image_decripton: "Jest Official Image",
+    tags: "test JavaScript Jest Steadylearner",
+  }
 -->
 
-<!-- Link here -->
+<!-- Link -->
 
 [Steadylearner]: https://www.steadylearner.com
 [Steadylearner Github Repository]: https://github.com/steadylearner/Steadylearner
@@ -24,7 +20,9 @@
 [How to use JavaScript]: https://developer.mozilla.org/en/docs/Web/JavaScript
 [How to setup Jest for beginners]: https://jestjs.io/docs/en/getting-started.html
 
-<!-- Post for this series -->
+<!-- / -->
+
+<!-- Post -->
 
 [How to turn class React component into functional component]: https://www.steadylearner.com/blog/read/How-to-turn-React-class-component-into-functional-component
 
@@ -32,7 +30,7 @@
 
 [How to enable Code Syntax Highlight in React App]: https://medium.com/@steadylearner/how-to-enable-code-syntax-highlight-in-react-app-38463498fa6e?source=---------8------------------
 
-<!-- Write code for Rust CLI to read the data from the github with conditional statements and remove this comment -->
+<!-- /  -->
 
 In the post [How to write less code for links in markdown with React][How to write less code for links in markdown with React], We have learnt how to make shortcut for links for markdown with JavaScript. It works well inside the Codesandbox example [React Markdown Improved][React Markdown Improved] without problems.
 
@@ -40,7 +38,7 @@ It might be ok without tests if you want to use it for your porject only. But ou
 
 So I will help you to learn how to setup Jest first to test JavaScript codes. We will use the code snippets we saw at [the post][How to write less code for links in markdown with React].
 
-The main part of it was 
+The main part of it was
 
 ```jsx
 renderer.link = (href, title, text) => {
@@ -48,7 +46,7 @@ renderer.link = (href, title, text) => {
     const isHrefeIncludeAnyPrefix = prefixWithReplacement.filter(x => href.startsWith(x[0]));
     if(isHrefeIncludeAnyPrefix.length > 0) { // 2.
       // 3.
-      const hrefReplacedByPrefix = `${isHrefeIncludeAnyPrefix[0][1]}${href.split(isHrefeIncludeAnyPrefix[0][0])[1]}` 
+      const hrefReplacedByPrefix = `${isHrefeIncludeAnyPrefix[0][1]}${href.split(isHrefeIncludeAnyPrefix[0][0])[1]}`
       return `<a target="_blank" rel="noopener noreferrer" href="${hrefReplacedByPrefix}" title="${
         title === null ? `${titleMessage} ${hrefReplacedByPrefix}` : title
       }" >${text}</a>`;
@@ -68,8 +66,8 @@ l-/steady-learner-3151b7164,
 y-/UCt_jsJOe91EVjd58kHpgTfw,
 t-/steadylearner_p,
 g-/steadylearner,
-``` 
-become 
+```
+become
 ```md
 https://www.steadylearner.com/blog
 https://www.linkedin.com/in/steady-learner-3151b7164/
@@ -79,13 +77,13 @@ https://github.com/steadylearner
 ```
 or not after the main process of the post.
 
-You may not be interested in the code snippet used here to write shorctus for markdown. But it will be help you to learn **how to setup and organize your code to test your JavaScript code**. 
+You may not be interested in the code snippet used here to write shorctus for markdown. But it will be help you to learn **how to setup and organize your code to test your JavaScript code**.
 
 <br />
 
 <h2 class="red-white">[Prerequisite]</h2>
 
-1. [How to use JavaScript][How to use JavaScript] 
+1. [How to use JavaScript][How to use JavaScript]
 2. [How to setup Jest for beginners][How to setup Jest for beginners]
 3. [How to write less code for links in markdown with React][How to write less code for links in markdown with React]
 4. [Steadylearner Github Repository][Steadylearner Github Repository]
@@ -101,14 +99,14 @@ Inside [Steadylearner Github Repository][Steadylearner Github Repository], It ha
 
 1. How to setup Jest to test JavaScript
 2. **How to prepare the code to test**
-3. **How to write Jest** code to test it 
+3. **How to write Jest** code to test it
 4. **Conclusion**
 
 ---
 
 <br />
 
-## 1. How to setup Jest to test JavaScript 
+## 1. How to setup Jest to test JavaScript
 
 I hope you already read the documentation from [How to setup Jest for beginners][How to setup Jest for beginners]. You should already have minimal files to test JavaScript easily with Jest.
 
@@ -153,7 +151,7 @@ function sum(a, b) {
   return a + b;
 }
 
-module.exports = { 
+module.exports = {
   sum,
 };
 
@@ -171,7 +169,7 @@ describe('Examining the syntax of Jest tests', () => {
 });
 ```
 
-There are no difficult points to understand those code snippets. After you made your test pass with `yarn test` following the example, What you need to know are 
+There are no difficult points to understand those code snippets. After you made your test pass with `yarn test` following the example, What you need to know are
 
 1. We use **describe** to group **tests** before we actaully begin tests.
 2. Then we write real codes to test what we want to verify.
@@ -183,14 +181,14 @@ We will repeat the process to produce the test code in the next phase. You will 
 
 ## 2. How to prepare the code to test
 
-If you already read [the post with the code that will be here to test][How to write less code for links in markdown with React], You might have thought that the code snippets used there are not so easy to test separately. 
+If you already read [the post with the code that will be here to test][How to write less code for links in markdown with React], You might have thought that the code snippets used there are not so easy to test separately.
 
 It wouldn't be right to test the entire function just to find that what we know that it already works.  Therefore, **we will code some new functions** that does the main role to write shortcut for links in markdown.
 
 Making them to pass the Jest test will eventually be similar to test the orignal code snippets. Let me show you the code snippet for them first. They are just the JavaScript code comparing to the code snippet you saw at the intro for this post.
 
 What we shoud code were just JavaScript parts without React JSX syntax from the previous examples.
- 
+
 ```jsx
 // src/prefixWithReplacement.js
 function prefixWithReplacement(
@@ -223,13 +221,13 @@ function prefixesWithReplacements(
 module.exports = {
   prefixWithReplacement,
   prefixesWithReplacements,
-};      
+};
 ```
 The major functions we need to make shortcuts for markdown links were to replace **href** given by the user with the replacement we define inside **array(prefixWithReplacement)** and the **array of arrays(prefixesWithReplacments)**.
 
 We built the functions above to test those processes we needed inside React App easily. For it is just JavaScript code without any other packages. It will serve well for the purpose of this post.
 
-The code may not be easy for you to understand at first glance. But it will be better if you find that **prefixesWithReplacements** serve the same purpose for prefixWithReplacement. 
+The code may not be easy for you to understand at first glance. But it will be better if you find that **prefixesWithReplacements** serve the same purpose for prefixWithReplacement.
 
 The main difference is that the former used to define **multiple prefixes and replacements** using data format **array of arrays** instead of array.
 
@@ -244,15 +242,15 @@ Let me show you the entire Jest code first and I will explain what happend for y
 The code snippet will be a little bit long. But it wouldn't be difficult if you already read the post before and know the purpose of this code.
 ```js
 // src/prefixWithReplacement.test.js
-// 1. 
+// 1.
 const {
   prefixWithReplacement,
   prefixesWithReplacements,
 } = require("./prefixWithReplacement");
 
-// 2. 
+// 2.
 describe('Test prefixWithReplacement when href include prefix given and vice versa', () => {
-  // 3. 
+  // 3.
   const prefixWithReplacementExample = ["s-", "https://"];
   test("When href don't have the prefix in it, the test should return the original value.", () => {
     expect(prefixWithReplacement("www.steadylearner.com/blog", prefixWithReplacementExample))
@@ -376,13 +374,13 @@ and that is all we should know to test those two functions that does the same ro
 
 I hope you followed examples from this post well. You may have noticed that we almost use the same code from the part `1.` to write test codes later. To advacne the example, **What we need was to know how to write JavaScript code and understand process to write tests in sequence**.
 
-While preparing this post, I found that writing tests help you 
+While preparing this post, I found that writing tests help you
 
 1. **Organize your code and comments**
 2. **Help you write more proven code**
 3. **Think about edge cases**
 4. **Working examples**
-  
+
 and many other benefits.
 
 **The post and codes used here may not be perfect**. But it would help you to learn how the test framework(**Jest**) can be used to test your simple **JavaScript** codes.

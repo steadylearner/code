@@ -1,17 +1,13 @@
-<!-- Write code for Rust CLI read the lines below and remove this comment-->
-
-<!-- 
- { 
-   title: "How to turn your es6+ code into es5 and before with Babel",
-   subtitle:  "Learn how to use babel-cli to make your JavaScript code compatible with old brwosers.",
-   image:  "/code/Babel.png",
-   image_decription: "Babel Image from the website",
-   tags: "Babel JavaScript es5 es6+",
-   theme: "JavaScript"
- }
+<!--
+  Post {
+    subtitle:  "Learn how to use babel-cli to make your JavaScript code compatible with old browsers.",
+    image:  "/code/Babel.png",
+    image_decription: "Babel Image from the website",
+    tags: "Babel JavaScript es5 es6+",
+  } 
 -->
 
-<!-- Link here -->
+<!-- Link -->
 
 [Steadylearner]: https://www.steadylearner.com
 [Steadylearner Github Repository]: https://github.com/steadylearner/Steadylearner
@@ -28,7 +24,9 @@
 [How to setup Jest for beginners]: https://jestjs.io/docs/en/getting-started.html
 [How to setup Enzyme for beginners]: https://airbnb.io/enzyme/
 
-<!-- Post for this series -->
+<!-- / -->
+
+<!-- Post -->
 
 [How to turn class React component into functional component]: https://www.steadylearner.com/blog/read/How-to-turn-React-class-component-into-functional-component
 
@@ -39,6 +37,8 @@
 [How to setup Jest to test JavaScript Code]: https://www.steadylearner.com/blog/read/How-to-setup-Jest-to-test-JavaScript-Code
 
 [How to setup Jest with Enzyme to test React Code]: https://www.steadylearner.com/blog/read/How-to-setup-Jest-with-Enzyme-to-test-React-Code
+
+<!-- / -->
 
 <!-- Write code for Rust CLI to read the data from the github with conditional statements and remove this comment -->
 

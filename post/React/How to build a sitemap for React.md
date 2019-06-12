@@ -1,22 +1,22 @@
 <!--
- Post{
-   title: "How to build a sitemap for React",
-   subtitle: "Learn how to make sitemap.xml with React Routes",
-   image: "post/sitemap/sitemap_react.png,
-   image_decription: "Made with CSS by Steadylearner",
-   tags: "React sitemap app code",
-   theme: "React",
- }
+  Post{
+    subtitle: "Learn how to make sitemap.xml with React Routes",
+    image: "post/sitemap/sitemap_react.png,
+    image_decription: "Made with CSS by Steadylearner",
+    tags: "React sitemap app code",
+  }
 -->
 
-<!-- Link here -->
+<!-- Link -->
 
 [Steadylearner]: https://www.steadylearner.com
 [Sitemap GitHub]: https://github.com/steadylearner/Sitemap
 [What is image sitemap]: https://support.google.com/webmasters/answer/178636
 [React Router Sitemap]: https://www.npmjs.com/package/react-router-sitemap
 
-<!-- Post for this series -->
+<!-- / -->
+
+<!-- Post -->
 
 [Your first sitemap with Rust]: https://www.steadylearner.com/blog/read/Your-first-sitemap-with-Rust
 [How to use datas to build sitemap with Rust Diesel]: https://www.steadylearner.com/blog/read/How-to-use-datas-to-build-sitemap-with-Rust-Diesel

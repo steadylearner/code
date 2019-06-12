@@ -1,16 +1,18 @@
 <!--
   Post{
-    title: "How to make a simple music video with Python for YouTube",
     subtitle: "Upload your video made with Python at YouTube",
     image: "/brand/youtube-brand-image.jpg",
     image_decription: "Moviepy offical image",
     tags: "Moviepy, Python, Video, YouTube",
-    theme: "Python",
   }
 -->
 
+<!-- Link -->
+
 [YouTube]: https://www.youtube.com/channel/UCt_jsJOe91EVjd58kHpgTfw
 [ImageMagik]: https://www.steadylearner.com/static/images/brand/ImageMagik.gif
+
+<!-- / -->
 
 In this post, You will learn how to make a music video with a single image. You should have seen many music videos like that at [YouTube][YouTube]. You will find that you don't need complicated softwares to make them following this post. 
 

@@ -1,12 +1,10 @@
-<!-- 
- Post{ 
-   title: "How to use Rust reqwest",
-   subtitle: "Learn how to use it to substitute CURL",
-   image: "code/Rust_r.png",
-   image_decription: "Rust Image from the website",
-   tags: "Rust reqwest GitHub CURL",
-   theme: "Rust",
- }
+<!--
+  Post{
+    subtitle: "Learn how to use it to substitute CURL",
+    image: "code/Rust_r.png",
+    image_decription: "Rust Image from the website",
+    tags: "Rust reqwest GitHub CURL",
+  }
 -->
 
 <!-- Steadylearner -->
@@ -20,9 +18,9 @@
 [How to write less code for links in markdown with React]:  s-/blog/read/How-to-write-less-code-for-links-in-markdown-with-React
 [How to turn chars into binary and vice versa with Rust]: https://www.steadylearner.com/blog/read/How-to-turn-chars-into-binary-and-vice-versa-with-Rust
 
-<!-- \Steadylearner -->
+<!-- / -->
 
-<!-- Shortcut -->
+<!-- Link -->
 
 [Rust]: https://www.rust-lang.org/
 [JSON]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON
@@ -31,21 +29,21 @@
 [CURL]: https://curl.haxx.se/
 [git]: https://git-scm.com/
 
-<!-- \Shortcut -->
+<!-- / -->
 
 If you have used [CURL] before, you should know that you can print the page with
 ```curl
 $curl https://www.rust-lang.org
 ```
-and save it in your machine with a little POSIX CLI knowledge. 
+and save it in your machine with a little POSIX CLI knowledge.
 ```
 $curl https://www.rust-lang.org > rust-org.html
-``` 
+```
 What we are going to learn in this post is to find how to use [Rust][Rust] to replace those comamnds. It won't be difficult for we already have [reqwest][reqwest] crate that can be used instead of **CURL**.
 
 The final goal of this post is to use it to download blog posts saved at [Github][posts]. You may wonder why you should use it instead of [git][git] commands. But, There are some benefits of using programming languages such as Rust and Python for this purpose instead of **git** and **CURL** etc.
 
-1. You can make some predefined **variables** and functions to save you from typing same things repeatedly. 
+1. You can make some predefined **variables** and functions to save you from typing same things repeatedly.
 2.  You can print some helper messages and you don't have to remember all requirements.
 3. In case of **git**, you donwload .git files also and its size grows over time and you shouldn't need it just to download a single file to your machine.(You don't have to type your id and password also.)
 
@@ -60,7 +58,7 @@ The final goal of this post is to use it to download blog posts saved at [Github
 You should already know how to write [Rust] code before you read on. I also want you to visit the [reqwest] GitHub repository to understand how to use it.
 
 We will start from the [simple.rs](https://github.com/seanmonstar/reqwest/blob/master/examples/simple.rs) file  at the repository. I hope you read the other example files and test it before read on.
- 
+
 <br />
 
 <h2 class="blue">Table of Contents</h2>
@@ -113,22 +111,22 @@ fn main() -> Result<(), Box<std::error::Error>> {
     let mut res = reqwest::get(&target)?;
 
     std::io::copy(&mut res, &mut std::io::stdout())?;
- 
+
     Ok(())
 }
 ```
-What it intend to do are similar to the example at [reqwest]. 
+What it intend to do are similar to the example at [reqwest].
 
 But the differences are
 
-1. We extract common parts from the location of each files to **variable** and we don't have to type it everytime with help from **Rust**. It can differ from user to user. 
+1. We extract common parts from the location of each files to **variable** and we don't have to type it everytime with help from **Rust**. It can differ from user to user.
 2. Each file used here as example has its type of language to differenciate themeselves from others(You can skip this part if you want.)
 3. The process is similar to `1.` and it is our **payload**(It will be used with CLI later.)
 
-If you execute this file you will see message that starts with 
+If you execute this file you will see message that starts with
 
 ```
-Post { 
+Post {
    title: "How to turn chars into binary and vice versa with Rust ",
    subtitle:  "Learn how to use Rust to decode and encode binary data.",
    image:  "/code/Rust.svg",
@@ -172,13 +170,13 @@ fn main() -> Result<(), Box<std::error::Error>> {
 
     // 3.
     write("post.md", &result)?
- 
+
     Ok(())
 }
 ```
 and there are some differences from the previous one.
 
-1. We create empty variable **body** to hold stream data from res and use **println!("{:?}", body)** to verify **body** variable after being affected by  **std::io::copy** process. 
+1. We create empty variable **body** to hold stream data from res and use **println!("{:?}", body)** to verify **body** variable after being affected by  **std::io::copy** process.
 2. You should have seen that it is still in **binary format**. So we have to convert it to String and save it to make it more **human readable** and **useful for** later uses.
 3. We prepared `String` type data equal to what is inside [the original page](https://raw.githubusercontent.com/steadylearner/Steadylearner/master/post/rust-How%20to%20turn%20chars%20into%20binary%20with%20Rust.md) and what we need to do is just to save it with **write** method from **fs** module.
 
@@ -200,10 +198,10 @@ pub fn str_from_stdin() -> String {
 
     user_Input
 }
-``` 
+```
 inside the previous code snippet.
 
-Then we will replace 
+Then we will replace
 ```rust
 let post_title = format!("{}", "How to turn chars into binary with Rust.md");
 ```
@@ -215,13 +213,13 @@ let post_title = format!("{}.md", type_post_title);
 ```
 In the code above we also included **.md** extension for the GitHub Repostiroy is for **.md** files for blog posts.
 
-I want you to personalize your own project referring to final code snippet below. 
+I want you to personalize your own project referring to final code snippet below.
 
 ```rust
 extern crate reqwest;
 use std::fs::{write};
 
-// inside the same file or others 
+// inside the same file or others
 pub fn str_from_stdin() -> String {
     //
     let mut user_input = String::new();
@@ -252,7 +250,7 @@ fn main() -> Result<(), Box<std::error::Error>> {
 
     println!("{:#?}", &result)
     write("post.md", &result)?
- 
+
     Ok(())
 }
 ```

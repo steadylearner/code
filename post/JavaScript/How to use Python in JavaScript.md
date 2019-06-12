@@ -1,15 +1,13 @@
 <!--
   Post{
-    title: "How to use Python in JavaScript",
     subtitle: "Numpy, Pandas, Pyautogui etc in JavaScript",
     image: "/code/python_in_javascript.text_watermark.png",
     image_decription: "Image made with HTML and CSS by www.steadylearner.com",
     tags: "FFI, Python, JavaScript, Code",
-    theme: "JavaScript",
   }
 -->
 
-<!-- © Steadylearner -->
+<!-- Steadylearner -->
 
  [Steadylearner]: https://www.steadylearner.com
  [Steadylearner Github]: https://github.com/steadylearner
@@ -20,9 +18,9 @@
  [How to write less code for links in markdown with React]: https://www.steadylearner.com/blog/read/How-to-write-less-code-for-links-in-markdown-with-React
  [How to turn chars into binary and vice versa with Rust]: https://www.steadylearner.com/blog/read/How-to-turn-chars-into-binary-and-vice-versa-with-Rust
  
-<!-- / Steadylearner -->
+<!-- / -->
 
-<!-- Shortcut -->
+<!-- Link -->
 
  [Rust]: https://www.rust-lang.org
  [JSON]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON]

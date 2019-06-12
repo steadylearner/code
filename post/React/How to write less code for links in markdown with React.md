@@ -1,11 +1,13 @@
-<!-- Type this first -->
+<!--
+  Post {
+    subtitle:  "Learn how to write less markdown with JavaScript Plugin.",
+    image:  "code/markdown-preview-result-with-code.png",
+    image_decription: "Result code from React Markdown Preview",
+    tags: "React JavaScript code",
+  }
+-->
 
-<!-- Title - How to write less code for links in markdown with React -->
-<!-- Subtitle - Learn how to write less markdown with JavaScript Plugin. -->
-<!-- Image - https://www.steadylearner.com/static/images/code/markdown-preview-result-with-code.png-->
-<!-- Description - Result code from React Markdown Preview -->
-
-<!-- Link here -->
+<!-- Link  -->
 
 [Steadylearner]: https://www.steadylearner.com
 [Steadylearner Github Repository]: https://github.com/steadylearner/Steadylearner
@@ -16,7 +18,9 @@
 [React Markdown Improved]: https://codesandbox.io/s/wz9pp1xpn8
 [How to use markdown]: https://www.markdowntutorial.com/
 
-<!-- Post for this series -->
+<!-- / -->
+
+<!-- Post -->
 
 [How to turn class React component into functional component]: https://www.steadylearner.com/blog/read/How-to-turn-React-class-component-into-functional-component
 
@@ -24,7 +28,7 @@
 
 [How to enable Code Syntax Highlight in React App]: https://medium.com/@steadylearner/how-to-enable-code-syntax-highlight-in-react-app-38463498fa6e?source=---------8------------------
 
-<!-- -->
+<!-- / -->
 
 For blog posts for [Steadylearner][Steadylearner] uses markdown intensively, I have to deal with it many times. So I wanted to write some posts for it and find the better way to write it.
 

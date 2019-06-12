@@ -1,15 +1,13 @@
 <!--
- Post{
-   title: "How to build a sitemap.txt from sitemap.xml with Rust",
-   subtitle: "Learn how to make sitemap.txt easily with Rust",
-   image: "post/sitemap/sitemap_txt_with_rust.png",
-   image_decription: "sitemap.xml to sitemap.txt by Steadylearner",
-   tags: "Diesel Rust sitemap code",
-   theme: "Rust",
- }
+    Post{
+        subtitle: "Learn how to make sitemap.txt easily with Rust",
+        image: "post/sitemap/sitemap_txt_with_rust.png",
+        image_decription: "sitemap.xml to sitemap.txt by Steadylearner",
+        tags: "Diesel Rust sitemap code",
+    }
 -->
 
-<!-- Link here -->
+<!-- Link -->
 
 [Rust Sitemap Crate]: https://github.com/svmk/rust-sitemap
 [Steadylearner]: https://www.steadylearner.com
@@ -19,7 +17,9 @@
 [Sitemap in React]: https://medium.com/@steadylearner/how-to-build-a-sitemap-for-react-app-7bbc3040dc1f
 [Sitemap GitHub]: https://github.com/steadylearner/Sitemap
 
-<!-- Post for this series -->
+<!-- / -->
+
+<!-- Post -->
 
 [Your first sitemap with Rust]: https://www.steadylearner.com/blog/read/Your-first-sitemap-with-Rust
 [How to use datas to build sitemap with Rust Diesel]: https://www.steadylearner.com/blog/read/How-to-use-datas-to-build-sitemap-with-Rust-Diesel

@@ -1,12 +1,10 @@
-<!-- 
- Post{ 
-   title: "How to turn chars into binary and vice versa with Rust",
-   subtitle:  "Learn how to use Rust to decode and encode binary data.",
-   image:  "/code/Rust.svg",
-   image_decription: "Rust Image from the website",
-   tags: "Rust binary chars stream",
-   theme: "Rust",
- }
+<!--
+  Post{
+    subtitle:  "Learn how to use Rust to decode and encode binary data.",
+    image:  "/code/Rust.svg",
+    image_decription: "Rust Image from the website",
+    tags: "Rust binary chars stream",
+  }
 -->
 
 <!-- Steadylearner -->
@@ -19,17 +17,17 @@
 [prop-passer]: https://www.npmjs.com/package/prop-passer
 [How to write less code for links in markdown with React]: https://www.steadylearner.com/blog/read/How-to-write-less-code-for-links-in-markdown-with-React
 
-<!-- \Steadylearner -->
+<!-- / -->
 
-<!-- Shortcut -->
+<!-- Link -->
 
 [Rust]: https://www.rust-lang.org/
 [JSON]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON
 [What is Binary Data]: https://www.techopedia.com/definition/17929/binary-data
 
-<!-- \Shortcut -->
+<!-- / -->
 
-When programming in [Rust][Rust] and others, I found that it is important to know how to **decode** and **encode** binary datas. 
+When programming in [Rust][Rust] and others, I found that it is important to know how to **decode** and **encode** binary datas.
 
 You can help the machine to understand the data you pass in the **binary** format and you can also read them by converting them into **chars**(characters) and make it work for the important processes such as writing files, receivng data from the web etc.
 
@@ -46,12 +44,12 @@ If you are a beginner in **Rust**, it may not be easy to find how to do them in 
 You should already know how to write [Rust][Rust] code before you read on. I also want you to understand what is [binary data][What is Binary Data] before. It will help you to understand the importance of knowing how to deal with it.
 
 If you already have experience in [JSON][JSON] but not familiar with this topic, you may compare what you will learn here with `JSON.parse` and `JSON.stringfiy` to decode and encode **JSON** type data.
- 
+
 <br />
 
 <h2 class="blue">Table of Contents</h2>
 
-1. How to turn **chars** into **binary data** with Rust 
+1. How to turn **chars** into **binary data** with Rust
 2. **Vice Versa**
 3. **Conclusion**
 
@@ -59,7 +57,7 @@ If you already have experience in [JSON][JSON] but not familiar with this topic,
 
 <br />
 
-## 1. How to turn chars into binary data with Rust 
+## 1. How to turn chars into binary data with Rust
 
 It was not so difficult to find how to do it with **Rust**. For it has very simple way to do that already.
 
@@ -71,7 +69,7 @@ fn main() {
     // result in [114, 117, 115, 116]
 }
 ```
-what we need to do was just to put [`b`](https://medium.com/r/?url=https%3A%2F%2Fdoc.rust-lang.org%2Freference%2Ftokens.html%23byte-and-byte-string-literals) in front of the `&amp;str` type data(**"rust"**) and **Rust** does the process to convert **chars into binary** instead of you. By far, it was the easiest way comparing to how to do that in other programming languages. 
+what we need to do was just to put [`b`](https://medium.com/r/?url=https%3A%2F%2Fdoc.rust-lang.org%2Freference%2Ftokens.html%23byte-and-byte-string-literals) in front of the `&amp;str` type data(**"rust"**) and **Rust** does the process to convert **chars into binary** instead of you. By far, it was the easiest way comparing to how to do that in other programming languages.
 
 For example, in **JavaScript**
 ```js
@@ -80,7 +78,7 @@ const binary = rust.split("").map(x => x.charCodeAt());
 console.log(binary);
 ```
 
-You can see that we don't need to use methods such as `split` and `map` for our purpose when we use Rust for the same purpose. 
+You can see that we don't need to use methods such as `split` and `map` for our purpose when we use Rust for the same purpose.
 
 What we need was just a single character `b` and nothing more.
 
@@ -90,7 +88,7 @@ What we need was just a single character `b` and nothing more.
 
 For we learnt how to encode our data into binary format in the previous part, we will learn how to decode it. Comparing to the previous process, it will be a little bit more complicated.
 
-The entire code example for this part is 
+The entire code example for this part is
 ```rust
 fn main() {
     let binary: Vec<u8> = vec![114, 117, 115, 116]; // 1.
@@ -107,7 +105,7 @@ You should have found that we need much more code to make **chars**(characters) 
 3. We already made vector of **chars** from the vector of u8(**binary data**) in the previous process. But it will not be easy to understand what data was in this format. So we turn it into **String** type to make it more human readable.
 4. We use **println!** macro to show the result to our console and you will see "rust" when you execute this code in your machine.
 
-You may found that it is not so easy. To understand this code completly, you should understand what each parts of it does with details. 
+You may found that it is not so easy. To understand this code completly, you should understand what each parts of it does with details.
 
 For that, You can use `$rustup doc --std` to find the documentation easily in your local machine.
 

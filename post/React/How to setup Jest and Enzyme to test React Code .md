@@ -1,16 +1,13 @@
-<!-- Write code for Rust CLI read the lines below and remove this comment-->
-
-<!-- 
- { 
-   title: "How to setup Jest with Enzyme to test React Code",
-   subtitle:  "Learn how to write tests for React with Jest and Enzyme.",
-   image:  "/code/Jest_from_the_website.png(find other images or Enzyme?)",
-   image_decription: "Jest Image from the website",
-   tags: "Jest test React JavaScript",
- }
+<!--
+  Post {
+    subtitle:  "Learn how to write tests for React with Jest and Enzyme.",
+    image:  "/code/Jest_from_the_website.png",
+    image_decription: "Jest Image from the website",
+    tags: "Jest test React JavaScript",
+  }
 -->
 
-<!-- Link here -->
+<!-- Link -->
 
 [Steadylearner]: https://www.steadylearner.com
 [Steadylearner Github Repository]: https://github.com/steadylearner/Steadylearner
@@ -24,7 +21,9 @@
 [How to setup Jest for beginners]: https://jestjs.io/docs/en/getting-started.html
 [How to setup Enzyme for beginners]: https://airbnb.io/enzyme/
 
-<!-- Post for this series -->
+<!-- / -->
+
+<!-- Post -->
 
 [How to turn class React component into functional component]: https://www.steadylearner.com/blog/read/How-to-turn-React-class-component-into-functional-component
 
@@ -34,9 +33,11 @@
 
 [How to setup Jest to test JavaScript Code]: https://www.steadylearner.com/blog/read/How-to-setup-Jest-to-test-JavaScript-Code
 
+<!-- / -->
+
 <!-- Write code for Rust CLI to read the data from the github with conditional statements and remove this comment -->
 
-In the post [How to setup Jest to test JavaScript Code][How to setup Jest to test JavaScript Code], We have learnt how to setup **Jest** to test **JavaScript**. It would be sufficient if your goal is just to test simple **JavaScript** modules. 
+In the post [How to setup Jest to test JavaScript Code][How to setup Jest to test JavaScript Code], We have learnt how to setup **Jest** to test **JavaScript**. It would be sufficient if your goal is just to test simple **JavaScript** modules.
 
 In this post, we will advance the example from [the previous post for Jest][How to setup Jest to test JavaScript Code] and build the development envirionemnt to test **React** with **Enzyme**. The process will be easy if you followed the previous documenation and read the official documentations well.
 
@@ -61,14 +62,14 @@ You may visit the [Steadylearner Github Repository][Steadylearner Github Reposit
 
 1. How to include **Enzyme** to test **React** with **Jest**
 2. **How to prepare React Code** to test
-3. How to use **Jest** and **Enzyme** for it 
+3. How to use **Jest** and **Enzyme** for it
 4. **Conclusion**
 
 ---
 
 <br />
 
-## 1. How to include Enzyme to test React with Jest 
+## 1. How to include Enzyme to test React with Jest
 
 I hope you already read [the previous post to test JavaScript with Jest][How to setup Jest to test JavaScript Code] and have development environment to test JavaScript code. It will be the great starting point before you advance your project to include **Enzyme** and test **React** code.
 
@@ -77,14 +78,14 @@ I want you to save the previous one with folder name similar to **JavaScript_Tes
 The benfits of this are
 
 1. You can separate test for **JavaScript** and other frameworks such as **React**.
-2. You may keep starting point(**JavaScript_Test** folder) that can be modified to another project whenever you want. 
+2. You may keep starting point(**JavaScript_Test** folder) that can be modified to another project whenever you want.
 3. **You can always back to your starting point easily** whenever your setup process goes wrong.
 
 You may use **git** or whatever you want for this purpose. The important point here is to make a backup file before you advance your porject.
 
-To write test for **React**, we have to make the development environment that we can write **React** codes first. 
+To write test for **React**, we have to make the development environment that we can write **React** codes first.
 
-For that, we will install **react** and **react-dom** with command 
+For that, we will install **react** and **react-dom** with command
 ```
 $yarn add react react-dom
 ```
@@ -117,15 +118,15 @@ Then, Your entire **package.json** would be similar to the code snippet below.
   "dependencies": {
     "react": "^16.8.5",
     "react-dom": "^16.8.5"
-  } 
+  }
 }
-```   
+```
 I hope you installed well all the packages shown above. We just passed the first phase to use **Jest** with **Enzyme** to test **React** Codes.
 
 For the purpose of our project is to especialize it to test **React** codes, we also have to write some configuration files for that. We will first modify bable.config.js file from the previous example like the code snippet below.
 
 ```js
-// babel.config.js 
+// babel.config.js
 module.exports = {
   presets: ['@babel/preset-env', '@babel/preset-react'],
   plugins: ['@babel/plugin-proposal-class-properties']
@@ -148,7 +149,7 @@ You may not need to understand what the code snippet above does at this moment. 
 
 When we need to test only simple JavaScript codes, we don't have to make our project structure complicated.
 
-Therefore, we used **math.test.js** to test math.js and **prefixWithReplacement.test.js** to **test prefixWithReplacement.js** instead of having a specific folder to include test files. 
+Therefore, we used **math.test.js** to test math.js and **prefixWithReplacement.test.js** to **test prefixWithReplacement.js** instead of having a specific folder to include test files.
 
 To test more complicated codes, we need to reorganize our project a little bit.
  We will first make ``__tests__`` folder inside **src** folder to include all the test files inside it.
@@ -165,7 +166,7 @@ configure({ adapter: new Adapter() });
 
 We end up building all the files required to test **React**code with **Jest** and **Enzyme**.
 If you couldn't understand well what those code snippets do, please visit and read the official documentations from [Jest][How to setup Jest for beginners] and [Enzyme][How to setup Enzyme for beginners] and search for other blog posts.
- 
+
 <br />
 
 ## 2. How to prepare the React code to test
@@ -201,21 +202,21 @@ export default class CheckboxWithLabel extends React.Component {
       </label>
     );
   }
-}      
+}
 ```
-The code snippet above will be easy to understand and its purpose is merely to test it with Jest and Enzyme later. We will bring the test code from the repository again in the next part. 
+The code snippet above will be easy to understand and its purpose is merely to test it with Jest and Enzyme later. We will bring the test code from the repository again in the next part.
 
-<br /> 
+<br />
 
-## 3. How to use **Jest** and **Enzyme** for it 
-We will use the official example from the repository for this part again. You may save the code below inside `__tests__` folder. 
+## 3. How to use **Jest** and **Enzyme** for it
+We will use the official example from the repository for this part again. You may save the code below inside `__tests__` folder.
 
 ```jsx
 // __tests__/CheckBoxWithLabel-test.js
 import React from 'react';
 // shallow for unit test and mount for integration test
 // To test static html file use render method from enzyme
-import { shallow } from 'enzyme'; 
+import { shallow } from 'enzyme';
 
 import CheckboxWithLabel from '../CheckboxWithLabel';
 
@@ -244,7 +245,7 @@ Ran all test suites.
 ```
 I hope you made it.
 
-The final folder structure of this project is similar to this(without node_modules for simpicity) 
+The final folder structure of this project is similar to this(without node_modules for simpicity)
 ```
 ├── babel.config.js
 ├── jest.config.js

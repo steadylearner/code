@@ -1,11 +1,13 @@
-<!-- Type this first -->
+<!--
+  Post {
+    subtitle:  "Learn how to make functional component from class component in React",
+    image:  "/brand/React.png",
+    image_decription: "Jest Image from the website",
+    tags: "Jest test React JavaScript",
+  }
+-->
 
-<!-- Title - How to turn React class component into functional component  -->
-<!-- Subtitle - Learn how to make functional component from class component in React -->
-<!-- Image - https://www.steadylearner.com/static/images/brand/React.png-->
-<!-- Description - React Image from its official website -->
-
-<!-- Link here -->
+<!-- Link -->
 
 [Steadylearner]: https://www.steadylearner.com
 [Steadylearner Github Repository]: https://github.com/steadylearner/Steadylearner
@@ -15,7 +17,9 @@
 [Github Repository for React Marked Markdown]: https://github.com/vincent-p/react-marked-markdown#readme
 [React Markdown Improved]: https://codesandbox.io/s/wz9pp1xpn8
 
-<!-- Post for this series -->
+<!--  -->
+
+<!-- Post -->
 
 [How to turn class React component into functional component]: https://www.steadylearner.com/blog/read/How-to-turn-React-class-component-into-functional-component
 
