@@ -1,0 +1,11 @@
+const substitute = (set = [["s-", "https://"]]) => (draft = "") => {
+   let text = draft;
+   set.forEach(value => {
+     // Build regexp for each value of set here
+     const variableRegex = new RegExp(`:\s${value[0]}`, 'g');
+     const linkRegex = new RegExp(`\(${value[0]}`, 'g');
+     text = text.replace(variableRegex, `: ${value[1]}`);
+     text = text.replace(linkRegex, `(${value[1]}`);
+   });
+   return text;
+};

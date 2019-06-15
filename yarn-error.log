@@ -1,0 +1,64 @@
+Arguments: 
+  /home/steadylearner/.nvm/versions/node/v12.3.1/bin/node /usr/share/yarn/bin/yarn.js
+
+PATH: 
+  /home/steadylearner/.nvm/versions/node/v12.3.1/bin:/home/steadylearner/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.16.0
+
+Node version: 
+  12.3.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/steadylearner/Desktop/code/npm/steadylearner_code/package.json: Unexpected token } in JSON at position 525
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:304:30)
+      at /usr/share/yarn/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "steadylearner",
+    "version": "0.0.0-0",
+    "description": "Codes and files from Steadylearner(www.steadylearner.com)",
+    "main": "./lib/index.js",
+    "devDependencies": {
+      "@babel/cli": "^7.2.3",
+      "@babel/core": "^7.4.0",
+      "@babel/plugin-proposal-class-properties": "^7.4.0",
+      "@babel/preset-env": "^7.4.2",
+      "@babel/preset-react": "^7.0.0",
+      "babel-jest": "^24.5.0",
+      "babel-preset-minify": "^0.5.0",
+      "enzyme": "^3.9.0",
+      "enzyme-adapter-react-16": "^1.11.2",
+      "jest": "^24.5.0",
+    },
+    "scripts": {
+      "test": "jest",
+      "build": "babel src -d lib --ignore src/__tests__ --no-comments"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/steadylearner/code.git"
+    },
+    "keywords": [
+      "Steadylearner",
+      "steadylearner",
+      "www.steadylearner.com"
+    ],
+    "author": "Steadylearner(www.steadylearner.com)",
+    "license": "MIT",
+    "homepage": "https://www.steadylearner.com/about"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

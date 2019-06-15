@@ -1,0 +1,27 @@
+# https://docs.npmjs.com/misc/scripts
+# You don't have to manually build this with this script
+
+node_modules/
+
+# ignore type files
+.gitignore/
+
+# Files for GitHub
+examples/
+
+static/
+
+reference/
+
+# ignore src file for production and use lib instead
+src/
+
+# ignore test relevant files
+__tests__/
+
+# You don't need config files for NPM
+babel.config.js
+jest.config.js 
+
+
+
