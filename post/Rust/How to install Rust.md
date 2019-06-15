@@ -300,7 +300,7 @@ After you install it, you should see RLS [Building] and other messages with crat
 
 You should wait for until it becomes RLS only like this image.
 
-<!-- ![rls complete]("s-/static/images/post/Rust/rls_complete.png") -->
+<!-- ![rls complete]("s-/static/images/post/Rust/rls-complete.png") -->
 
 After that, you can test
 
