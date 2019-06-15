@@ -13,6 +13,8 @@ static/
 
 reference/
 
+post/
+
 # ignore src file for production and use lib instead
 src/
 
