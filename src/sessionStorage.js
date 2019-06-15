@@ -27,6 +27,14 @@ const remove = (name = "state") => {
   }
 };
 
+const clear = () => {
+  try {
+    sessionStorage.clear();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const showWithName = () => {
   try {
     for (let i = 0; i < sessionStorage.length; i++) {
@@ -47,21 +55,14 @@ const showWithNumber = () => {
   }
 };
 
-const clear = () => {
-  try {
-    sessionStorage.clear();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export {
-  load,
   save,
+  load,
   remove,
+  clear,
+  //
   showWithName,
   showWithNumber,
-  clear,
 }
 
 
