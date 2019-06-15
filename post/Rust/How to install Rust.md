@@ -1,11 +1,9 @@
 <!--
   Post{
-    title: "How to install Rust",
     subtitle: "Learn how to install Rust and more",
-    image: "post/Rust/how_to_install_rust.png",
+    image: "post/Rust/how-to-install-rust.png",
     image_decription: "Made with CSS by Steadylearner",
-    tags: "Rust code install development",
-    theme: "Rust",
+    tags: "Rust code install how",
   }
 -->
 
@@ -38,25 +36,23 @@ If your goal is just to install Rust language in your machine, the fastest way w
 
 It has been more than a year, I started learning [Rust] Programming lnaguage.
 
-I liked [Firefox developler editon](https://www.mozilla.org/en-US/firefox/developer/) for it is definitely faster than normal firefox version and some other browsers I had.
+I liked [Firefox Developler Editon](https://www.mozilla.org/en-US/firefox/developer/) for it is definitely faster than normal firefox version and some other browsers I had.
 
-(Well, my laptop is more than half ten year and internet speed here is far from fast so I think that I felt more difference)
+(Well, my laptop is more than half ten year and internet speed here is far from fast so I think that I felt more difference.)
 
 Later, I found that it was written in [Rust] and started having interest in it.
 
-I spent a month just to read the documentation for [Rust] and installing it was not so easy also as a beginner also.
+I spent a month just to read the documentation for [Rust] and installing it was not so easy.
 
-A year passed, Rust development ecosystem became better and I thought that I can share my experience in Rust more with ohters.
+Time passed and Rust development ecosystem became better. I thought that it is time to share my experience in Rust with ohters.
 
-I haven't expected that I would write this post. But, recently, I have my data wiped out from my machine. So I had to start all again and install Rust and its relevants.
-
-Therefore, what you will find in this post will be minimum information you will need to start to develope with Rust.
+What you will find in this post will be the minimum information you will need to start to develope with Rust.
 
 It is documentation to help myself later but hope this post helpful for others also.
 
 I will update this post when there is something useful for this topic.
 
-(Linux OS is used here and you can use this post just for reference if you use another system.)
+(Linux Ubuntu 18.04 OS is used here and you can use this post just for reference if you use another system.)
 
 <br />
 
@@ -70,13 +66,15 @@ I will update this post when there is something useful for this topic.
 
 ---
 
-I hope you already visited [Rust Getting Started Guide]. It has almost all information to install [Rust] in your machine. But I want you to follow this post briefly to save your time and find the process better. I will explain how to set up Rust development enivironment in your IDE such as VSCode in your machine later. Before that, I want you to visit the list them at [Rust IDE Support]page.
+I hope you already visited [Rust Getting Started Guide]. It has almost all information to install [Rust] in your machine. But I want you to follow this post briefly to save your time and find the process better. 
+
+I will explain how to set up Rust development enivironment in your IDE such as VSCode later. Before that, I want you to verify the list of them at [Rust IDE Support] page.
 
 If you want more practical examples, you may visit [it](https://rust-lang-nursery.github.io/rust-cookbook/) later.
 
 It may not easy to learn [Rust] if you haven't known system languages before.
 
-I hope you read some documenation for C such as [EssentialC] and [The C Programming Lanugage] after you invest your time with [Rust] and compare them.
+I hope you read some documenation for C such as [EssentialC] and [The C Programming Lanugage] before or after you learn [Rust] and compare them.
 
 <br />
 
@@ -103,7 +101,7 @@ If you visit the [Rust Getting Started Guide], the page will show the message si
 
 I use Linux ubuntu 18.04 at this moment and the page showed command below for me.
 
-```sh
+```console
 $curl https://sh.rustup.rs -sSf | sh
 ```
 
@@ -111,7 +109,7 @@ You can just copy what you saw and paste it on your console.
 
 It will show message similar to this
 
-```sh
+```console
 info: downloading installer
 
 Welcome to Rust!
@@ -128,11 +126,11 @@ You won't need other options other than "Proceed with installation" so just pres
 
 It will start installation and it may take long.
 
-So find something to do for a while or take a break.
+**So find something to do for a while or take a break.**
 
 After long wait, it will show message similar to this.
 
-```sh
+```console
 info: syncing channel updates for 'stable-x86_64-unknown-linux-gnu'
 
 Rust is installed now. Great!
@@ -140,17 +138,15 @@ Rust is installed now. Great!
 To configure your current shell run source $HOME/.cargo/env
 ```
 
-You can restart your machine at this point if you want. Otherwise restart it at the end of this post to path for Rust toolchain work well
+You can restart your machine at this point if you want. Otherwise do it at the end of this post. It will help paths for Rust toolchain to work well.
 
 Follow the instruction and type `$source $HOME/.cargo/env` in your CLI because we want to do more than installing Rust.
 
-(Type the same command if you had to use another console before you reboot your system)
+(Type the same command if you had to use another console before you reboot your system.)
 
-Then `$rustup` to verify it is installed well and
+Then `$rustup` to verify it is installed well and it will show message similar to this.
 
-It will show message similar to this
-
-```sh
+```console
 The Rust toolchain installer
 
 USAGE:
@@ -180,7 +176,7 @@ alias rustapi="rustup doc --std"
 
 and save it.
 
-Then, type `$source ~/.bashrc` and `$rustapi` in your CLI. With this simple modification, you can type rustapi to find the documentation for Rust instead of searching and visiting [Rust API] page whenever you have doubts.
+Then, type `$source ~/.bashrc` and `$rustapi` in your CLI. With this simple modification, you can type `$rustapi` to find the documentation for Rust instead of searching and visiting [Rust API] page whenever you have doubts.
 
 (If you want more features for rustup, you can start with [rustfmt](https://github.com/rust-lang/rustfmt) and [rust clippy](https://github.com/rust-lang/rust-clippy) with `$rustup component add rustfmt clippy` and it won't take long.)
 
@@ -190,7 +186,7 @@ Type `$cargo` on your console to verify it installed.
 
 It will show message similar to this
 
-```sh
+```console
 USAGE:
     cargo [OPTIONS] [SUBCOMMAND]
 
@@ -198,7 +194,7 @@ See 'cargo help <command>' for more information on a specific command.
 ```
 
 It will not be easy to know how to use it at first glance.
-So you may read [documentation](https://doc.rust-lang.org/cargo/index.html) before read on.
+So you may read [documentation](https://doc.rust-lang.org/cargo/index.html) first.
 
 ## 2. "Hello, world" with Rust
 
@@ -210,7 +206,7 @@ Type `cargo new --bin hello_world` and it will show
 
 It should have created `Cargo.toml` and `main.rs` files for you also.
 
-```sh
+```console
 ├── Cargo.toml
 └── src
     └── main.rs
@@ -225,10 +221,12 @@ fn main() {
 }
 ```
 
-So you didn't even need to search how to code "Hello, world" programm in Rust with help from them.
-You can just refer to it and `$cargo run` or `$cargo run --release` and it will show you
+So you don't even need to search how to code "Hello, world" programm in Rust with help from them.
+You can just refer to it and `$cargo run` or `$cargo run --release` and it will show you.
 
-```sh
+(You could also use `$cargo c` to test Rust code before you compile and run them with those commands. It is omitted because examle is very simple.)   
+
+```console
 cargo run
      Running `target/debug/hello_world`
 Hello, world!
@@ -302,7 +300,7 @@ After you install it, you should see RLS [Building] and other messages with crat
 
 You should wait for until it becomes RLS only like this image.
 
-<!-- ![rls complete]("../static/images/rls_complete.png") -->
+<!-- ![rls complete]("s-/static/images/post/Rust/rls_complete.png") -->
 
 After that, you can test
 
@@ -312,7 +310,7 @@ println!("Hello, world!");
 }
 ```
 
-and format it with shortcut [ctrl+shif+i].
+and format it with shortcut **[ctrl+shif+i]**.
 Then, your editor will format it instead of you like the code snippet below.
 
 ```rust
@@ -325,7 +323,7 @@ and you are ready to use Rust in your IDE also.
 
 If you find problem with the process, you can
 
-1. [ctrl+shift+p] in your VSCode and Type **Clear Editor History** and [Enter] to clear VSCode cache files.
+1. **[ctrl+shift+p]** in your **VSCode** and Type **Clear Editor History** and [Enter] to clear VSCode cache files.
 
 2. `$rustup update`
 
@@ -343,7 +341,7 @@ I hope you could make it and start to programm with Rust.
 
 It may be difficult at the beginning. But you will find it becomes easier after your Rust code size grows up and have more projects in your store.
 
-It may helpful for you to learn other programming languages such as c and operating system with it.
+It may helpful for you to learn other programming languages such as C and operating system with it.
 
 **Thanks and please share this post with others.**
 
