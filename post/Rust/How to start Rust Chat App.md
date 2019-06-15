@@ -488,6 +488,7 @@ The **index.js** file we will use will be similar to the code below.
 
 ```js
 // 1.
+
 const emoji = require("node-emoji");
 const hasEmoji = require("has-emoji");
 
