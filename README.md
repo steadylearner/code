@@ -7,9 +7,9 @@
 
 <!--  -->
 
-# Code
+# Steadylearner Code
 
-This is made to share codes from [Steadylearner].
+This is made to share and save codes from [Steadylearner].
 
 ---
 
@@ -53,9 +53,10 @@ const {
   save,
   load,
   remove,
+  clear,
+  //
   showWithName,
   showWithNumber,
-  clear,
 } = localStorage; // 1.
 
 save("name", "value"); // 2.
@@ -70,13 +71,13 @@ showWithNumber();
 
 1. The usage is same for the sessionStorage. You can refer to [WebStorage API] for more information.
 
-2. Save {"name": "value"} JSON in your localStorage
+2. Save {"name": "value"} JSON in your localStorage.
 
-3. returns "value";
+3. returns "value".
 
 4. remove "name" and "value" from it.
 
-5. remove all data from localStroage;
+5. remove all data from localStroage.
 
 6. You may use them or type `localStorage;` on your console to show localStorage datas.
 
