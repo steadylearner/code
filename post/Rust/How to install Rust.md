@@ -96,7 +96,7 @@ You won't need 3. and 4 if you are just starting with Rust.
 
 If you visit the [Rust Getting Started Guide], the page will show the message similar to
 
-> It looks like you’re running macOS, Linux, or another Unix-like OS. To download Rustup and install Rust, run the following in
+> It looks like you are running macOS, Linux, or another Unix-like OS. To download Rustup and install Rust, run the following in
 > your terminal, then follow the on-screen instructions.
 
 I use Linux ubuntu 18.04 at this moment and the page showed command below for me.
@@ -196,6 +196,8 @@ See 'cargo help <command>' for more information on a specific command.
 It will not be easy to know how to use it at first glance.
 So you may read [documentation](https://doc.rust-lang.org/cargo/index.html) first.
 
+<br />
+
 ## 2. "Hello, world" with Rust
 
 For we already have rustup and cargo installed, we can start our Rust app easily.
@@ -207,6 +209,7 @@ Type `cargo new --bin hello_world` and it will show
 It should have created `Cargo.toml` and `main.rs` files for you also.
 
 ```console
+[Cargo.toml]
 ├── Cargo.toml
 └── src
     └── main.rs
@@ -222,6 +225,7 @@ fn main() {
 ```
 
 So you don't even need to search how to code "Hello, world" programm in Rust with help from them.
+
 You can just refer to it and `$cargo run` or `$cargo run --release` and it will show you.
 
 (You could also use `$cargo c` to test Rust code before you compile and run them with those commands. It is omitted because examle is very simple.)   
@@ -236,15 +240,19 @@ If you tested both commands, `$cargo run --release` is much faster because it ma
 
 You made it. You are ready to start to code with Rust.
 
-If you want to test it with more advanced example, you may clone the [Steadylearner Chat GitHub repository] with
+If you want to test it with more advanced example, you may clone the Steadylearner Chat GitHub repository with
 
 `$git clone https://github.com/steadylearner/Chat.git`.
 
-Then, `$yarn` in /static/chat folder to download NPM packages and `$cargo run` for Rust crates in ws_rs_with_rocket folder. It will show you the chat app with Rust Backend at http://localhost:8000/chat.
+Then, `$yarn` in /static/chat folder to download NPM packages and `$cargo run` for Rust crates in ws_rs_with_rocket folder. 
+
+It will show you the chat app with Rust Backend at http://localhost:8000/chat.
 
 [The blog post to explain how to use it](https://medium.com/@steadylearner/how-to-start-rust-chat-app-499a194d0820) is mentioned at [This week in Rust](https://this-week-in-rust.org/blog/2019/05/21/this-week-in-rust-287/) and you may find it and the site useful also.
 
 If you want to test Web development with Rust, you may refer to [How to start Rust Web Application](https://medium.com/@steadylearner/rust-web-app-1-setup-1c24c2c9ec66) also.
+
+<br />
 
 ## 3. Cargo Edit
 
@@ -280,6 +288,8 @@ is attached.
 You can remove the crate with `cargo rm <crate_name>` and it will be also removed from your cargo.toml file.
 
 I want you test it with Rust offical web framework [tide](https://github.com/rustasync/tide) or other [crates](https://crates.io/).
+
+<br />
 
 ## 4. Rust Language Server(RLS)
 
@@ -335,6 +345,8 @@ If you find problem with the process, you can
 
 You would have to wait until everything works fine before RLS build process end. Otherwise, restart your computer and [search more about this issue.](https://www.google.com/search?q=rls+building+not+working)
 
+<br />
+
 ## 5. Conclusion
 
 I hope you could make it and start to programm with Rust.
@@ -346,3 +358,5 @@ It may helpful for you to learn other programming languages such as C and operat
 **Thanks and please share this post with others.**
 
 (You may contact me if you need Rust or React JavaScript Developer for your work. I am also author of React [prop-passer] and [react-easy-md].)
+
+

@@ -487,9 +487,7 @@ Therefore, the code below may not be well-organized and want you to use framewor
 The **index.js** file we will use will be similar to the code below.
 
 ```js
-
 // 1.
-
 const emoji = require("node-emoji");
 const hasEmoji = require("has-emoji");
 
@@ -685,7 +683,7 @@ socket.onclose = function (event) {
 
 The code snippet is a little bit long and I will explain only important parts here.
 
-1. We import modules you need later to use emojis in your chat app and connect your client to the web socket server with `new WebSocket("ws://127.0.0.1:7777/ws");`.(You can test it with I :heart: Rust in your browser later)
+1. We import modules you need later to use emojis in your chat app and connect your client to the web socket server with `new WebSocket("ws://127.0.0.1:7777/ws");`.
 
 2. We define custom functions to help log time when the user send messages and remove messages. Then we make the default state for client that we will manipulate with JavaScript later.
 
