@@ -137,8 +137,10 @@ If you already knew how **React** prop and **JavaScript** class and function wor
 
 ## 2. Conclusion
 
-I hope this post helpful as a fast reference to turn React class component into function. You may use [React Hook API] after following the process used here for state and methods later.
+I hope you could understand what are necessary processes to turn **React class** component into **functional component** with this post. You may use [React Hook API] after following the process used here for state and methods later.
 
 It was first post before I prepare to write NPM [React Easy Markdown] package from [React Marked Markdown].
+
+I hope this post helpful for someone who need fast reference to turn React class component into functional component.
 
 **Thanks and please share this post with others.**
