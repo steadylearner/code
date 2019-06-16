@@ -63,7 +63,7 @@ Some Linux distributions such as Ubuntu 18.04 already include ImageMagik. You ma
 
 ## 1. Prepare audio with youtube-dl
 
-<a title="Link to YouTube Video for this post" class="hover cursor-pointer" href="http://www.youtube.com/watch?feature=player_embedded&v=s7TVVyTyReU
+<a title="Link to YouTube Video for this post" class="hover cursor-pointer" href="http://www.youtube.com/watch?feature=player_embedded&amp;v=s7TVVyTyReU
 " target="_blank"><img src="http://img.youtube.com/vi/s7TVVyTyReU/0.jpg"
 alt="Your Love - The Outfield" width="100%" height="100%" border="10" /></a>
 
@@ -71,9 +71,12 @@ I hope you already made **youtube-dl** installed following the official document
 
 You can search videos at YouTube for the audio. Then you can use its id instead of `<videId>` below to donwload them.
 
-`$youtube-dl https://www.youtube.com/watch?v=<videoId>`
+```console
+$youtube-dl https://www.youtube.com/watch?v=<videoId>
 
-ex) `$youtube-dl https://www.youtube.com/watch?v=s7TVVyTyReU`
+ex) $youtube-dl https://www.youtube.com/watch?v=s7TVVyTyReU
+```
+
 
 <br />
 
@@ -147,7 +150,7 @@ You may want to know what do sys.argv[1] and sys.argv[2] mean.
 
 They are just used to indicate arguments that you will pass in your console later.
 
-You may visit[How to use sys.argv in Python](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=2ahUKEwiF7sPxmY7hAhV1ILkGHcHODyIQFjACegQIABAL&url=https%3A%2F%2Fwww.pythonforbeginners.com%2Fsystem%2Fpython-sys-argv&usg=AOvVaw0R5P3WpDvi-MMdfy1q1YQQ) for more information.
+You may visit[How to use sys.argv in Python](https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=3&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwiF7sPxmY7hAhV1ILkGHcHODyIQFjACegQIABAL&amp;url=https%3A%2F%2Fwww.pythonforbeginners.com%2Fsystem%2Fpython-sys-argv&amp;usg=AOvVaw0R5P3WpDvi-MMdfy1q1YQQ) for more information.
 
 You may save it with file name such as **music_video_with_image.py** for the next phase.
 
@@ -157,9 +160,9 @@ You may save it with file name such as **music_video_with_image.py** for the nex
 
 ```console
 $python music_video_with_single_image.py <video_for_audio> <image>
-```
 
 ex) `$python music_video_with_image.py audio_from_video.mp4 your_image.jpg`
+```
 
 You almost made it. Type the similar command in your console with different file names. Then, You will see the process similar to snippet below and your video file will be ready to use.
 
