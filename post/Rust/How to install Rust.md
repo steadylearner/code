@@ -3,7 +3,7 @@
     subtitle: "Learn how to install Rust and more",
     image: "post/Rust/how-to-install-rust.png",
     image_decription: "Made with CSS by Steadylearner",
-    tags: "Rust code install how",
+    tags: "Rust How install code",
   }
 -->
 
@@ -66,7 +66,7 @@ I will update this post when there is something useful for this topic.
 
 ---
 
-I hope you already visited [Rust Getting Started Guide]. It has almost all information to install [Rust] in your machine. But I want you to follow this post briefly to save your time and find the process better. 
+I hope you already visited [Rust Getting Started Guide]. It has almost all information to install [Rust] in your machine. But I want you to follow this post briefly to save your time and find the process better.
 
 I will explain how to set up Rust development enivironment in your IDE such as VSCode later. Before that, I want you to verify the list of them at [Rust IDE Support] page.
 
@@ -88,7 +88,7 @@ I hope you read some documenation for C such as [EssentialC] and [The C Programm
 
 ---
 
-You won't need 3. and 4 if you are just starting with Rust.
+You may not need 3 and 4 if you are just starting with Rust.
 
 <br />
 
@@ -310,7 +310,7 @@ After you install it, you should see RLS [Building] and other messages with crat
 
 You should wait for until it becomes RLS only like this image.
 
-![rls complete](s-/static/images/post/Rust/rls-complete.png) 
+![rls complete](https://www.steadylearner.com/static/images/post/Rust/rls-complete.png) 
 
 After that, you can test
 

@@ -1,9 +1,9 @@
 <!--
   Post{
     subtitle: "Learn how to make sitemap.xml with React Routes",
-    image: "post/sitemap/sitemap_react.png,
+    image: "post/sitemap/sitemap-react.png,
     image_decription: "Made with CSS by Steadylearner",
-    tags: "React sitemap app code",
+    tags: "React sitemap build code",
   }
 -->
 
@@ -27,9 +27,9 @@
 
 <!-- / -->
 
-After I built layout for FronetEnd playground [Steadylearner], I thought that **"It is time to focus on improving SEO"**. But the website is built with React Frontend and Rust Backend, So it was not easy to find the information for that.
+After I built layout for FronetEnd playground [Steadylearner], I thought that **"It is time to focus on improving SEO"**. But it is built with React Frontend and Rust Backend, So it was not easy to find the information for that.
 
-Furthermore, it was not easy to use Server Side rendering and other Node.js backend friendly methods for Rust backend. So I searched what can I do yet and found that sitemap and metadata can still be implemented only using JavaScript developing environment without considering type of backend.
+Furthermore, it was difficult to use server side rendering and other Node.js backend friendly methods for Rust backend. So I searched what can I do yet. Then, I found that sitemap and metadata can still be implemented only using JavaScript.
 
 So I want to share you how to do that with this post. We will use [React Router Sitemap] for the process.
 

@@ -3,7 +3,7 @@
     subtitle: "Build your local chat application with it.",
     image: "post/chat/rust_chat_title.png",
     image_decription: "Rust Chat App by Steadylearner",
-    tags: "Rust chat app code",
+    tags: "Rust How start code",
   }
 -->
 
@@ -272,14 +272,14 @@ struct Server {
 
 impl Handler for Server {
     // 1.
-    fn on_request(&mut self, req: &Request) -> Result<(Response)> {
+    fn on_request(&amp;amp;mut self, req: &amp;amp;Request) -> Result<(Response)> {
         match req.resource() {
             "/ws" => {
                 // 2.
                 println!("Browser Request from {:?}", req.origin().unwrap().unwrap());
                 // Uncomment this and find what you can do with them when you develope
                 // println!("Client found is {:?}", req.client_addr().unwrap());
-                // println!("{:?} \n", &resp);
+                // println!("{:?} \n", &amp;amp;resp);
                 let resp = Response::from_request(req);
                 resp
             }
@@ -288,7 +288,7 @@ impl Handler for Server {
         }
     }
 
-    fn on_open(&mut self, handshake: Handshake) -> Result<()> {
+    fn on_open(&amp;amp;mut self, handshake: Handshake) -> Result<()> {
         // 3.
         self.count.set(self.count.get() + 1);
         let number_of_connection = self.count.get();
@@ -298,23 +298,23 @@ impl Handler for Server {
         }
 
         // 4.
-        let open_message = format!("{} entered and the number of live connections is {}", &handshake.peer_addr.unwrap(), &number_of_connection);
-        // println!("{}", &handshake.local_addr.unwrap());
+        let open_message = format!("{} entered and the number of live connections is {}", &amp;amp;handshake.peer_addr.unwrap(), &amp;amp;number_of_connection);
+        // println!("{}", &amp;amp;handshake.local_addr.unwrap());
 
-        println!("{}", &open_message);
+        println!("{}", &amp;amp;open_message);
         self.out.broadcast(open_message);
 
         Ok(())
     }
 
-    fn on_message(&mut self, message: Message) -> Result<()> {
+    fn on_message(&amp;amp;mut self, message: Message) -> Result<()> {
         let raw_message = message.into_text()?;
-        println!("The message from the client is {:#?}", &raw_message);
+        println!("The message from the client is {:#?}", &amp;amp;raw_message);
 
         // 5.
         let message = if raw_message.contains("!warn") {
             let warn_message = "One of the clients sent warning to the server.";
-            println!("{}", &warn_message);
+            println!("{}", &amp;amp;warn_message);
             Message::Text("There was warning from another user.".to_string())
         } else {
             Message::Text(raw_message)
@@ -325,7 +325,7 @@ impl Handler for Server {
         self.out.broadcast(message)
     }
 
-    fn on_close(&mut self, code: CloseCode, reason: &str) {
+    fn on_close(&amp;amp;mut self, code: CloseCode, reason: &amp;amp;str) {
         match code {
             CloseCode::Normal => println!("The client is done with the connection."),
             CloseCode::Away => println!("The client is leaving the site."),
@@ -339,7 +339,7 @@ impl Handler for Server {
         self.count.set(self.count.get() - 1)
     }
 
-    fn on_error(&mut self, err: Error) {
+    fn on_error(&amp;amp;mut self, err: Error) {
         println!("The server encountered an error: {:?}", err);
     }
 }
@@ -367,7 +367,7 @@ The code snippet is a little bit long but the important parts will be
 
 3. We need to count how many connections there are because it affects connection quality. You may use the `number_of_connection` variable with conditional statement.(We will write code for that in client side later. You may use your own code.)
 
-4. **This is the most important part.** Even though we use localhost first and not real users, there should be some ways to differenciate the users from one another. So We will use return value of `&handshake.peer_addr.unwrap()` for the purpose and also `number of connection` inside `fn on_open`. (If you open various windows for http://localhost:8000/chat later, You can see that it always return different values in your CLI.)
+4. **This is the most important part.** Even though we use localhost first and not real users, there should be some ways to differenciate the users from one another. So We will use return value of `&amp;amp;handshake.peer_addr.unwrap()` for the purpose and also `number of connection` inside `fn on_open`. (If you open various windows for http://localhost:8000/chat later, You can see that it always return different values in your CLI.)
 
 5. This is where you can do various things with messages from users. You can use database to save messages from users here. You may write experimental code, for example, to send **warning** received from other users to everyone connected to the server socket.(You may test it with **!warn** in socket client later.)
 
@@ -385,7 +385,7 @@ It is also important for you to understand that the most of the code used above 
 
 ## 3. HTML and CSS for layout
 
-![Rust Chat App](https://www.steadylearner.com/static/images/post/chat/rust_chat.png)
+![Rust Chat App](https://www.steadylearner.com/static/images/post/chat/rust-chat.png)
 
 We briefly learnt the Rust serverside code to build our chat app. It is time to build Frotnend part to help users.
 
@@ -600,11 +600,11 @@ socket.onmessage = function (event) {
     // and the last part(number of connection) from
     // open_message variable with JavaScript
 
-    // fn on_open(&mut self, handshake: Handshake) -> Result<()> {
+    // fn on_open(&amp;amp;mut self, handshake: Handshake) -> Result<()> {
     //     self.count.set(self.count.get() + 1);
     //     let number_of_connection = self.count.get();
 
-    //     let open_message = format!("{} entered and the number of live connections is {}", &handshake.peer_addr.unwrap(), &number_of_connection);
+    //     let open_message = format!("{} entered and the number of live connections is {}", &amp;amp;handshake.peer_addr.unwrap(), &amp;amp;number_of_connection);
     //     self.out.broadcast(open_message); -> becomes event.data
 
     //     Ok(())
@@ -640,7 +640,7 @@ socket.onmessage = function (event) {
     const beforePayload = fromServer.split(" ")[0];
     const authorOfMessage = beforePayload.slice(0, beforePayload.length - 1); // to get the id part of the message
 
-    // if (authorOfMessage !== userId && fromServer.includes(`!exclude ${userId}`)) {
+    // if (authorOfMessage !== userId &amp;amp;&amp;amp; fromServer.includes(`!exclude ${userId}`)) {
     if (fromServer.includes(`!exclude ${userId}`)) {
       socket.close();
       return;
@@ -720,4 +720,5 @@ I am planning to convert Frontend code(HTML and JavaScript) used here to Rust wi
 
 We might learn how to write Rust code for Frontend and Backend code later with this example.
 
-**Thanks and please share this post with others**
+**Thanks and please share this post with others.**
+
