@@ -3,7 +3,7 @@
     subtitle: "Learn how to make sitemap.xml with React Routes",
     image: "post/sitemap/sitemap-react.png,
     image_decription: "Made with CSS by Steadylearner",
-    tags: "React sitemap build code",
+    tags: "React How sitemap build",
   }
 -->
 
@@ -16,46 +16,31 @@
 
 <!-- / -->
 
-<!-- Post -->
+I built [Steadylearner]. Then, I thought that **"It is time to improve SEO with sitemap and metadata"**. But it is made with **React** and **Rust**. So there were not enough examples yet. Therefore, it was not easy to find the sufficient information.
 
-[Your first sitemap with Rust]: https://www.steadylearner.com/blog/read/Your-first-sitemap-with-Rust
-[How to use datas to build sitemap with Rust Diesel]: https://www.steadylearner.com/blog/read/How-to-use-datas-to-build-sitemap-with-Rust-Diesel
-[How to build a sitemap.txt from sitemap.xml with Rust]: https://www.steadylearner.com/blog/read/How-to-build-a-sitemap.txt-from-sitemap.xml-with-Rust
-[How to build sitemap for images with Rust]: https://www.steadylearner.com/blog/read/How-to-build-sitemap-for-images-with-Rust
-[How to automate sitemaps]: https://www.steadylearner.com/blog/read/How-to-automate-sitemaps
-[How to build a sitemap for React App]: https://www.steadylearner.com/blog/read/How-to-build-a-sitemap-for-React-App
-
-<!-- / -->
-
-After I built layout for FronetEnd playground [Steadylearner], I thought that **"It is time to focus on improving SEO"**. But it is built with React Frontend and Rust Backend, So it was not easy to find the information for that.
-
-Furthermore, it was difficult to use server side rendering and other Node.js backend friendly methods for Rust backend. So I searched what can I do yet. Then, I found that sitemap and metadata can still be implemented only using JavaScript.
+Furthermore, it was difficult to use server side rendering and other Node.js backend friendly methods from React for Rust. So I searched what can I do. Then, I found that sitemap and metadata can still be implemented only using JavaScript.
 
 So I want to share you how to do that with this post. We will use [React Router Sitemap] for the process.
 
-Its goal is to extract only routes relevant parts made with React Router and return **.xml** format sitemap for you.
+Its goal is to extract only routes made with React Router and return **.xml** type sitemap.
 
-I found that it was not complete to meet every requirements to make sitemap for every routes in Single Page App. But it will be still useful to start and understand what you need.
+I found that it was not complete to meet every requirements to make sitemap. But it will be still useful to start and understand what you need.
 
-(If you find that it is not sufficient after you read this post, you can learn how to make sitemap with Rust with the posts below.)
+Because you have to know how to deal with ES6+ JavaScript Codes, You may find that following [the documentation from the author][React Router Sitemap] is not easy.
 
-1. [Your first sitemap with Rust]
-2. [How to use datas to build sitemap with Rust Diesel]
-3. [How to build a sitemap.txt from sitemap.xml with Rust]
-4. [How to build sitemap for images with Rust]
-5. [How to automate sitemaps]
+So I will give you every files you need to make it work for your app.
 
-You may find that following the documentation from the author is not so easy. Because you have to know how to deal with ES6+ JavaScript Codes. So I will give you every files you need to make it work for your app.
+I hope you already have [Node](https://nodejs.org/en/) installed and know JavaScript also before you follow this post.
 
-I hope you already have [Node.js](https://nodejs.org/en/) installed and know JavaScript also before you start to follow this post.
-
-(You can visit the source code at [Sitemap GitHub] repository if you need the source code. It will be suffient for you to start your own project.)
+(You may read the source code at [Sitemap GitHub] repository first. It will be suffient for you to start your own project.)
 
 We will start from installing the minimum JavaScript files.
 
-You don’t have to know a lot about how packages work. We will use the project only to make React-Router-Sitemap to work and it can be used independently. So after reading this pots, You can use your own React-Router routes wherever you want.
+You do not have to know a lot about how packages below work. We will use the project only to make React-Router-Sitemap work.
 
-The minimum package.json for the project should be similar to the below.
+It can be used independently. So after reading this pots, You may use it for your own React-Router routes whenever you want.
+
+The minimum **package.json** for the project would be
 
 ```json
 {
@@ -88,7 +73,7 @@ You can use **npm** or **yarn** to install the packages.
 
 (For the sitemap will be only useful after you end up completing your website. You wouldn’t need detailed explanation how to use them.)
 
-After that, the minimum webpack.config.js for the project should be similar to this.
+Then, the minimum webpack.config.js for the project would be
 
 ```js
 const webpack = require("webpack");
@@ -120,11 +105,11 @@ module.exports = function () {
 };
 ```
 
-I decide to include webpack for this post for I have working webpack configuration inside the project for the website.
+I use webpack for this post for I have working webpack configuration for [Steadylearner].
 
-The important part for here is to make **babel-loader** and **@babel/preset-env** to help you to use **ES6+ syntax** so that You can follow the example of **React-Router-Sitemap**.
+The important part is to make **babel-loader** and **@babel/preset-env**. They will help you to use **ES6+ syntax**. With it, you can follow the example of **React-Router-Sitemap**.
 
-In accordance with the webpack config file above, we will make .babelrc file
+In accordance with the webpack file above, we will make **.babelrc**.
 
 ```json
 {
@@ -135,9 +120,9 @@ In accordance with the webpack config file above, we will make .babelrc file
 }
 ```
 
-and you have the minimum **Webpack** and **Babel** Setting to handle React or ES6+ JavaScript files at the moment.
+and you have the minimum **Webpack** and **Babel** files ready for the purpose of this post.
 
-If some problem happend following this examples, you may test it with help of [babel-repl](https://babeljs.io/repl) to verify it work or not.
+If some problem happens following this examples, you may test it with help of [babel-repl](https://babeljs.io/repl) to verify it work or not.
 
 ```js
 // react-sitemap-test.js
@@ -171,21 +156,23 @@ console.log(sitemap);
 // console.log(sitemap);
 ```
 
-You can verify how it works with the **$node react-sitemap-test.js** and you will see the messages like this in your console.
+You can verify how it works with the **$node react-sitemap-test.js**. Then, you will see the messages like this in your console.
 
 ```xml
 cache:'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n<url> <loc>http://www.steadylearner.com/home</loc> </url>\n</urlset>',
 ```
 
-You should have searched information about [What is sitemap?](https://support.google.com/webmasters/answer/156184?hl=en), [How to build sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap) for React Application etc before.
+You should search information about [What is sitemap?](https://support.google.com/webmasters/answer/156184?hl=en), [How to build sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap) if you don't know what they mean.
 
-Then, you should know that 
+Then, you will find that
 
 ```xml
 <loc>http://www.steadylearner.com/home</loc>
 ```
 
-is payload and we can see that it is made from the part of the code below
+is payload.
+
+We can see that it is made from the code
 
 ```js
 new Sitemap(<Route path='/home' />)
@@ -193,9 +180,9 @@ new Sitemap(<Route path='/home' />)
 .save("./sitemap.xml")
 ```
 
-We know that the minimum example works after the process before. We made a first step to build sitemap using [React Router Sitemap] and what we should code is to use our own routes instead of it.
+We know that the minimum example works after the process before. We made a first sitemap with [React Router Sitemap]. What we should code is to use our own React Router routes instead.
 
-Following the example from the documenation, we will make sitemap-builder.js
+Following the example from the documenation, we will make **sitemap-builder.js**
 
 ```js
 require('@babel/register'); // 1.
@@ -203,25 +190,22 @@ require('@babel/register'); // 1.
 const router = require('./router').default;
 const Sitemap = require('react-router-sitemap').default;
 
-// 2.
 (
     new Sitemap(router)
         .build('http://www.steadylearner.com')
         .save('./sitemap.xml')
-);
+); // 2.
 
 console.log("The sitemap was built."); // Only shows this message after everything works well.
-
 ```
 
-The important point here are
+1. You should use **@prefix for babel/register** and the package official example used is not correct.
 
-1. You should use **@prefix for babel/register**, the package official example used is not correct and you should use this instead.
-2. Here we don't have router variable to use with Sitemap(argument) yet, we will build it in the next process.
+2. We do not have router variable to use with Sitemap(argument) yet, we will build it.
 
-I corrected a code snippet to help you and save your time. The process is almost done. We just need to make router variable that will be passsed to construct Sitemap with syntax **new Sitemap(Router)**.
+I corrected a code snippet to help you. The process to build sitemap.xml is almost done. We just need to make router variable. It will be passsed to construct Sitemap with syntax **new Sitemap(Router)**.
 
-The code below is from the react router routes for [Steadylearner] to help you refer to the real examples.
+The code below is from the react router routes for [Steadylearner] to help you refer to the real example.
 
 ```js
 import React from "react";
@@ -251,13 +235,15 @@ export default (
 );
 ```
 
-You may use your routes from React-Router as they are. But I want you to remove unnecessary parts inside your file for routes.(Only the last paths the user visit will be used.)
+You may use your routes from React-Router. But I want you to remove unnecessary parts inside your routes.(Only the last paths the user visit will be used.)
 
 So you should delete code such as **rediret** and components to make it more readable and not to make confusion for the React Router Sitemap to work.
 
-Everything is ready. Type **$node sitemap-builder.js** and the console will show you the message **“Sitemap was built”** for you.
+Everything is ready.
 
-Then, You can verify it at **sitemap.xml** file.
+Type **$node sitemap-builder.js**.
+
+The console will show you the message **“Sitemap was built”** for you. Then, You can verify the result with **sitemap.xml**.
 
 It will be similiar to
 
@@ -274,14 +260,14 @@ It will be similiar to
 <url> <loc>http://www.steadylearner.com/video</loc> </url>
 <url> <loc>http://www.steadylearner.com/video/search/:query?</loc> </url>
 
-<code snippet here>
-
 </urlset>
 ```
 
-If you liked it, you may submit it for some search engines. I want you to learn how to do that by searching documentations yourself.
+If you like the result, you may submit it for some search engines.
 
-If you want to use a sitemap.txt file also. You can only extract `<url><loc>$path</loc></url>` parts from the sitemap.xml.
+I want you to learn how to do that by searching documentations yourself.
+
+If you want to use a sitemap.txt file also. You can only use **path** in `<url><loc>$path</loc></url>` parts from it.
 
 Then use * instead of dynamic path parts such as :language? and :query.
 
@@ -308,27 +294,20 @@ http://www.steadylearner.com/slideshow
 http://www.steadylearner.com/static/images/*
 ```
 
-It should be similar to code snippet above, You may want to use [the package](https://www.npmjs.com/package/react-router-sitemap-builder) for that also.
+You may use [the package](https://www.npmjs.com/package/react-router-sitemap-builder) instead.
 
-If you followed well this post, you already have boilerplate to start the sitemap for your React Web Application.
+If you followed well this post, you already have boilerplate to start the sitemap for your React project.
 
-I hope you made it and see your React Single Page App indexed by search engines like [Steadylearner].
+I hope you made it and see your React project indexed by search engines.
 
 Before the end of the post, there are some notes that I want to tell you.
 
-Paths such as http://www.steadylearner.com/about/:language doesn't work well for search engines to index every paths in your React Website.
+Paths such as http://www.steadylearner.com/about/:language does not work well for search engines to index every paths in your React Website.
 
 It may be better for you to write manually if there are a few paths.
 
-(For example, http://www.steadylearner.com/about/, http://www.steadylearner.com/about/pt-br and http://www.steadylearner.com/about/es instead of the dynamic path with /:language.)
+For example, **http://www.steadylearner.com/about/, http://www.steadylearner.com/about/pt-br and http://www.steadylearner.com/about/es** instead of the dynamic path with /:language.
 
-Otherwise, [use database][How to use datas to build sitemap with Rust Diesel] later to be more specific.
-
-## Conclusion
-
-I hope you found this post useful. If you know Rust and want to automate every process to build sitemap.xml and sitemap.txt, please visit [How to automate sitemaps].
-
-If you need a help, please contact me with [LinkedIn](https://www.linkedin.com/in/steady-learner-3151b7164/) or [Twitter](https://twitter.com/steadylearner_p).
-(JavaScript, Rust, Python etc)
+Otherwise, write dynamic sitemap with database and programming language for backend. You can make it more specific.
 
 **Thanks and please share this post with others.**
