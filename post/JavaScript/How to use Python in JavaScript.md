@@ -1,6 +1,6 @@
 <!--
   Post{
-    subtitle: "Numpy, Pandas, Pyautogui etc in JavaScript",
+    subtitle: "Python Numpy and Pyautogui etc in JavaScript",
     image: "/code/python_in_javascript.text_watermark.png",
     image_decription: "Image made with CSS by Steadylearner",
     tags: "How, Python, JavaScript, code",

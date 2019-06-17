@@ -83,7 +83,9 @@ MarkdownInput.propTypes = {
 };
 ```
 
-In the code example above, the class component was just inheriting props from the parent component without any state or methods. So it didn't need to be class component because it only uses props. Thefore, it will be a good example for the purpose of this post.
+In the code example above, the class component was just inheriting props from the parent component without any state or methods. 
+
+It didn't need to be class component because it only uses props. Therfore, it will be a good example for the purpose of this post.
 
 We will remove some parts of it first to turn it into functional component.
 
@@ -121,9 +123,9 @@ FunctionMarkdownInput.propTypes = {
 export default FunctionMarkdownInput;
 ```
 
-There are only a little difference between them.
+There are only a little differences between them.
 
-What we do are
+What we do for that were
 
 1. Substitue **class** with **function**  and remove **extends React.Component** from the first line. Then, move **export default** FunctionMarkdownInput to the last of the code snippet to make the funtion part more clear to understand.
 
@@ -137,10 +139,8 @@ If you already knew how **React** prop and **JavaScript** class and function wor
 
 ## 2. Conclusion
 
-I hope you could understand what are necessary processes to turn **React class** component into **functional component** with this post. You may use [React Hook API] after following the process used here for state and methods later.
+I hope this post helpful as a fast reference to turn React class component into function. You may use [React Hook API] after following the process used here for state and methods later.
 
 It was first post before I prepare to write NPM [React Easy Markdown] package from [React Marked Markdown].
-
-I hope this post helpful for someone who need fast reference to turn React class component into functional component.
 
 **Thanks and please share this post with others.**

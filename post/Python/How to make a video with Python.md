@@ -2,7 +2,7 @@
   Post{
     subtitle: "Upload your video made with Python at YouTube",
     image: "/brand/youtube-brand-image.jpg",
-    image_decription: "Moviepy offical image",
+    image_decription: "YouTube Image",
     tags: "Python, How, video, YouTube",
   }
 -->
@@ -63,7 +63,7 @@ Some Linux distributions such as Ubuntu 18.04 already include ImageMagik. You ma
 
 ## 1. Prepare audio with youtube-dl
 
-<a title="Link to YouTube Video for this post" class="hover cursor-pointer" href="http://www.youtube.com/watch?feature=player_embedded&amp;v=s7TVVyTyReU
+<a title="Link to YouTube Video for this post" class="hover cursor-pointer" href="http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=s7TVVyTyReU
 " target="_blank"><img src="http://img.youtube.com/vi/s7TVVyTyReU/0.jpg"
 alt="Your Love - The Outfield" width="100%" height="100%" border="10" /></a>
 
@@ -88,9 +88,13 @@ For audio file is ready with the [YouTube Video](https://www.youtube.com/watch?v
 
 In this phase, We will make 640x360 image with ImageMagik for it works well with YouTube and other cases also.
 
-`$convert -resize 640x360! your_image.ext result_image.ext`
+You can type command below for that.
+
+```console
+$convert -resize 640x360! your_image.ext result_image.ext 
 
 ex) $convert -resize 640x360! image_from_the_web.jpeg resized_image.jpeg
+```
 
 and that is all.
 
@@ -144,13 +148,15 @@ video.write_videofile(outfile, fps=1)
 
 2. Write Python code on our own. They are similar to plain english. You can see that `AudioFileClip` only extract audio file from the video and you can use it for image files made from `ImageClip`.
 
-3. Use variables for each files that we prepared above. Then, use Moviepy and Python native API to make a file with name `f"{your_preferred_video_filename_and.ext}`.
+3. Use variables for each files that we prepared above. Then, use Moviepy and Python native API to make a file with name **f"{your_preferred_video_filename_and.ext}**.
+
+<br />
 
 You may want to know what do sys.argv[1] and sys.argv[2] mean.
 
 They are just used to indicate arguments that you will pass in your console later.
 
-You may visit[How to use sys.argv in Python](https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=3&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwiF7sPxmY7hAhV1ILkGHcHODyIQFjACegQIABAL&amp;url=https%3A%2F%2Fwww.pythonforbeginners.com%2Fsystem%2Fpython-sys-argv&amp;usg=AOvVaw0R5P3WpDvi-MMdfy1q1YQQ) for more information.
+You may visit [How to use sys.argv in Python](https://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=web&amp;amp;cd=3&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;ved=2ahUKEwiF7sPxmY7hAhV1ILkGHcHODyIQFjACegQIABAL&amp;amp;url=https%3A%2F%2Fwww.pythonforbeginners.com%2Fsystem%2Fpython-sys-argv&amp;amp;usg=AOvVaw0R5P3WpDvi-MMdfy1q1YQQ) for more information.
 
 You may save it with file name such as **music_video_with_image.py** for the next phase.
 
