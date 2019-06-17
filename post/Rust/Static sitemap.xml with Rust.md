@@ -27,13 +27,13 @@
 
 [How to install Rust]: https://www.steadylearner.com/blog/read/How-to-install-Rust
 [How to build a sitemap for React]: https://www.steadylearner.com/blog/read/How-to-build-a-sitemap-for-React
-[sitemaps]: https://www.steadylearner.com/blog/search/sitemap
+[sitemap]: https://www.steadylearner.com/blog/search/sitemap
 
 <!-- / -->
 
-In this post, You will learn how to build a simple static sitemap.xml fles with routes with Rust. If you are a React developer, you may refer to [How to build a sitemap for React] at [Steadylearner].
+In this post, You will learn how to build a simple static sitemap.xml flle with Rust. If you are a React developer, you may refer to [How to build a sitemap for React] at [Steadylearner] first.
 
-Because you wouldn't need [sitemaps] without having to work with complete website, I will suppose that you already have experience in Rust or other programming languages.
+Because you wouldn't need [sitemap] without building your complete website, I will suppose that you already have experience in Rust or other programming languages.
 
 We will eventually learn how to build **sitemap.xml, sitemap.txt and image_sitemap.xml**. Then, we will make the functions to make the process reusable.
 
@@ -44,13 +44,15 @@ We will eventually learn how to build **sitemap.xml, sitemap.txt and image_sitem
 1. [How to install Rust]
 2. [Rust Sitemap Crate]
 3. [What is sitemap](https://support.google.com/webmasters/answer/156184?hl=en)
-4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
+4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&amp;q=how+to+build+sitemap)
 
 ---
 
 If you don't have Rust installed yet, please visit [How to install Rust] first. Then, I want you to read the doucumentation at [Rust Sitemap Crate].
 
-If you just want to see the final project, you may refer to [Sitemap GitHub] or visit [xml sitemap], [txt sitemap], [image sitemap] pages to verify the results.
+If you just want to see the final project, you may refer to [Sitemap GitHub]. 
+
+You may visit [xml sitemap], [txt sitemap], [image sitemap] pages to verify the results.
 
 <br />
 
@@ -66,7 +68,7 @@ If you just want to see the final project, you may refer to [Sitemap GitHub] or 
 
 ## 1. The official example to write sitemap.xml
 
-I hope you already visited and tested [Rust Sitemap Crate] in your machine. It has feature to read sitemaps also. But we won't use it in this post.
+I hope you already tested [Rust Sitemap Crate] example in your machine. It has a feature to read sitemaps also. But we won't use it in this post.
 
 So we will just talk about the example code to write **sitemap.xml** here.
 
@@ -77,7 +79,7 @@ use sitemap::structs::UrlEntry;
 use std::io::stdout;
 fn main() {
     let mut output = stdout();
-    let sitemap_writer = SiteMapWriter::new(&mut output);
+    let sitemap_writer = SiteMapWriter::new(&amp;mut output);
     let mut urlwriter = sitemap_writer.start_urlset().expect("Unable to write urlset");
     urlwriter.url("http://github.com").expect("Unable to write url");
     urlwriter.url(UrlEntry::builder().loc("http://google.com")).expect("Unable to write url");
@@ -94,9 +96,9 @@ So in the next part, we will modify the code above to write static sitemaps. I w
 
 ## 2. Modify it to build sitemap with static routes
 
-We will write more complicated code to write sitemap.xml. But, it is just a variation from [the example][Writing Sitemap with Rust example]. So I hope you already invested yoru time for it.
+We will write more complicated code to write sitemap.xml. But, it is just a variation from [the example][Writing Sitemap with Rust example].
 
-We will first define **what_is_date_today** function first.
+We will first define **what_is_date_today** function to use inside main.rs file later.
 
 ```rust
 // lib.rs
@@ -112,18 +114,18 @@ pub struct Today {
 
 pub fn what_is_date_today() -> Today {
     let date = Utc::now().naive_utc();
-    let date_str = format!("{}", &date);
+    let date_str = format!("{}", &amp;date);
     let split_date = date_str.split(" ");
-    let vec_of_split_date: Vec<&str> = split_date.collect();
+    let vec_of_split_date: Vec<&amp;str> = split_date.collect();
 
     let payload = vec_of_split_date[0];
 
     let split_payload = payload.split("-");
-    let vec_of_split_payload: Vec<&str> = split_payload.collect();
+    let vec_of_split_payload: Vec<&amp;str> = split_payload.collect();
 
     let (y, m, d) = (vec_of_split_payload[0], vec_of_split_payload[1], vec_of_split_payload[2]);
 
-    println!("Today is {}-{}-{}(year-month-day\n)", &y, &m, &d);
+    println!("Today is {}-{}-{}(year-month-day\n)", &amp;y, &amp;m, &amp;d);
 
     Today {
         year: y.parse::<i32>()
@@ -136,7 +138,7 @@ pub fn what_is_date_today() -> Today {
 }
 ```
 
-Then, main code will be
+Then, **main.rs** will be
 
 ```rust
 extern crate chrono;
@@ -154,8 +156,8 @@ use sitemap::writer::SiteMapWriter;
 
 fn main() -> std::io::Result<()> {
     let bold = Style::new().bold(); // 1.
-    let website: &str = "http://www.steadylearner.com";
-    let static_routes: Vec<&str> = vec![
+    let website: &amp;str = "http://www.steadylearner.com";
+    let static_routes: Vec<&amp;str> = vec![
       "about",
       "video",
       "blog",
@@ -167,7 +169,7 @@ fn main() -> std::io::Result<()> {
 
     let mut output = Vec::<u8>::new();
     {
-        let sitemap_writer = SiteMapWriter::new(&mut output);
+        let sitemap_writer = SiteMapWriter::new(&amp;mut output);
 
         let mut urlwriter = sitemap_writer
             .start_urlset()
@@ -191,7 +193,7 @@ fn main() -> std::io::Result<()> {
 
         // 5.
         for route in static_routes.iter() {
-            let static_url = format!("{}/{}", &website, route);
+            let static_url = format!("{}/{}", &amp;website, route);
             let url_entry = UrlEntry::builder()
                 .loc(static_url)
                 .changefreq(ChangeFreq::Monthly)
@@ -206,9 +208,9 @@ fn main() -> std::io::Result<()> {
         let sitemap_writer = urlwriter.end().expect("close the urlset block");
     }
 
-    println!("{:#?}", std::str::from_utf8(&output)); // 7. Verify result at console
+    println!("{:#?}", std::str::from_utf8(&amp;output)); // 7.
 
-    write("sitemap.xml", &output)?; // 8. Write file
+    write("sitemap.xml", &amp;output)?; // 8.
 
     Ok(())
 }
@@ -278,8 +280,8 @@ It would be similar to
 
 ## 3. Conclusion
 
-I hope it worked. Use your own website name and static routes instead for your **sitemap.xml**.
+I hope it worked. Use your own website name and static routes.
 
-In the next posts for [sitemaps] with Rust, you will learn how to make sitemap.xml with dynamic datas and more.
+In the next posts for [sitemap] with Rust, you will learn how to make sitemap.xml with datas and make some functions.
 
 **Thanks and please share this post with others.**
