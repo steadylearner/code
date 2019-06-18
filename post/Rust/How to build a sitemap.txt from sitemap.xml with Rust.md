@@ -15,13 +15,12 @@
 [Rust Diesel]: http://diesel.rs/
 [Rust Sitemap Crate]: https://github.com/svmk/rust-sitemap
 
+[xml sitemap]: https://www.steadylearner.com/sitemap.xml
+[sitemap]: https://www.steadylearner.com/blog/search/sitemap
 
 <!-- / -->
 
 <!-- Steadylearner Post -->
-
-[xml sitemap]: https://www.steadylearner.com/sitemap.xml
-[sitemap]: https://www.steadylearner.com/blog/search/sitemap
 
 <!-- / -->
 
@@ -35,7 +34,7 @@ The code used here can be used separately or include it in your project to build
 
 1. [Rust Sitemap Crate]
 2. [What is sitemap](https://support.google.com/webmasters/answer/156184?hl=en)
-3. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
+3. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&amp;q=how+to+build+sitemap)
 4. sitemap.xml files to build sitemap.txt
 
 ---
@@ -133,14 +132,14 @@ fn main() {
 
     for url in urls {
         let payload = url.loc.get_url().unwrap();
-        println!("{}", &payload);
-        let payload_with_new_line = format!("{}\n", &payload);
-        output.push_str(&payload_with_new_line);
+        println!("{}", &amp;payload);
+        let payload_with_new_line = format!("{}\n", &amp;payload);
+        output.push_str(&amp;payload_with_new_line);
     }
 
     // 3.
-    println!("{:#?}", &output);
-    write("sitemap.txt", &output)?;
+    println!("{:#?}", &amp;output);
+    write("sitemap.txt", &amp;output)?;
 
     println!("errors = {:?}", errors);
 }
@@ -152,9 +151,41 @@ The entire code isn't that different from the official example. What we should d
 
 2. Then we create mutable variable **output** with **let mut output = String::new()**; to save data. Then, we use `for in` loop again to use data inside **urls** variable processed with API from [Rust Sitemap Crate].
 
-3. Finally, we verfiy everything worked well with **println!("{:#?}", &output);**. Then, write sitemap.txt with **write("sitemap.txt", &output)?;**
+3. Finally, we verfiy everything worked well with **println!("{:#?}", &amp;output);**. Then, write sitemap.txt with **write("sitemap.txt", &amp;output)?;**
 
 In the process, we didn't remove **println!("errors = {:?}", errors);** to verify errors if there are any.
+
+You can run them with **$cargo run --bin main** and it will be similar to
+
+```txt
+http://www.steadylearner.com/video/search/*
+http://www.steadylearner.com/video/watch/*
+http://www.steadylearner.com/video/write/*
+http://www.steadylearner.com/image/search/*
+http://www.steadylearner.com/blog/search/*
+http://www.steadylearner.com/blog/read/*
+http://www.steadylearner.com/code/search/*
+http://www.steadylearner.com/static/images/*
+http://www.steadylearner.com/
+http://www.steadylearner.com/about
+http://www.steadylearner.com/video
+http://www.steadylearner.com/blog
+http://www.steadylearner.com/code
+http://www.steadylearner.com/image
+http://www.steadylearner.com/slideshow
+http://www.steadylearner.com/blog/read/How-to-build-a-sitemap-for-React
+http://www.steadylearner.com/blog/read/How-to-extract-audio-from-the-video-with-Python
+http://www.steadylearner.com/blog/read/How-to-use-Python-in-JavaScript
+http://www.steadylearner.com/blog/read/From-React-class-to-function
+http://www.steadylearner.com/blog/read/How-to-make-a-video-with-Python
+http://www.steadylearner.com/blog/read/How-to-start-Rust-Chat-App
+http://www.steadylearner.com/blog/read/How-to-install-Rust
+```
+
+or visit [txt sitemap](https://www.steadylearner.com/sitemap.txt) for [Steadylearner].
+
+(**sitemap.txt allows you to use all selector * to define urls also**. If you want, you can use them also)
+
 
 If you want to include it inside your former projects, You may refer to the code snippet below.
 
@@ -191,7 +222,7 @@ fn main() -> std::io::Result<()> {
     let post_results = posts
         .filter(published.eq(true))
         .order(created_at.desc())
-        .load::<Post>(&*connection)
+        .load::<Post>(&amp;*connection)
         .expect("Error loading posts");
 
     println!(
@@ -201,7 +232,7 @@ fn main() -> std::io::Result<()> {
 
     let mut output = Vec::<u8>::new();
     {
-        let sitemap_writer = SiteMapWriter::new(&mut output);
+        let sitemap_writer = SiteMapWriter::new(&amp;mut output);
 
         let mut urlwriter = sitemap_writer
             .start_urlset()
@@ -222,7 +253,7 @@ fn main() -> std::io::Result<()> {
             .expect("valid");
         urlwriter.url(home_entry).expect("Unable to write url");
 
-        let static_routes: Vec<&str> = vec![
+        let static_routes: Vec<&amp;str> = vec![
             "about",
             "video",
             "blog",
@@ -264,9 +295,9 @@ fn main() -> std::io::Result<()> {
         let sitemap_writer = urlwriter.end().expect("close the urlset block");
     }
 
-    println!("{:#?}", std::str::from_utf8(&output));
+    println!("{:#?}", std::str::from_utf8(&amp;output));
 
-    write("sitemap.xml", &output)?;
+    write("sitemap.xml", &amp;output)?;
 
     // sitemap.txt is based on the sitemap.xml and it is already built at the point
     println!("You wanna write sitemap.txt file also?");
@@ -302,13 +333,13 @@ fn main() -> std::io::Result<()> {
 
             for url in urls {
                 let payload = url.loc.get_url().unwrap();
-                println!("{}", &payload);
-                let payload_with_new_line = format!("{}\n", &payload);
-                output.push_str(&payload_with_new_line);
+                println!("{}", &amp;payload);
+                let payload_with_new_line = format!("{}\n", &amp;payload);
+                output.push_str(&amp;payload_with_new_line);
             }
 
-            println!("{:#?}", &output);
-            write("sitemap.txt", &output)?;
+            println!("{:#?}", &amp;output);
+            write("sitemap.txt", &amp;output)?;
 
             println!("errors = {:?}", errors);
         }
@@ -322,8 +353,6 @@ fn main() -> std::io::Result<()> {
 ```
 
 and that is all. You can test it with `Cargo c or cargo run` and verify the result. Then, modify it for your project.
-
-(**sitemap.txt allows you to use all selector * to define urls also**. If you want, you can use them also)
 
 <br />
 
