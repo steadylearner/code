@@ -50,7 +50,7 @@ We will eventually learn how to build **sitemap.xml, sitemap.txt and image_sitem
 
 If you don't have Rust installed yet, please visit [How to install Rust] first. Then, I want you to read the doucumentation at [Rust Sitemap Crate].
 
-If you just want to see the final project, you may refer to [Sitemap GitHub]. 
+If you just want to see the final project, you may refer to [Steadylearner Sitemap]. 
 
 You may visit [xml sitemap], [txt sitemap], [image sitemap] pages to verify the results.
 
