@@ -1,35 +1,33 @@
 <!--
     Post{
-        subtitle: "Learn how to make sitemap.txt easily with Rust",
-        image: "post/sitemap/sitemap_txt_with_rust.png",
-        image_decription: "sitemap.xml to sitemap.txt by Steadylearner",
-        tags: "Diesel Rust sitemap code",
+        subtitle: "Learn how to make sitemap.txt easily with Rust.",
+        image: "post/sitemap/sitemap-txt-with-rust.png",
+        image_decription: "Image by Steadylearner",
+        tags: "Rust How sitemap code",
     }
 -->
 
 <!-- Link -->
 
-[Rust Sitemap Crate]: https://github.com/svmk/rust-sitemap
 [Steadylearner]: https://www.steadylearner.com
-[Steadylearner Github Repository]: https://github.com/steadylearner/Steadylearner
-[How to deploy Rust Web App]: https://medium.com/@steadylearner/how-to-deploy-rust-web-application-8c0e81394bd5?source=---------9------------------
+[Steadylearner Sitemap]: https://github.com/steadylearner/Sitemap
+
 [Rust Diesel]: http://diesel.rs/
-[Sitemap in React]: https://medium.com/@steadylearner/how-to-build-a-sitemap-for-react-app-7bbc3040dc1f
-[Sitemap GitHub]: https://github.com/steadylearner/Sitemap
+[Rust Sitemap Crate]: https://github.com/svmk/rust-sitemap
+
 
 <!-- / -->
 
-<!-- Post -->
+<!-- Steadylearner Post -->
 
-[Your first sitemap with Rust]: https://www.steadylearner.com/blog/read/Your-first-sitemap-with-Rust
-[How to use datas to build sitemap with Rust Diesel]: https://www.steadylearner.com/blog/read/How-to-use-datas-to-build-sitemap-with-Rust-Diesel
-[How to build a sitemap for React App]: https://medium.com/@steadylearner/how-to-build-a-sitemap-for-react-app-7bbc3040dc1f
+[xml sitemap]: https://www.steadylearner.com/sitemap.xml
+[sitemap]: https://www.steadylearner.com/blog/search/sitemap
 
 <!-- / -->
 
-This is a bonus post from the previous ones to build sitemap.xml files. I hope you already read [Your first sitemap with Rust] and [How to use datas to build sitemap with Rust Diesel].
+This is a folllowing post from the previous ones to build **sitemap.xml** files. I hope you already read [them][sitemap].
 
-The source code used here can be separated or include it in your previous Rust(.rs) file to build sitemap.xml.
+The code used here can be used separately or include it in your project to build **sitemap.xml**.
 
 <br />
 
@@ -38,17 +36,15 @@ The source code used here can be separated or include it in your previous Rust(.
 1. [Rust Sitemap Crate]
 2. [What is sitemap](https://support.google.com/webmasters/answer/156184?hl=en)
 3. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
-4. Your sitemap.xml
+4. sitemap.xml files to build sitemap.txt
 
 ---
 
-For this process is simple, you don't have to visit all links above if you already knew them. I just want you to read and test the code snippet from **Reading sitemap documents** part at [Rust Sitemap Crate] before move on.
+The process will be simple. I just want you to read and test **Reading sitemap documents** part at [Rust Sitemap Crate].
 
-If you are a React developer and you didn't have any sitemap.xml or sitemap.txt file yet, you may read [How to build a sitemap for React App] also to build them. 
+If you are a React developer and you didn't have any sitemap.xml or sitemap.txt file yet, you may use [xml sitemap] for [Steadylearner].
 
-It will be also helpful for you to learn different way to do the same thing with other programming lagunage.
-
-If you prefer to see the final project first, you can refer to [Sitemap GitHub] Repository.
+If you prefer to see the final project first, you can refer to [Steadylearner Sitemap] Repository.
 
 <br />
 
@@ -64,7 +60,7 @@ If you prefer to see the final project first, you can refer to [Sitemap GitHub] 
 
 ## 1. Test official example to read sitemap.xml
 
-We will first test the official example to read sitemap.xml and find the exact part(payload) we want to use from it. I hope you already exctued it in your local machine.
+We will first test the official example to read **sitemap.xml**. Then, we will find the payload we want to use from it. I hope you already executed it in your local machine.
 
 The code snippet below is from the [Rust Sitemap Crate].
 
@@ -97,21 +93,15 @@ fn main() {
 }
 ```
 
-After having tested this code snippet, you should have seen that some urls and maybe links to some other sitemaps you included.
-
-For sitemap.txt just needs **url parts separated by new lines(\n)**, we will only use `urls` variable and its relevant codes to build your **sitemap.txt**.
-
-(**sitemap in .txt format allows you to use all selector * to define url also**. If you followed the previous posts given above, you should already have all dynamic pages you want to include in sitemap.xml and you wouldn't need to use it. But you can modify the sitemap.txt for your preference manually if you want.)
+If you test this code snippet, you should see some results at your console. It reads the **sitemap.xml**. Then, show important parts such as urls, other sitemaps and errors if they exist.
 
 <br />
 
 ## 2. How to modify it to write sitemap.txt
 
-In the previous part, What the code snippet do is to **read the sitemap.xml** and show important parts from such as urls, other sitemaps and errors if they exist. So we should modify it to **write sitemap.txt**.
+In the previous part, we tested the API from [Rust Sitemap Crate] to read **sitemap.xml**.
 
-We will find how to do it with the code snippet below.
-
-(If you want to separate the process to write sitemap.txt, Save the code snippet below to txt_sitemap.rs or your preference)
+For **sitemap.txt** just needs **urls** separated by new lines(\n), we will only use the `urls` variable to build **sitemap.txt**.
 
 ```rust
 extern crate sitemap;
@@ -137,10 +127,6 @@ fn main() {
         }
     }
 
-    // You should read the source code to find what get_url does exactly
-
-    // It is a method that return url inside Some()
-    // You should unwrap() to get the payload value inside it
     println!("payload = {:?}", urls[0].loc.get_url().unwrap()); // 1.
 
     let mut output = String::new(); // 2.
@@ -162,25 +148,19 @@ fn main() {
 
 The entire code isn't that different from the official example. What we should do were
 
-1. To find the way to get url from the API from [Rust Sitemap Crate]. For it is the only part that we are interested. We could verfiy it with a code below.
+1. Get urls from **sitemap.xml** with API from [Rust Sitemap Crate].
 
-```rust
-println!("payload = {:?}", urls[0].loc.get_url().unwrap());
-// It prints payload = https://www.steadylearner.com alike.
-```
+2. Then we create mutable variable **output** with **let mut output = String::new()**; to save data. Then, we use `for in` loop again to use data inside **urls** variable processed with API from [Rust Sitemap Crate].
 
-2. Then we create mutable variable **output** with **let mut output = String::new()**; to save data and we use `for in` loop again to use data inside **urls** variable we created and processed with API from [Rust Sitemap Crate].
-
-3. Finally, we verfiy everything worked well with **println!("{:#?}", &output);** first and then write sitemap.txt with **write("sitemap.txt", &output)?;**
+3. Finally, we verfiy everything worked well with **println!("{:#?}", &output);**. Then, write sitemap.txt with **write("sitemap.txt", &output)?;**
 
 In the process, we didn't remove **println!("errors = {:?}", errors);** to verify errors if there are any.
 
-(You may wonder why `for in` loop is repeatedly used in all processes for sitemaps. You can use FP way of programming if you want. It was used because it is in the official examples of the crate.)
-
-If you want to include it inside your former projects and make sitemap.xml and sitemap.txt in the same file, You may refer to the code snippet below for that.
+If you want to include it inside your former projects, You may refer to the code snippet below.
 
 ```rust
-// main.rs, sitemap.rs or whatever you want
+// main.rs or sitemap.rs
+
 extern crate chrono;
 extern crate console;
 extern crate diesel;
@@ -197,17 +177,14 @@ use sitemap::reader::{SiteMapEntity, SiteMapReader};
 use sitemap::structs::{ChangeFreq, SiteMapEntry, UrlEntry};
 use sitemap::writer::SiteMapWriter;
 
-// use yours instead
-use sl_lib::models::*; 
+use sl_lib::models::*;
 use sl_lib::*;
 
 use sl_lib::custom::str_from_stdin;
 
 fn main() -> std::io::Result<()> {
-    // To decorate console output
     let bold = Style::new().bold();
 
-    // Use database with Rust diesel to write sitemap.xml first
     use crate::schema::posts::dsl::*;
     let connection = init_pool().get().unwrap();
 
@@ -240,12 +217,20 @@ fn main() -> std::io::Result<()> {
         let home_entry = UrlEntry::builder()
             .loc("http://www.steadylearner.com")
             .changefreq(ChangeFreq::Monthly)
-            .lastmod(date) // priority is removed for some search engines ignore it and personal choice.
+            .lastmod(date)
             .build()
             .expect("valid");
         urlwriter.url(home_entry).expect("Unable to write url");
 
-        let static_routes: Vec<&str> = vec!["about", "video", "blog", "code", "image", "slideshow", "markdown"];
+        let static_routes: Vec<&str> = vec![
+            "about",
+            "video",
+            "blog",
+            "code",
+            "image",
+            "slideshow",
+            "markdown",
+        ];
 
         for route in static_routes.iter() {
             let static_url = format!("http://www.steadylearner.com/{}", route);
@@ -311,7 +296,6 @@ fn main() -> std::io::Result<()> {
                 }
             }
 
-            // get_url from the source code, unwrap to get the payload value inside Some
             println!("payload = {:?}", urls[0].loc.get_url().unwrap());
 
             let mut output = String::new();
@@ -335,21 +319,22 @@ fn main() -> std::io::Result<()> {
 
     Ok(())
 }
-
 ```
 
-and that is all. You can test it with `Cargo c or cargo run` and verify the result. I hope you modify it well for your project.
+and that is all. You can test it with `Cargo c or cargo run` and verify the result. Then, modify it for your project.
 
-By following this post, you should have your **sitemap.txt** built from **sitemap.xml**. If there was any problem, please refer to [Sitemap GitHub] and the documenation at [Rust Sitemap Crate].
+(**sitemap.txt allows you to use all selector * to define urls also**. If you want, you can use them also)
 
 <br />
 
 ## 3. Conclusion
 
-I hope you could build sitemap.xml from static routes and the dynamic datas from the database with **Rust** in the previous posts. After following this post, you should be able to build sitemap.txt from the ones you built before also.
+In other posts, we built **sitemap.xml** with [static routes and the datas from the database][sitemap].
 
-In the next post, we will learn how to build image sitemap.xml file. The entire process will be similar to the previous ones.
+With this post, you should be able to build **sitemap.txt** easily with those **sitemap.xml** files.
 
-I woudln't handle how to build video sitemap or news sitemap with this for there is YouTube that already handles many video relevant things and you shouldn't need to build sitemap for news normally but you can do that if you refer the code snippet given here.
+In the next post, we will learn how to build **sitemap.xml** file for images.
+
+The entire process will be similar.
 
 **Thanks and please share this post with others.**

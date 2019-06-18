@@ -30,19 +30,19 @@
 
 <!-- / -->
 
-Before I build sitemaps for [Steadylearner] built with React and Rust, writing a code to build them with dynamic contents seemed to be solved problem already. There were already many automated ways for that also.
+Writing a code to build sitemaps with dynamic contents seem to be solved problem already. There were already many automated ways for that also.
 
-However, [It][Steadylearner] is a single page app with Rust backend and there were not so many examples.
+However, [It][Steadylearner] is a React single page app with Rust backend and there were not so many examples yet.
 
-So I searched and have found that there is already [sitemap builders in React development environment][Sitemap in React].
+So I searched and have found that there is already [a sitemap builder in React development environment][Sitemap in React].
 
-I tried to use it. But it was not that helpful because they just extract static paths defined by a programmer. It was not for the website with dynamic contents and many routes made from them.
+I tried to use it. But it was not that helpful because it just extracts static paths defined by a programmer. It was not for the website with dynamic contents and many routes made from them.
 
-Then, I thought that it would be better to find the solution at server side using **Rust** because I already use [Rust Diesel] to handle database. I thought that I could use datas from it to build **sitemap.xml** for [Steadylearner].
+Then, I thought that it would be better to find the solution at server side with **Rust** because I already use [Rust Diesel] to handle database. I thought that I could use datas from it to build **sitemap.xml** for [Steadylearner].
 
 I planned to write Rust code to make it but found that there is already [Rust Sitemap Crate] for sitemaps in **Rust**.
 
-I could make [xml sitemap], [txt sitemap] and [image sitemap] with it. I want to share what I learnt from [the process to build them][sitemap] in this post.
+I could make [xml sitemap], [txt sitemap] and [image sitemap] with it. I want to share what I learnt from [the process to build them][sitemap].
 
 <br />
 
@@ -52,11 +52,11 @@ I could make [xml sitemap], [txt sitemap] and [image sitemap] with it. I want to
 2. [Rust Diesel]
 3. [Static sitemap.xml with Rust]
 4. [What is sitemap](https://support.google.com/webmasters/answer/156184?hl=en)
-5. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
+5. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&amp;q=how+to+build+sitemap)
 
 ---
 
-I want you to visit [Rust Diesel] build CLI for blog posts. Then, read the documentation for [Rust Sitemap Crate].
+I want you to visit [Rust Diesel] and build CLI for blog posts. Then, read the documentation for [Rust Sitemap Crate].
 
 You may read previous post [Static sitemap.xml with Rust] if you haven't.
 
@@ -78,11 +78,11 @@ If you just want to see the final project, you may refer to [Steadylearner Sitem
 
 ## 1. Setup Diesel and Rust files
 
-We will first setup some [Rust Diesel] relevant codes before we build **sitemap.xml** with database.
+We will first prepare code for [Rust Diesel]. Then, we will build **sitemap.xml** with database.
 
 You may skip or use your own project instead.
 
-Following the tutorial given by author of the crate, You should have code snippet similar to this.
+Following the tutorial given by its author, You should have code snippet similar to this.
 
 ```rust
 // lib.rs
@@ -120,7 +120,7 @@ pub struct Post {
 }
 ```
 
-You should define at least **title** for **Post** struct. We will use it to write **sitemap.xml** with various titles from the post. It may be differ from your project and you may modify it.
+You should define at least **title** for **Post** struct. We will use it to write **sitemap.xml** with various titles from the posts you built. It may be differ from your project and you may modify it.
 
 <br />
 
@@ -154,7 +154,7 @@ use sl_lib::custom::str_from_stdin;
 
 // pub fn str_from_stdin() -> String { // Use it to remove \n at the end of the user input
 //     let mut var = String::new();
-//     stdin().read_line(&mut var).unwrap();
+//     stdin().read_line(&amp;mut var).unwrap();
 //     let var = var[..(var.len() - 1)].to_string();
 
 //     var
@@ -164,8 +164,8 @@ use crate::schema::posts::dsl::*;
 
 fn main() -> std::io::Result<()> {
     let bold = Style::new().bold();
-    let website: &str = "http://www.steadylearner.com";
-    let static_routes: Vec<&str> = vec![
+    let website: &amp;str = "http://www.steadylearner.com";
+    let static_routes: Vec<&amp;str> = vec![
         "about",
         "video",
         "blog",
@@ -181,7 +181,7 @@ fn main() -> std::io::Result<()> {
     let post_results = posts
         .filter(published.eq(true))
         .order(created_at.desc())
-        .load::<Post>(&*connection)
+        .load::<Post>(&amp;*connection)
         .expect("Error loading posts");
 
     println!(
@@ -191,7 +191,7 @@ fn main() -> std::io::Result<()> {
 
     let mut output = Vec::<u8>::new();
     {
-        let sitemap_writer = SiteMapWriter::new(&mut output);
+        let sitemap_writer = SiteMapWriter::new(&amp;mut output);
 
         let mut urlwriter = sitemap_writer
             .start_urlset()
@@ -244,9 +244,9 @@ fn main() -> std::io::Result<()> {
         let sitemap_writer = urlwriter.end().expect("close the urlset block");
     }
 
-    println!("{:#?}", std::str::from_utf8(&output));
+    println!("{:#?}", std::str::from_utf8(&amp;output));
 
-    write("sitemap.xml", &output)?;
+    write("sitemap.xml", &amp;output)?;
 
     Ok(())
 }
