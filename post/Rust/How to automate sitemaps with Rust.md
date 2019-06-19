@@ -25,6 +25,7 @@
 
 <!-- Steadylearner Post -->
 
+[sitemap]: https://www.steadylearnerc.com/blog/search/sitemap
 [sitemap.xml]: https://www.steadylearner.com/sitemap.xml
 [txt sitemap]: https://www.steadylearner.com/sitemap.txt
 [image sitemap]: https://www.steadylearner.com/image_sitemap.xml
@@ -45,8 +46,8 @@ You can use them later with thread. Then, include them inside interval to automa
 4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
 5. [Futuers in Rust](https://docs.rs/futures/0.2.3-docs-yank.4/futures/)
 6. [Thread in Rust](https://doc.rust-lang.org/std/thread/)
-7. [tokio-timer]
-8. [futuers-timer]
+7. [futures-timer]
+8. [timers-tokio]
 
 ---
 
@@ -71,8 +72,6 @@ I will suppose that you already have experience in Rust and other programming.
 
 We will write **cargo.toml** first. Because, we will use thread inside **main.rs**, we don't need other Rust bin files like we do in other post for [sitemap].
 
-<br />
-
 ```toml
 # cargo.toml, write the code similar to this
 
@@ -89,9 +88,7 @@ name = "your_lib"
 path = "src/lib.rs"
 ```
 
-<br />
-
-Then we will build **sitemap_renew.rs** and include code from image_sitemap.rs first.
+Then we will define image_stiemap_renewal in **sitemap_renew.rs** first.
 
 It will be similar to
 
@@ -166,9 +163,9 @@ pub fn image_sitemap_renewal() -> std::io::Result<()> {
 }
 ```
 
-Only location and name of the function are different from [the previous post][sitemap].
+Only location and name of the function are different from [the previous posts][sitemap].
 
-Then, we will build sitemap_txt_renewal that will use **sitemap.xml** made from **sitemap_renewal** function.
+Then, we will build sitemap_txt_renewal that will use **sitemap.xml** made from **sitemap_renewal** function later.
 
 ```rust
 fn sitemap_txt_renewal() -> std::io::Result<()> {
@@ -193,7 +190,6 @@ fn sitemap_txt_renewal() -> std::io::Result<()> {
 
     // println!("payload = {:?}", urls[0].loc.get_url().unwrap());
 
-    // You may use all selector * and others here.
     let mut output = String::new();
     output.push_str("http://www.steadylearner.com/video/search/*
 http://www.steadylearner.com/video/watch/*
@@ -326,25 +322,27 @@ pub fn sitemap_renewal(static_routes: Vec<&str>, paths_for_other_sitemaps: Vec<&
 }
 ```
 
-Its purpose are
+Its purposes are
 
 1. build **sitemap.xml** from static routes and the datas from the database
 2. link another sitemap such as image_sitemap built before
 3. and make **sitemap.txt** from **sitemap.xml**.
 
-If you read the code snippets from the previous post for [sitemap], you will find that there are no more **println!** for functions we made here. They are removed for simplification and you may not need them when what you want is automation.
+If you read the code snippets from the previous post for [sitemap], we removed almost all **println!** to show results at console.
 
-We organized all our codes into separate functions, they became reusable and can be used everywhere.
+You may not need them when what you want is automation and already know what the code snippets here.
+
+We organized all our codes into separate functions. They became reusable and can be used everywhere.
 
 <br />
 
 ## 2. Use them inside fn main() with thread
 
-We are almost there to automate building sitemaps. What we need to do is just call the functions we made before inside **main.rs**.
+We made functions to build sitemaps. What we need to do make them work is just to call them inside **main.rs**.
 
 You won't want it to affect our website or main process, so you may separate it inside another **thread**.
 
-For that, **main.rs** should be similar to this with previous version.
+For that, **main.rs** should be similar to this.
 
 ```rust
 use std::thread;
@@ -374,7 +372,7 @@ fn main() {
 }
 ```
 
-We invested our time to modulize our work to build sitemap. So your main function became very simple with thread and functions we defined before.
+We invested our time to modulize our work to build sitemap and **main.rs** became simpler with thread.
 
 You can test it with **$cargo run bin --main** and you will see files similar to [sitemap.xml], [txt sitemap] and [image sitemap] for [Steadylearner].
 
@@ -426,12 +424,12 @@ fn main() {
 }
 ```
 
-But its API was rewritten with the introduction of **async** API in **Rust** and seem to be not working anymore.
+Its API was rewritten with the introduction of **async** in **Rust** and seem to be not working anymore.
 
-You may refer to the code snippet above and their documentations for your project.
+However, You may refer to the code snippet above and their documentations for your project.
 
 ## 4. Conclusion
 
-The code for [sitemap] can be found at [Sitemap GitHub] repository.
+The latest code for [sitemap] can be found at [Steadylearner Sitemap] repository.
 
 **Thanks and please share this post with others.**
