@@ -16,11 +16,13 @@
 
 <!-- / -->
 
-I built [Steadylearner]. Then, I thought that **"It is time to improve SEO with sitemap and metadata"**. But it is made with **React** and **Rust**. So there were not enough examples yet. Therefore, it was not easy to find the sufficient information.
+I built [Steadylearner]. Then, I thought that **"It is time to improve SEO with sitemap and metadata"**. 
 
-Furthermore, it was difficult to use server side rendering and other Node.js backend friendly methods from React for Rust. So I searched what can I do. Then, I found that sitemap and metadata can still be implemented only using JavaScript.
+It is made with **React** and **Rust**. So there were not enough examples yet. Therefore, it was not easy to find the sufficient information.
 
-So I want to share you how to do that with this post. We will use [React Router Sitemap] for the process.
+Furthermore, it was difficult to use server side rendering and other **Node** friendly methods from React for Rust. So I searched what can I do. Then, I found that sitemap and metadata can still be implemented only using **JavaScript**.
+
+I want to share you how to do that with this post. We will use [React Router Sitemap] for the process.
 
 Its goal is to extract only routes made with React Router and return **.xml** type sitemap.
 
@@ -32,7 +34,7 @@ So I will give you every files you need to make it work for your app.
 
 I hope you already have [Node](https://nodejs.org/en/) installed and know JavaScript also before you follow this post.
 
-(You may read the source code at [Sitemap GitHub] repository first. It will be suffient for you to start your own project.)
+(You may read the source code at [Sitemap GitHub] repository first. It will be sufficient for you to start your own project.)
 
 We will start from installing the minimum JavaScript files.
 
@@ -71,7 +73,7 @@ The minimum **package.json** for the project would be
 
 You can use **npm** or **yarn** to install the packages.
 
-(For the sitemap will be only useful after you end up completing your website. You wouldn’t need detailed explanation how to use them.)
+(For the sitemap will be only useful after you end up completing your website. You would't need detailed explanation for them.)
 
 Then, the minimum webpack.config.js for the project would be
 
@@ -105,9 +107,9 @@ module.exports = function () {
 };
 ```
 
-I use webpack for this post for I have working webpack configuration for [Steadylearner].
+(I use webpack for this post for I use it for [Steadylearner].)
 
-The important part is to make **babel-loader** and **@babel/preset-env**. They will help you to use **ES6+ syntax**. With it, you can follow the example of **React-Router-Sitemap**.
+To make **babel-loader** and **@babel/preset-env** work is important here. They will help you to use **ES6+ syntax**. With it, you can follow the example of **React-Router-Sitemap**.
 
 In accordance with the webpack file above, we will make **.babelrc**.
 
@@ -134,7 +136,7 @@ var _reactRouter = require("react-router");
 
 var _reactRouterSitemap = _interopRequireDefault(require("react-router-sitemap"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }
 
 var sitemap = new _reactRouterSitemap.default(_react.default.createElement(_reactRouter.Route, {
   path: "/home"
@@ -162,7 +164,7 @@ You can verify how it works with the **$node react-sitemap-test.js**. Then, you 
 cache:'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n<url> <loc>http://www.steadylearner.com/home</loc> </url>\n</urlset>',
 ```
 
-You should search information about [What is sitemap?](https://support.google.com/webmasters/answer/156184?hl=en), [How to build sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap) if you don't know what they mean.
+You should search information about [What is sitemap?](https://support.google.com/webmasters/answer/156184?hl=en), [How to build sitemap](https://www.google.com/search?client=firefox-b-d&amp;q=how+to+build+sitemap) if you don't know what they mean.
 
 Then, you will find that
 
@@ -243,7 +245,7 @@ Everything is ready.
 
 Type **$node sitemap-builder.js**.
 
-The console will show you the message **“Sitemap was built”** for you. Then, You can verify the result with **sitemap.xml**.
+The console will show you the message **âSitemap was builtâ** for you. Then, You can verify the result with **sitemap.xml**.
 
 It will be similiar to
 
@@ -294,7 +296,7 @@ http://www.steadylearner.com/slideshow
 http://www.steadylearner.com/static/images/*
 ```
 
-You may use [the package](https://www.npmjs.com/package/react-router-sitemap-builder) instead.
+(You may use [this package](https://www.npmjs.com/package/react-router-sitemap-builder) instead to make sitemap.txt also.)
 
 If you followed well this post, you already have boilerplate to start the sitemap for your React project.
 
@@ -306,7 +308,7 @@ Paths such as http://www.steadylearner.com/about/:language does not work well fo
 
 It may be better for you to write manually if there are a few paths.
 
-For example, **http://www.steadylearner.com/about/, http://www.steadylearner.com/about/pt-br and http://www.steadylearner.com/about/es** instead of the dynamic path with /:language.
+For example, http://www.steadylearner.com/about/pt-br and http://www.steadylearner.com/about/es instead.
 
 Otherwise, write dynamic sitemap with database and programming language for backend. You can make it more specific.
 

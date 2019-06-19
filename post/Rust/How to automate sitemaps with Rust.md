@@ -1,9 +1,9 @@
 <!--
     Post{
         subtitle: "Build sitemap automatically with Rust",
-        image: "post/sitemap/automate_sitemap_rust.png",
-        image_decription: "Made with CSS by Steadylearner",
-        tags: "Rust sitemap automate code",
+        image: "post/sitemap/automate-sitemap-rust.png",
+        image_decription: "Image by Steadylearner",
+        tags: "Rust How sitemap automate",
     }
 -->
 
@@ -15,29 +15,25 @@
 [How to deploy Rust Web App]: https://medium.com/@steadylearner/how-to-deploy-rust-web-application-8c0e81394bd5?source=---------9------------------
 [Rust Diesel]: http://diesel.rs/
 [Sitemap in React]: https://medium.com/@steadylearner/how-to-build-a-sitemap-for-react-app-7bbc3040dc1f
-[Sitemap GitHub]: https://github.com/steadylearner/Sitemap
+[Steadylearner Sitemap]: https://github.com/steadylearner/Sitemap
 [What is image sitemap]: https://support.google.com/webmasters/answer/178636
 
-<!-- / -->
-
-<!-- Post -->
-
-[Your first sitemap with Rust]: https://www.steadylearner.com/blog/read/Your-first-sitemap-with-Rust
-[How to use datas to build sitemap with Rust Diesel]: https://www.steadylearner.com/blog/read/How-to-use-datas-to-build-sitemap-with-Rust-Diesel
-[How to build a sitemap.txt from sitemap.xml with Rust]: https://www.steadylearner.com/blog/read/How-to-build-a-sitemap.txt-from-sitemap.xml-with-Rust
-[How to build sitemap for images with Rust]: https://www.steadylearner.com/blog/read/How-to-build-sitemap-for-images-with-Rust
-[How to build a sitemap for React App]: https://medium.com/@steadylearner/how-to-build-a-sitemap-for-react-app-7bbc3040dc1f
+[futures-timer]: https://github.com/rustasync/futures-timer
+[timers-tokio]: https://tokio.rs/docs/going-deeper/timers/
 
 <!-- / -->
 
-In this post, we will learn how to automate all the process we learnt before. I hope you read the previous posts if you haven't.
+<!-- Steadylearner Post -->
 
-1. [Your first sitemap with Rust]
-2. [How to use datas to build sitemap with Rust Diesel]
-3. [How to build a sitemap.txt from sitemap.xml with Rust]
-4. [How to build sitemap for images with Rust]
+[sitemap.xml]: https://www.steadylearner.com/sitemap.xml
+[txt sitemap]: https://www.steadylearner.com/sitemap.txt
+[image sitemap]: https://www.steadylearner.com/image_sitemap.xml
 
-What we will do is just to remove some codes and organize all.
+<!-- / -->
+
+In this post, We will make functions to build **sitemap.txt**, **sitemap.xml** and **image_siemap.xml** for images and make them reusable.
+
+You can use them later with thread. Then, include them inside interval to automate the process without affecting the main function. You may use it with CLI also.
 
 <br />
 
@@ -48,33 +44,32 @@ What we will do is just to remove some codes and organize all.
 3. [What is sitemap](https://support.google.com/webmasters/answer/156184?hl=en)
 4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
 5. [Futuers in Rust](https://docs.rs/futures/0.2.3-docs-yank.4/futures/)
-6. [Interval in Rust](https://crates.io/crates/futures-timer)
-7. [Thread in Rust](https://doc.rust-lang.org/std/thread/)
+6. [Thread in Rust](https://doc.rust-lang.org/std/thread/)
+7. [tokio-timer]
+8. [futuers-timer]
 
 ---
 
-We will use **Interval** API from [futuers-timer](https://crates.io/crates/futures-timer) to automatically renew sitemap.xml, sitemap.txt and image_sitemap.xml we built before. 
+I want you to visit them and read posts for [sitemap] at [Steadylearner] also.
 
-We will execute it in another thread inside **fn main()** function not to affect other more important processes. So you need to understand how to use [it](https://doc.rust-lang.org/std/thread/) also.
+I will suppose that you already have experience in Rust and other programming.
 
 <br />
 
 <h2 class="blue">Table of Contents</h2>
 
-1. Separate **auto_sitemap.rs** from the previous codes.
-2. Use functions from it with thread inside **fn main()** 
-3. **Conclusion**
+1. Separate functions to build sitemaps.
+2. Use them inside fn main() with thread
+3. Rust code to automate the process
+4. **Conclusion**
 
 ---
 
 <br />
 
-## 1. Separate auto_sitemap.rs from the previous codes.
+## 1. Separate functions to build sitemaps
 
-You don't need to execute sitemap.rs and image_sitemap.rs we built before after this post.
-Therefore, we will first remove codes relevant to them from our **cargo.toml**.
-
-(You don't have to care for it if you haven't read the previous post.)
+We will write **cargo.toml** first. Because, we will use thread inside **main.rs**, we don't need other Rust bin files like we do in other post for [sitemap].
 
 <br />
 
@@ -96,7 +91,7 @@ path = "src/lib.rs"
 
 <br />
 
-Then we will build **auto_sitemap.rs** and include code from image_sitemap.rs first.
+Then we will build **sitemap_renew.rs** and include code from image_sitemap.rs first.
 
 It will be similar to
 
@@ -171,13 +166,64 @@ pub fn image_sitemap_renewal() -> std::io::Result<()> {
 }
 ```
 
-Only location and name of the function are different from the previous post. You can use it separately also for it always do the same thing to build sitemap for images.
+Only location and name of the function are different from [the previous post][sitemap].
 
-Then we will include code snippet below it to 
+Then, we will build sitemap_txt_renewal that will use **sitemap.xml** made from **sitemap_renewal** function.
 
-1. build **sitemap.xml** from static routes and the datas from the database
-2. link another sitemap such as image_sitemap built before
-3. and **sitemap.txt** from sitemap.xml.
+```rust
+fn sitemap_txt_renewal() -> std::io::Result<()> {
+    let mut urls = Vec::new();
+    let mut sitemaps = Vec::new();
+    let mut errors = Vec::new();
+    let file = File::open("sitemap.xml").expect("Unable to open file.");
+    let parser = SiteMapReader::new(file);
+    for entity in parser {
+        match entity {
+            SiteMapEntity::Url(url_entry) => {
+                urls.push(url_entry);
+            },
+            SiteMapEntity::SiteMap(sitemap_entry) => {
+                sitemaps.push(sitemap_entry);
+            },
+            SiteMapEntity::Err(error) => {
+                errors.push(error);
+            },
+        }
+    }
+
+    // println!("payload = {:?}", urls[0].loc.get_url().unwrap());
+
+    // You may use all selector * and others here.
+    let mut output = String::new();
+    output.push_str("http://www.steadylearner.com/video/search/*
+http://www.steadylearner.com/video/watch/*
+http://www.steadylearner.com/video/write/*
+http://www.steadylearner.com/image/search/*
+http://www.steadylearner.com/blog/search/*
+http://www.steadylearner.com/blog/read/*
+http://www.steadylearner.com/code/search/*
+http://www.steadylearner.com/static/images/*
+");
+
+    for url in urls {
+        let payload = url.loc.get_url().unwrap();
+        println!("{}", &payload);
+        let payload_with_new_line = format!("{}\n", &payload);
+        output.push_str(&payload_with_new_line);
+    }
+
+    println!("{:#?}", &output);
+    write("sitemap.txt", &output)?;
+
+    println!("errors = {:?}", errors);
+
+    Ok(())
+}
+```
+
+You may use all selector * and others before you make **sitemap.txt** from **sitemap.xml**.
+
+Lastly, our sitemap_renewal function will be similar to
 
 ```rust
 pub fn sitemap_renewal(static_routes: Vec<&str>, paths_for_other_sitemaps: Vec<&str>) -> std::io::Result<()> {
@@ -249,82 +295,96 @@ pub fn sitemap_renewal(static_routes: Vec<&str>, paths_for_other_sitemaps: Vec<&
         // assigining value to sitemap_writer is important to make the next process work
         let sitemap_writer = urlwriter.end().expect("close the urlset block");
 
-        let mut sitemap_index_writer = sitemap_writer
-            .start_sitemapindex()
-            .expect("start sitemap index tag");
+        // You may use this if you have many sitemaps.
 
-        for path_for_other_sitemap in paths_for_other_sitemaps {
-            let entire_path_for_other_sitemap =
-                format!("https://www.steadylearner.com/{}", path_for_other_sitemap);
+        // let mut sitemap_index_writer = sitemap_writer
+        //     .start_sitemapindex()
+        //     .expect("start sitemap index tag");
 
-            let sitemap_entry = SiteMapEntry::builder()
-                .loc(entire_path_for_other_sitemap)
-                .lastmod(date)
-                .build()
-                .expect("valid");
+        // for path_for_other_sitemap in paths_for_other_sitemaps {
+        //     let entire_path_for_other_sitemap =
+        //         format!("https://www.steadylearner.com/{}", path_for_other_sitemap);
 
-            sitemap_index_writer
-                .sitemap(sitemap_entry)
-                .expect("Can't write the file");
-        }
+        //     let sitemap_entry = SiteMapEntry::builder()
+        //         .loc(entire_path_for_other_sitemap)
+        //         .lastmod(date)
+        //         .build()
+        //         .expect("valid");
 
-        sitemap_index_writer.end().expect("close sitemap block");
+        //     sitemap_index_writer
+        //         .sitemap(sitemap_entry)
+        //         .expect("Can't write the file");
+        // }
+
+        // sitemap_index_writer.end().expect("close sitemap block");
     }
 
     write("sitemap.xml", &output)?;
-
-    {
-        // sitemap.txt is based on the sitemap.xml and it is already built at the point
-        let mut urls = Vec::new();
-        let mut sitemaps = Vec::new();
-        let mut errors = Vec::new();
-
-        let file = File::open("sitemap.xml").expect("Unable to open file.");
-        let parser = SiteMapReader::new(file);
-        for entity in parser {
-            match entity {
-                SiteMapEntity::Url(url_entry) => {
-                    urls.push(url_entry);
-                }
-                SiteMapEntity::SiteMap(sitemap_entry) => {
-                    sitemaps.push(sitemap_entry);
-                }
-                SiteMapEntity::Err(error) => {
-                    errors.push(error);
-                }
-            }
-        }
-
-        let mut output = String::new();
-
-        for url in urls {
-            let payload = url.loc.get_url().unwrap();
-            println!("{}", &payload);
-            let payload_with_new_line = format!("{}\n", &payload);
-            output.push_str(&payload_with_new_line);
-        }
-    }
+    sitemap_txt_renewal();
 
     Ok(())
 }
 ```
 
-It is a little bit long. But is is accepatable for we don't have to care for them after we put them inside **main()** function.
+Its purpose are
 
-If you read the code snippet from the previous post, you will find that there are no more **println!** because you don't need them for automated process.
+1. build **sitemap.xml** from static routes and the datas from the database
+2. link another sitemap such as image_sitemap built before
+3. and make **sitemap.txt** from **sitemap.xml**.
 
-For we organized our codes into functions, they can be used wherever we want.
+If you read the code snippets from the previous post for [sitemap], you will find that there are no more **println!** for functions we made here. They are removed for simplification and you may not need them when what you want is automation.
+
+We organized all our codes into separate functions, they became reusable and can be used everywhere.
 
 <br />
 
-## 2. Use functions from it with thread inside **fn main()**
+## 2. Use them inside fn main() with thread
 
-We are almost there to end all the process to build sitemap automatically with Rust.
-What we need to do is just call those functions we made before inside **main.rs**.
+We are almost there to automate building sitemaps. What we need to do is just call the functions we made before inside **main.rs**.
 
-For we won't want to this to affect our website, we will separate it inside the other **thread**.
+You won't want it to affect our website or main process, so you may separate it inside another **thread**.
 
-Your main.rs should be similar to this.
+For that, **main.rs** should be similar to this with previous version.
+
+```rust
+use std::thread;
+
+mod sitemap_renew;
+use crate::sitemap_renew::{sitemap_renewal, image_sitemap_renewal};
+
+fn main() {
+     thread::Builder::new()
+        .name("Build sitemap automatically with Rust".into())
+        .spawn(|| {
+            image_sitemap_renewal()?;
+            let static_paths = vec![
+                "about",
+                "video",
+                "blog",
+                "code",
+                "image",
+                "slideshow",
+            ];
+            let other_sitemaps = vec!["image_sitemap.xml"];
+            sitemap_renewal(static_paths, other_sitemaps)
+        })
+        .unwrap();
+
+    // your_website();
+}
+```
+
+We invested our time to modulize our work to build sitemap. So your main function became very simple with thread and functions we defined before.
+
+You can test it with **$cargo run bin --main** and you will see files similar to [sitemap.xml], [txt sitemap] and [image sitemap] for [Steadylearner].
+
+<br />
+
+## 3. Rust Interval and automation
+
+If you want to automate the process, you may use **Interval** API from [tokio-timer], [futures-timer] etc.
+
+I had working code with [futures-timer] similar to
 
 ```rust
 extern crate futures;
@@ -335,19 +395,26 @@ use std::time::Duration;
 use futures::prelude::*;
 use futures_timer::Interval;
 
-mod auto_sitemap;
-use crate::auto_sitemap::{sitemap_renewal, image_sitemap_renewal};
+mod sitemap_renew;
+use crate::sitemap_renew::{sitemap_renewal, image_sitemap_renewal};
 
 fn main() {
     thread::Builder::new()
-        .name("Build sitemap automatically with Rust".into()) // 1.
+        .name("Build sitemap automatically with Rust".into())
         .spawn(|| {
-            Interval::new(Duration::from_secs(1)) // 2. { day: 86400, week: 604800, month: 2592000, }
+            // { day: 86400, week: 604800, month: 2592000, }
+            Interval::new(Duration::from_secs(1))
                 .for_each(|()| {
-                    image_sitemap_renewal()?; // 3.
-                    // 4.
-                    let static_paths = vec!["about", "video", "blog", "code", "image", "slideshow"];
-                    let other_sitemaps = vec!["image_sitemap.xml"]; // 5.
+                    image_sitemap_renewal()?;
+                    let static_paths = vec![
+                        "about",
+                        "video",
+                        "blog",
+                        "code",
+                        "image",
+                        "slideshow",
+                    ]
+                    let other_sitemaps = vec!["image_sitemap.xml"];
                     sitemap_renewal(static_paths, other_sitemaps)
                 })
                 .wait()
@@ -355,46 +422,16 @@ fn main() {
         })
         .unwrap();
 
-    your_website(); // It is arbitary name, don't give it importance.
+    // your_website(); // It is arbitary name, don't give it importance.
 }
 ```
 
-We invested our time to modulize our work to build sitemap before. So your main function became very simple with thread and functions we defined before. I hope you read the posts given above to understand it better.
+But its API was rewritten with the introduction of **async** API in **Rust** and seem to be not working anymore.
 
-The point here is
+You may refer to the code snippet above and their documentations for your project.
 
-1. Use your name to debug
-2. Substitue it for your need
-3. This should be located before **sitemap_renewal**
-4. Include **static paths** for your website
-5. Put .xml for **images, news, videos** etc
+## 4. Conclusion
 
-and that was all you need to build your **sitemap.xml, sitemap.txt and image_sitemap.xml** etc with **Rust**.
-
-If you execute it with **$cargo run bin --main**, you will see message similar to this on your CLI
-
-```xml
-It starts to write image_sitemap.xml for images
-image_sitemap.xml was built. Include it to main sitemap.xml.
-
-It starts to write sitemap.xml for posts
-
-http://www.steadylearner.com/
-http://www.steadylearner.com/about
-http://www.steadylearner.com/video
-http://www.steadylearner.com/blog
-http://www.steadylearner.com/code
-http://www.steadylearner.com/image
-http://www.steadylearner.com/slideshow
-http://www.steadylearner.com/blog/read/How-to-use-Python-with-JavaScript-with-python-bridge
-```
-
-<br />
-
-## 3. Conclusion
-
-This is the end of series for sitemap with Rust. The code for each post can be found at [Sitemap GitHub].
-
-The next posts will be simple chat app with Rust Backend and how to write blog with Rust like [Steadylearner].
+The code for [sitemap] can be found at [Sitemap GitHub] repository.
 
 **Thanks and please share this post with others.**

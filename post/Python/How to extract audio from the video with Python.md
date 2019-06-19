@@ -3,7 +3,7 @@
     subtitle: "Save audio files from videos with Python Moviepy",
     image: "/brand/Moviepy.png",
     image_decription: "Image from its website",
-    tags: "Python, Moviepy, How, code",
+    tags: "Python, How, video, audio",
   }
 -->
 
@@ -18,13 +18,13 @@
 
 In this post, we will learn how to extract only audio files from videos with Python.
 
-Before finding working **Python** code for the purpose of this post, I thought it would be easy to find working examples. But, it wasn’t and that is the reason I write this post.
+Before finding working **Python** code for the purpose of this post, I thought it would be easy to find working examples. But, it was not and that is the reason I write this post.
 
-If I don’t know how to use *Python or other programming languages. I would repeatedly separate audio files, opening videos and wating for software to separate audio clip and video clip for that.
+If I do not know how to use Python or other programming languages. I would repeatedly separate audio files, opening videos and wating for software to separate audio clip and video clip for that.
 
 Then, I should compile only audio files and wait for a long time unnecessarily.
 
-But I wouldn’t do that. With the power of programming, we don’t have to repeat what we already know.
+But I would not do that. With the power of programming, we do not have to repeat what we already know.
 
 <h2 class="red-white"> [Prerequistes] </h2>
 
@@ -42,7 +42,9 @@ You should Python and pip have installed in your machine. Python would be alread
 
 Type `$python` in your console to verify that.
 
-The **pip** will be used to install and use [Moviepy]. It will help you to extract audio files from videos with few lines of code. You can install it with `$pip install moviepy`
+The **pip** will be used to install and use [Moviepy]. It will help you to extract audio files from videos with few lines of code. 
+
+You can install it with `$pip install moviepy`.
 
 <br />
 
@@ -85,11 +87,11 @@ If I explain it with details, what we do are
 
 1. We import default Python **sys** module to use **sys.argv** later and **moviepy.editor** to extract audio files from videos.
 
-2. In **video = VideoFileClip(sys.argv[1])** you instruct your machine which video file you want to use to extract audio
+2. In **video = VideoFileClip(sys.argv[1])** you instruct your machine which video file you want to use to extract audio.
 
 3. Then, with **audio = video.audio**, you select audio file inside the video file. You can see that Python use **.** syntax for that.
 
-4. Lastly, with **audio.write_audiofile(sys.argv[2])**, You end the process and assign the result audio file name with sys.argv[2]
+4. Lastly, with **audio.write_audiofile(sys.argv[2])**, You end the process and assign the result audio file name.
 
 and that is all process you need to take to extract audio from the video with python.
 
@@ -109,7 +111,7 @@ What comes first after **$python file.py** would be **sys.argv[1]** and others w
 
 <br />
 
-I want you learnt that you don’t need software to edit videos and audios for the simple process.
+I want you learnt that you donât need software to edit videos and audios for the simple process.
 
 You can find some of the example videos at [Steadylearner YouTube][YouTube] if you haven't any to test.
 

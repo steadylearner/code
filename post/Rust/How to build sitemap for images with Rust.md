@@ -41,7 +41,7 @@ This post will apply the process to build **sitemap.xml** for images.
 1. [Rust Sitemap Crate]
 2. [How to make sitemap with dynamic contents in Rust]
 3. [What is sitemap]
-4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
+4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&amp;q=how+to+build+sitemap)
 
 ---
 
@@ -134,7 +134,7 @@ fn main() -> std::io::Result<()> {
     let bold = Style::new().bold();
 
     let image_results = images
-        .load::<Image>(&*connection)
+        .load::<Image>(&amp;*connection)
         .expect("Error loading images");
 
     println!(
@@ -150,7 +150,7 @@ fn main() -> std::io::Result<()> {
     <loc>https://www.steadylearner.com</loc>
 "#;
 
-    fs::write("image_sitemap.xml", &start_xml)?;
+    fs::write("image_sitemap.xml", &amp;start_xml)?;
     let mut result = OpenOptions::new().append(true).open("image_sitemap.xml").unwrap();
 
     let mut image_xml = String::new();
@@ -167,7 +167,7 @@ fn main() -> std::io::Result<()> {
             image.content,
             image.media_url,
         );
-        image_xml.push_str(&image_url);
+        image_xml.push_str(&amp;image_url);
     }
 
     if let Err(e) = writeln!(result, "{}{}", image_xml , r#"  </url>
@@ -199,14 +199,12 @@ and that was all.
 
 You can test it with `cargo c` or `cargo run --bin <name>` inside your console.
 
-It will create image_sitemap.xml similar to the **main image** of this post.
+It will create image_sitemap.xml similar to this [image sitemap].
 I want you to test it with your datas for images.
-
-We could build sitemap for images.
 
 What we need to do next is to include it inside your main **sitemap.xml** file.
 
-If you haven't any datas for images yet, you may visit for [image sitemap] for [Steadylearner]
+If you haven't any datas for images yet, you may visit [image sitemap] for [Steadylearner]
 
 <br />
 
@@ -254,7 +252,7 @@ fn main() -> std::io::Result<()> {
     let post_results = posts
         .filter(published.eq(true))
         .order(created_at.desc())
-        .load::<Post>(&*connection)
+        .load::<Post>(&amp;*connection)
         .expect("Error loading posts");
 
     println!(
@@ -264,7 +262,7 @@ fn main() -> std::io::Result<()> {
 
     let mut output = Vec::<u8>::new();
     {
-        let sitemap_writer = SiteMapWriter::new(&mut output);
+        let sitemap_writer = SiteMapWriter::new(&amp;mut output);
 
         let mut urlwriter = sitemap_writer
             .start_urlset()
@@ -285,7 +283,7 @@ fn main() -> std::io::Result<()> {
             .expect("invalid");
         urlwriter.url(home_entry).expect("Unable to write url");
 
-        let static_routes: Vec<&str> = vec!["about", "video", "blog", "code", "image", "slideshow"];
+        let static_routes: Vec<&amp;str> = vec!["about", "video", "blog", "code", "image", "slideshow"];
 
         for route in static_routes.iter() {
             let static_url = format!("http://www.steadylearner.com/{}", route);
@@ -339,7 +337,7 @@ fn main() -> std::io::Result<()> {
                 let paths_for_other_sitemaps = str_from_stdin();
 
                 let sitemap_paths_to_string = String::from(paths_for_other_sitemaps);
-                let split_paths_for_other_sitemaps: Vec<&str> = sitemap_paths_to_string.split(" ").collect();
+                let split_paths_for_other_sitemaps: Vec<&amp;str> = sitemap_paths_to_string.split(" ").collect();
 
                 // 5.
                 for path_for_other_sitemap in split_paths_for_other_sitemaps {
@@ -363,9 +361,9 @@ fn main() -> std::io::Result<()> {
         }
     }
 
-    println!("{:#?}", std::str::from_utf8(&output));
+    println!("{:#?}", std::str::from_utf8(&amp;output));
 
-    write("sitemap.xml", &output)?;
+    write("sitemap.xml", &amp;output)?;
 
     // 6.
     println!("You wanna write sitemap.txt file also?");
@@ -401,13 +399,13 @@ fn main() -> std::io::Result<()> {
 
             for url in urls {
                 let payload = url.loc.get_url().unwrap();
-                println!("{}", &payload);
-                let payload_with_new_line = format!("{}\n", &payload);
-                output.push_str(&payload_with_new_line);
+                println!("{}", &amp;payload);
+                let payload_with_new_line = format!("{}\n", &amp;payload);
+                output.push_str(&amp;payload_with_new_line);
             }
 
-            println!("{:#?}", &output);
-            write("sitemap.txt", &output)?;
+            println!("{:#?}", &amp;output);
+            write("sitemap.txt", &amp;output)?;
 
             println!("errors = {:?}", errors);
         }
@@ -422,9 +420,9 @@ fn main() -> std::io::Result<()> {
 
 The main points for the code snippet above are
 
-1. **Giving ownership of the process** to write sitemap to variable **sitemap_writer**(It is important to include this code to the rest of the code to work)
+1. **Giving ownership of the process** to write sitemap to variable **sitemap_writer**.(It is important to include this code to the rest of the code to work)
 
-2. **Consider only first letter** of user input
+2. **Consider only first letter** of user input.
 
 3. Note that **sitemap_write** variable is used again for this process. Because normal process to write sitemap from **static path** and **the datas from the data** were ended before, We start to write **sitemap index** to chain other sitemaps before the end of the entire process to write **sitemap.xml**.
 
@@ -442,9 +440,9 @@ You can use it to build **sitemap.xml**, **sitemap.txt** from it. Then, chain ot
 
 ## 3. Conclusion
 
-With the help from the [Rust Sitemap Crate], we could write sitemaps easily with Rust.
+By following posts for [sitemap], we could make various sitemaps such as **sitemap.xml**, **sitemap.txt**, **image_sitemap.xml**.
 
-By following posts for [sitemap], we could make various sitempas such as **sitemap.xml**, **sitemap.txt**, **image_sitemap.xml**.
+With the help from the Rust Sitemap Crate, we could write sitemaps easily with Rust.
 
 If you spent time with the crate, you could find its main API is
 

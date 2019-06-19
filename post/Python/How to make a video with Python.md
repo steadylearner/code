@@ -3,7 +3,7 @@
     subtitle: "Upload your video made with Python at YouTube",
     image: "/brand/youtube-brand-image.jpg",
     image_decription: "YouTube Image",
-    tags: "Python, How, video, YouTube",
+    tags: "Python, How, video, code",
   }
 -->
 
