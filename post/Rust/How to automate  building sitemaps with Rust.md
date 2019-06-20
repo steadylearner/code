@@ -43,7 +43,7 @@ You can use them later with thread. Then, include them inside interval to automa
 1. [Rust Sitemap Crate]
 2. [What is image sitemap]
 3. [What is sitemap](https://support.google.com/webmasters/answer/156184?hl=en)
-4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
+4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&amp;q=how+to+build+sitemap)
 5. [Futuers in Rust](https://docs.rs/futures/0.2.3-docs-yank.4/futures/)
 6. [Thread in Rust](https://doc.rust-lang.org/std/thread/)
 7. [futures-timer]
@@ -51,7 +51,7 @@ You can use them later with thread. Then, include them inside interval to automa
 
 ---
 
-I want you to visit them and read posts for [sitemap] at [Steadylearner] also.
+I want you to visit them and read posts for [sitemap] at [Steadylearner].
 
 I will suppose that you already have experience in Rust and other programming.
 
@@ -59,9 +59,9 @@ I will suppose that you already have experience in Rust and other programming.
 
 <h2 class="blue">Table of Contents</h2>
 
-1. Separate functions to build sitemaps.
+1. Separate functions to build sitemaps
 2. Use them inside fn main() with thread
-3. Rust code to automate the process
+3. Interval and automation
 4. **Conclusion**
 
 ---
@@ -70,7 +70,7 @@ I will suppose that you already have experience in Rust and other programming.
 
 ## 1. Separate functions to build sitemaps
 
-We will write **cargo.toml** first. Because, we will use thread inside **main.rs**, we don't need other Rust bin files like we do in other post for [sitemap].
+We will write **cargo.toml** first. Because we will use thread inside **main.rs**, we don't need other Rust bin files like we do in other post for [sitemap].
 
 ```toml
 # cargo.toml, write the code similar to this
@@ -88,7 +88,7 @@ name = "your_lib"
 path = "src/lib.rs"
 ```
 
-Then we will define image_stiemap_renewal in **sitemap_renew.rs** first.
+Then, we will define **image_stiemap_renewal** function in **sitemap_renew.rs** first.
 
 It will be similar to
 
@@ -116,7 +116,7 @@ pub fn image_sitemap_renewal() -> std::io::Result<()> {
     let connection = init_pool().get().unwrap();
 
     let image_results = images
-        .load::<Image>(&*connection)
+        .load::<Image>(&amp;*connection)
         .expect("Error loading images");
 
     println!(
@@ -132,7 +132,7 @@ pub fn image_sitemap_renewal() -> std::io::Result<()> {
     <loc>https://www.steadylearner.com</loc>
 "#;
 
-    fs::write("image_sitemap.xml", &start_xml)?;
+    fs::write("image_sitemap.xml", &amp;start_xml)?;
     let mut result = OpenOptions::new().append(true).open("image_sitemap.xml").unwrap();
 
     let mut image_xml = String::new();
@@ -149,7 +149,7 @@ pub fn image_sitemap_renewal() -> std::io::Result<()> {
             image.content,
             image.media_url,
         );
-        image_xml.push_str(&image_url);
+        image_xml.push_str(&amp;image_url);
     }
 
     if let Err(e) = writeln!(result, "{}{}", image_xml , r#"  </url>
@@ -165,7 +165,7 @@ pub fn image_sitemap_renewal() -> std::io::Result<()> {
 
 Only location and name of the function are different from [the previous posts][sitemap].
 
-Then, we will build sitemap_txt_renewal that will use **sitemap.xml** made from **sitemap_renewal** function later.
+Then, we will build **sitemap_txt_renewal** function that will use **sitemap.xml** made from **sitemap_renewal** function later.
 
 ```rust
 fn sitemap_txt_renewal() -> std::io::Result<()> {
@@ -203,13 +203,13 @@ http://www.steadylearner.com/static/images/*
 
     for url in urls {
         let payload = url.loc.get_url().unwrap();
-        println!("{}", &payload);
-        let payload_with_new_line = format!("{}\n", &payload);
-        output.push_str(&payload_with_new_line);
+        println!("{}", &amp;payload);
+        let payload_with_new_line = format!("{}\n", &amp;payload);
+        output.push_str(&amp;payload_with_new_line);
     }
 
-    println!("{:#?}", &output);
-    write("sitemap.txt", &output)?;
+    println!("{:#?}", &amp;output);
+    write("sitemap.txt", &amp;output)?;
 
     println!("errors = {:?}", errors);
 
@@ -219,10 +219,10 @@ http://www.steadylearner.com/static/images/*
 
 You may use all selector * and others before you make **sitemap.txt** from **sitemap.xml**.
 
-Lastly, our sitemap_renewal function will be similar to
+Lastly, our **sitemap_renewal** function will be similar to
 
 ```rust
-pub fn sitemap_renewal(static_routes: Vec<&str>, paths_for_other_sitemaps: Vec<&str>) -> std::io::Result<()> {
+pub fn sitemap_renewal(static_routes: Vec<&amp;str>, paths_for_other_sitemaps: Vec<&amp;str>) -> std::io::Result<()> {
     // Use database with Rust diesel to write sitemap.xml first
     use crate::schema::posts::dsl::*;
     let connection = init_pool().get().unwrap();
@@ -230,7 +230,7 @@ pub fn sitemap_renewal(static_routes: Vec<&str>, paths_for_other_sitemaps: Vec<&
     let post_results = posts
         .filter(published.eq(true))
         .order(created_at.desc())
-        .load::<Post>(&*connection)
+        .load::<Post>(&amp;*connection)
         .expect("Error loading posts");
 
     println!(
@@ -240,7 +240,7 @@ pub fn sitemap_renewal(static_routes: Vec<&str>, paths_for_other_sitemaps: Vec<&
 
     let mut output = Vec::<u8>::new();
     {
-        let sitemap_writer = SiteMapWriter::new(&mut output);
+        let sitemap_writer = SiteMapWriter::new(&amp;mut output);
 
         let mut urlwriter = sitemap_writer
             .start_urlset()
@@ -315,7 +315,7 @@ pub fn sitemap_renewal(static_routes: Vec<&str>, paths_for_other_sitemaps: Vec<&
         // sitemap_index_writer.end().expect("close sitemap block");
     }
 
-    write("sitemap.xml", &output)?;
+    write("sitemap.xml", &amp;output)?;
     sitemap_txt_renewal();
 
     Ok(())
@@ -325,12 +325,12 @@ pub fn sitemap_renewal(static_routes: Vec<&str>, paths_for_other_sitemaps: Vec<&
 Its purposes are
 
 1. build **sitemap.xml** from static routes and the datas from the database
-2. link another sitemap such as image_sitemap built before
-3. and make **sitemap.txt** from **sitemap.xml**.
+2. link another sitemap such as **image_sitemap.xml** we built before
+3. and make **sitemap.txt** from **sitemap.xml**
 
 If you read the code snippets from the previous post for [sitemap], we removed almost all **println!** to show results at console.
 
-You may not need them when what you want is automation and already know what the code snippets here.
+You may not need them when what you want is automation and already know what the code snippets do here.
 
 We organized all our codes into separate functions. They became reusable and can be used everywhere.
 
@@ -338,9 +338,9 @@ We organized all our codes into separate functions. They became reusable and can
 
 ## 2. Use them inside fn main() with thread
 
-We made functions to build sitemaps. What we need to do make them work is just to call them inside **main.rs**.
+We made functions to build sitemaps. We will call them inside **main.rs** to make them build whenever we run our website.
 
-You won't want it to affect our website or main process, so you may separate it inside another **thread**.
+You won't want it to affect the main process, so you may separate it inside another **thread**.
 
 For that, **main.rs** should be similar to this.
 
@@ -378,9 +378,9 @@ You can test it with **$cargo run bin --main** and you will see files similar to
 
 <br />
 
-## 3. Rust Interval and automation
+## 3. Interval and automation
 
-If you want to automate the process, you may use **Interval** API from [tokio-timer], [futures-timer] etc.
+If you want to automate the process, you may use **Interval** API from [futures-timer], [timers-tokio] etc.
 
 I had working code with [futures-timer] similar to
 
@@ -428,8 +428,67 @@ Its API was rewritten with the introduction of **async** in **Rust** and seem to
 
 However, You may refer to the code snippet above and their documentations for your project.
 
+With tokio, your main code would be similar to
+
+```rust
+extern crate tokio;
+use tokio::prelude::*;
+use tokio::timer::Interval;
+
+use std::time::{Duration, Instant};
+
+use std::thread;
+
+fn main() {
+    thread::Builder::new()
+        .name("Build sitemap automatically with Rust".into())
+        .spawn(|| {
+            // { day: 86400, week: 604800, month: 2592000, }
+            let task = Interval::new(Instant::now(), Duration::from_secs(604800))
+            .for_each(|instant| {
+                println!("fire; instant={:?}", instant);
+                image_sitemap_renewal().expect("Error while making sitemap.xml for images");
+                let static_paths = vec!["about", "video", "blog", "code", "image", "slideshow"];
+                let other_sitemaps = vec!["image_sitemap.xml"];
+                sitemap_renewal(static_paths, other_sitemaps);
+                Ok(())
+            })
+            .map_err(|e| panic!("interval errored; err={:?}", e));
+
+            tokio::run(task);
+        })
+        .unwrap();
+
+    // your_website();
+}
+```
+
+When you run it with **$cargo run --bin main**, it will show log similar to this.
+
+```console
+fire; instant=Instant
+
+http://www.steadylearner.com/
+http://www.steadylearner.com/about
+http://www.steadylearner.com/video
+http://www.steadylearner.com/blog
+http://www.steadylearner.com/code
+http://www.steadylearner.com/image
+http://www.steadylearner.com/slideshow
+http://www.steadylearner.com/blog/read/How-to-start-Rust-Chat-App
+http://www.steadylearner.com/blog/read/How-to-install-Rust
+
+errors = []
+```
+
+with interval seconds you defined before.
+
+The thread Rust API here is optional. It will work without it.
+
+<br />
+
 ## 4. Conclusion
 
-The latest code for [sitemap] can be found at [Steadylearner Sitemap] repository.
+The latest code for [sitemap] can be found at [Steadylearner Sitemap] repository. It is the end of the posts for [sitemap] with Rust.
 
 **Thanks and please share this post with others.**
