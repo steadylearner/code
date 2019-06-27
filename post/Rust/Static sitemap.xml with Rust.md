@@ -44,7 +44,7 @@ We will eventually learn how to build **sitemap.xml, sitemap.txt and image_sitem
 1. [How to install Rust]
 2. [Rust Sitemap Crate]
 3. [What is sitemap](https://support.google.com/webmasters/answer/156184?hl=en)
-4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&amp;q=how+to+build+sitemap)
+4. [How to build a sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap)
 
 ---
 
@@ -79,7 +79,7 @@ use sitemap::structs::UrlEntry;
 use std::io::stdout;
 fn main() {
     let mut output = stdout();
-    let sitemap_writer = SiteMapWriter::new(&amp;mut output);
+    let sitemap_writer = SiteMapWriter::new(&mut output);
     let mut urlwriter = sitemap_writer.start_urlset().expect("Unable to write urlset");
     urlwriter.url("http://github.com").expect("Unable to write url");
     urlwriter.url(UrlEntry::builder().loc("http://google.com")).expect("Unable to write url");
@@ -114,18 +114,18 @@ pub struct Today {
 
 pub fn what_is_date_today() -> Today {
     let date = Utc::now().naive_utc();
-    let date_str = format!("{}", &amp;date);
+    let date_str = format!("{}", &date);
     let split_date = date_str.split(" ");
-    let vec_of_split_date: Vec<&amp;str> = split_date.collect();
+    let vec_of_split_date: Vec<&str> = split_date.collect();
 
     let payload = vec_of_split_date[0];
 
     let split_payload = payload.split("-");
-    let vec_of_split_payload: Vec<&amp;str> = split_payload.collect();
+    let vec_of_split_payload: Vec<&str> = split_payload.collect();
 
     let (y, m, d) = (vec_of_split_payload[0], vec_of_split_payload[1], vec_of_split_payload[2]);
 
-    println!("Today is {}-{}-{}(year-month-day\n)", &amp;y, &amp;m, &amp;d);
+    println!("Today is {}-{}-{}(year-month-day\n)", &y, &m, &d);
 
     Today {
         year: y.parse::<i32>()
@@ -156,8 +156,8 @@ use sitemap::writer::SiteMapWriter;
 
 fn main() -> std::io::Result<()> {
     let bold = Style::new().bold(); // 1.
-    let website: &amp;str = "http://www.steadylearner.com";
-    let static_routes: Vec<&amp;str> = vec![
+    let website: &str = "http://www.steadylearner.com";
+    let static_routes: Vec<&str> = vec![
       "about",
       "video",
       "blog",
@@ -169,7 +169,7 @@ fn main() -> std::io::Result<()> {
 
     let mut output = Vec::<u8>::new();
     {
-        let sitemap_writer = SiteMapWriter::new(&amp;mut output);
+        let sitemap_writer = SiteMapWriter::new(&mut output);
 
         let mut urlwriter = sitemap_writer
             .start_urlset()
@@ -193,7 +193,7 @@ fn main() -> std::io::Result<()> {
 
         // 5.
         for route in static_routes.iter() {
-            let static_url = format!("{}/{}", &amp;website, route);
+            let static_url = format!("{}/{}", &website, route);
             let url_entry = UrlEntry::builder()
                 .loc(static_url)
                 .changefreq(ChangeFreq::Monthly)
@@ -208,9 +208,9 @@ fn main() -> std::io::Result<()> {
         let sitemap_writer = urlwriter.end().expect("close the urlset block");
     }
 
-    println!("{:#?}", std::str::from_utf8(&amp;output)); // 7.
+    println!("{:#?}", std::str::from_utf8(&output)); // 7.
 
-    write("sitemap.xml", &amp;output)?; // 8.
+    write("sitemap.xml", &output)?; // 8.
 
     Ok(())
 }
