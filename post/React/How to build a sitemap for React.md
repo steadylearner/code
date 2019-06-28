@@ -26,7 +26,7 @@ I want to share you how to do that with this post. We will use [React Router Sit
 
 Its goal is to extract only routes made with React Router and return **.xml** type sitemap.
 
-I found that it was not complete to meet every requirements to make sitemap. But it will be still useful to start and understand what you need.
+I found that it was not complete to meet every requirements to make sitemap. But it will be still useful to start and find what you need.
 
 Because you have to know how to deal with ES6+ JavaScript Codes, You may find that following [the documentation from the author][React Router Sitemap] is not easy.
 
@@ -136,7 +136,7 @@ var _reactRouter = require("react-router");
 
 var _reactRouterSitemap = _interopRequireDefault(require("react-router-sitemap"));
 
-function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var sitemap = new _reactRouterSitemap.default(_react.default.createElement(_reactRouter.Route, {
   path: "/home"
@@ -164,7 +164,7 @@ You can verify how it works with the **$node react-sitemap-test.js**. Then, you 
 cache:'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n<url> <loc>http://www.steadylearner.com/home</loc> </url>\n</urlset>',
 ```
 
-You should search information about [What is sitemap?](https://support.google.com/webmasters/answer/156184?hl=en), [How to build sitemap](https://www.google.com/search?client=firefox-b-d&amp;q=how+to+build+sitemap) if you don't know what they mean.
+You should search information about [What is sitemap?](https://support.google.com/webmasters/answer/156184?hl=en), [How to build sitemap](https://www.google.com/search?client=firefox-b-d&q=how+to+build+sitemap) if you don't know what they mean.
 
 Then, you will find that
 
@@ -245,7 +245,7 @@ Everything is ready.
 
 Type **$node sitemap-builder.js**.
 
-The console will show you the message **âSitemap was builtâ** for you. Then, You can verify the result with **sitemap.xml**.
+The console will show you the message **Sitemap was built** for you. Then, You can verify the result with **sitemap.xml**.
 
 It will be similiar to
 
