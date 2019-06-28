@@ -1,6 +1,6 @@
 import React from "react";
 
-const Sitemap = ({
+const Social = ({
   title = "Steadylearner",
   description = "Steadylearner Website",
   image = "https://avatars0.githubusercontent.com/u/32325099?s=460&v=4",
@@ -32,5 +32,5 @@ const Sitemap = ({
 };
 
 export {
-  Sitemap,
+  Social,
 }

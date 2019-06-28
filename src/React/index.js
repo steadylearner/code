@@ -1,7 +1,9 @@
-import {
-  Sitemap
-} from "./Sitemap";
+import { props } from "./props";
+
+import { Social } from "./Social";
 
 export {
-  Sitemap,
+  props,
+  // 
+  Social,
 }

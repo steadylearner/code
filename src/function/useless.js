@@ -1,0 +1,5 @@
+const useless = () => {};
+
+export {
+    useless,
+}

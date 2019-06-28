@@ -15,7 +15,11 @@ import {
 
 import { html, markdown } from "./markdown";
 
-import { reverseSet } from "./array";
+import {
+    reverseSet,
+    clone,
+    isReserved,
+} from "./array";
 
 import {
     substitutePrefix,
@@ -27,8 +31,20 @@ import {
     useRegex,
 } from "./regex";
 
-// React relevant modules start with capital letter
-import { Sitemap } from "./React";
+import { key } from "./random";
+
+import {
+    useless,
+    commonKeys,
+    cutLeft,
+    repeat,
+    strRemover,
+    hasOwnProperty,
+    objectFromArray,
+} from "./function";
+
+// React components will start with capital letter
+import { Social } from "./React";
 
 export {
     //
@@ -40,7 +56,6 @@ export {
     sessionStorage,
     //
     copy,
-    //
     readLocalFileWithHow,
     saveTextFromWeb,
     //
@@ -52,7 +67,20 @@ export {
     //
     useShortcut,
     useRegex,
-    reverseSet,
     //
-    Sitemap,
+    reverseSet,
+    clone,
+    isReserved,
+    //
+    key,
+    //
+    useless,
+    commonKeys,
+    cutLeft,
+    repeat,
+    strRemover,
+    hasOwnProperty,
+    objectFromArray,
+    //
+    Social,
 };

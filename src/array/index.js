@@ -1,12 +1,9 @@
-import { memoizeWith, identity } from "ramda"; // or ramda from NPM
-// import { memoizeWith, identity } from "./ramda"; // or ramda from NPM
-
-let reverseSet = (arrayOfArrays = [[]]) => {
-    return arrayOfArrays.map(array => array.reverse());
-};
-
-reverseSet = memoizeWith(identity, reverseSet);
+import { reverseSet } from "./reverseSet";
+import { clone } from "./clone";
+import { isReserved } from "./isReserved";
 
 export {
     reverseSet,
+    clone,
+    isReserved,
 }
