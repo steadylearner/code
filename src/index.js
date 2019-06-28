@@ -1,17 +1,58 @@
-import { hello } from "./hello";
+// import { memoizeWith, identity } from "./ramda"; // use it or NPM. should be used at main index.js
 
-import { sitemap } from "./sitemap";
+import { hello } from "./console";
+
+import { share } from "./metatag";
+import {
+    localStorage,
+    sessionStorage,
+    //
+    copy,
+    //
+    readLocalFileWithHow,
+    saveTextFromWeb,
+} from "./web";
+
+import { html, markdown } from "./markdown";
+
+import { reverseSet } from "./array";
+
+import {
+    substitutePrefix,
+    substitutePrefixes,
+} from "./substitute";
+
+import {
+    useShortcut,
+    useRegex,
+} from "./regex";
+
+// React relevant modules start with capital letter
 import { Sitemap } from "./React";
 
-import localStorage from "./localStorage";
-import sessionStorage from "./sessionStorage"
-
 export {
-    hello
+    //
+    hello,
+    //
+    share,
     //
     localStorage,
     sessionStorage,
     //
-    sitemap,
+    copy,
+    //
+    readLocalFileWithHow,
+    saveTextFromWeb,
+    //
+    html,
+    markdown,
+    //
+    substitutePrefix,
+    substitutePrefixes,
+    //
+    useShortcut,
+    useRegex,
+    reverseSet,
+    //
     Sitemap,
 };

@@ -1,6 +1,6 @@
-const sitemap = (title = "Steadylearner") => (description = "Steadylearner Website") => (image = "https://avatars0.githubusercontent.com/u/32325099?s=460&v=4") => {
-  // In React use () instead to return React Objects.
-  return `<title>${title}</title>
+const share = (title = "Steadylearner") => (description = "Steadylearner Website") => (image = "https://avatars0.githubusercontent.com/u/32325099?s=460&v=4") => {
+    // In React use () instead to return React Objects.
+    return `<title>${title}</title>
 <meta name="description" content="${description}" />
 <meta name="thumbnail" content="${image}" />
 
@@ -24,5 +24,5 @@ const sitemap = (title = "Steadylearner") => (description = "Steadylearner Websi
 };
 
 export {
-  sitemap,
+  share,
 }
