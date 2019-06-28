@@ -1,7 +1,4 @@
-// Test for Regex
-
 const { useRegex } = require("..");
-// We don't need to test unsubstitue because it is equal and only arguments are reversed.
 
 describe('Test simple cases', () => {
   const set = [
@@ -30,14 +27,14 @@ describe('Test with part of code snippet', () => {
     &lt;p&gt;It is made with React and JavaScript by Steadylearner&lt;/p&gt;
     &amp;variable // It is for Rust
     I can't search every example of sanitization for each framework and web browsers.
-    Then, I will give freedom for users to define regexp that they can use.
+    Then, I will give freedom for users to define regexp that they can use for react-easy-md.
   `
   const after = `
     <title>React Easy Markdown</title>
     <p>It is made with React and JavaScript by Steadylearner</p>
     &variable // It is for Rust
     I can't search every example of sanitization for each framework and web browsers.
-    Then, I will give freedom for users to define regexp that they can use.
+    Then, I will give freedom for users to define regexp that they can use for react-easy-md.
   `
 
   test("Verfiy that set works with useShortcut .md file. Values without ': ' or '('should not be affected.", () => {

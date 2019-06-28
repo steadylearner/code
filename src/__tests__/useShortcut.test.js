@@ -1,7 +1,4 @@
-// Test for Regex
-
 const { useShortcut, reverseSet } = require("..");
-// We don't need to test unsubstitue because it is equal and only arguments are reversed.
 
 describe('Test simple cases', () => {
   const set = [["s-", "https://www.steadylearner.com"]];

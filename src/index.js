@@ -2,7 +2,7 @@
 
 import { hello } from "./console";
 
-import { share } from "./metatag";
+import { social } from "./metatag";
 import {
     localStorage,
     sessionStorage,
@@ -50,7 +50,7 @@ export {
     //
     hello,
     //
-    share,
+    social,
     //
     localStorage,
     sessionStorage,
