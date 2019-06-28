@@ -14,6 +14,7 @@ const substitutePrefix = (href = "https://www.steadylearner.com") => (set = ["s-
 // When render with React for each link inside MarkdownPreview.js
 // Different from using regexes for useShortcut
 let substitutePrefixes = (href = "https://www.steadylearner.com") => (set = [["s-", "https://"]]) => {
+    // You can use some or every here if necessary and remove some words.
     const isHrefIncludeAnyPrefix = set.filter(x => href.startsWith(x[0]));
 
     if (isHrefIncludeAnyPrefix.length === 1) { // === i instead of > 0 to be more precise
