@@ -3,8 +3,8 @@ import React from "react";
 const Social = ({
   title = "Steadylearner",
   description = "Steadylearner Website",
-  image = "https://avatars0.githubusercontent.com/u/32325099?s=460&v=4",
-}) => () => () => {
+  image = "https://avatars0.githubusercontent.com/u/32325099?s=460&v=4"
+}) => {
   return (
     <>
       <title>{title}</title>
@@ -30,6 +30,12 @@ const Social = ({
     </>
   );
 };
+
+// import MetaTags from "react-meta-tags";
+
+// <MetaTags>
+//   <Social />
+// </MetaTags>
 
 export {
   Social,
