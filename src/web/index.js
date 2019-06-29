@@ -16,7 +16,6 @@ function copy(
   textField.select(); // select copies html value
   document.execCommand("copy");
   textField.remove();
-  return;
 }
 
 // Use your own function to what to do with the contents of local file

@@ -24,7 +24,7 @@
 
 While I organize codes for NPM packages such as [React Prop Passer], [React Easy Markdown] and [Steadylearner Code], I found that it is easy to use **Jest** to write tests for them.
 
-It has great doucmentations and many examples. I want to share my experience and some examples used for [Steadylearner] with this post.
+I want to share my experience and some examples used for [Steadylearner] with this post.
 
 <h2 class="red-white">[Prerequisite]</h2>
 
@@ -38,7 +38,7 @@ It has great doucmentations and many examples. I want to share my experience and
 
 I hope you already know JavaSript well. You may visit documentation from [Mozilla][How to use JavaScript] whenever you need. I also want you to visit [Jest Offical Website] and follow the instruction.
 
-The easiest way for you be ready to write tests for **JavaScript** and later **React** with **Jest** will be clone [Steadylearner Code] repository.
+The easiest way for you to be ready to write tests for **JavaScript** and later **React** with **Jest** will be clone [Steadylearner Code] repository.
 
 You can find codes and tests used for this website and NPM packages.
 
@@ -57,9 +57,9 @@ You can find codes and tests used for this website and NPM packages.
 
 ## 1. How to setup Jest
 
-I hope you already read the documentation from [its offical website][Jest Offical Website]. You should already have minimal files to test JavaScript easily with Jest.
+I hope you already read the documentation from [its offical website][Jest Offical Website]. You should already have minimal files to test simple JavaScript codes with Jest.
 
-Your babel.config.js would be similar to
+Your **babel.config.js** would be similar to
 
 ```js
 module.exports = {
@@ -76,7 +76,7 @@ module.exports = {
 };
 ```
 
-Your package.json would be similar to
+Your **package.json** would be similar to
 
 ```json
 {
@@ -92,9 +92,9 @@ Your package.json would be similar to
 }
 ```
 
-and you should have installed those dependencies with **yarn or npm**.
+and you should have installed those dependencies with **$yarn or npm**.
 
-Then, simple JavaScript file similar to
+Then, **JavaScript** file similar to
 
 ```js
 // math.js
@@ -107,7 +107,7 @@ module.exports = {
 };
 ```
 
-and Jest code to test it
+and **Jest** code to test it
 
 ```js
 // math.test.js
@@ -124,15 +124,15 @@ describe('Examining the syntax of Jest tests', () => {
 });
 ```
 
-You could type `$yarn test` following the example and the test would pass.
+You could type **$yarn test** following the example and the test would pass.
 
-What you need to know in this simplified example are
+What you need to know in this example are
 
 1. Use **describe** to group **tests** before we actaully begin tests.
 2. Write real codes to test what we want to verify.
 3. Include tests for the same purpose inside the same **test**.
 
-We will repeat the similar process to produce the test codes. We just need to modfiy it for others. It is also important to find that those codes used for tests are **JavaSript** also.
+We will repeat the similar process later. We just need to modfiy it a little bit for others. It is also important to find that those codes used for tests are made with **JavaSript**.
 
 <br />
 
@@ -140,11 +140,9 @@ We will repeat the similar process to produce the test codes. We just need to mo
 
 You already installed jest and made tests pass in the previous part. You may have some examples but it wouldn't be that interesting.
 
-So I prepared **useShortcut** and **useRegex** JavaScript functions.
+So I prepared JavaScript functions **useShortcut** and **useRegex**. They are used for [Steadylearner] and you can find them work in [Steadylearner Blog](https://www.steadylearner.com/blog) or [Markdown Edtior](https://www.steadylearner.com/markdown).
 
-They are used for [Steadylearner] and you can find them work in [Steadylearner Blog](https://www.steadylearner.com/blog) or [Markdown Edtior](https://www.steadylearner.com/markdown).
-
-First, **useShortcut*** function
+First, **useShortcut** function
 
 ```js
 let useShortcut = (set = [["s-", "https://"]]) => (draft = "") => {
@@ -159,13 +157,11 @@ let useShortcut = (set = [["s-", "https://"]]) => (draft = "") => {
 };
 ```
 
-It is to be used for shorcuts for links inside markdown files. You can define set of links and there shortcuts. Then, use one of them whenever you need. Its role is similar to **useRegex** function but is separted for it is not easy to find working codes for this purpose.
+It helps you write shorcuts for links inside markdown files.
 
-You may find more usages with [React Easy Markdown] NPM package.
+You can define set of links and there shortcuts. Then, use one of them whenever you need. Its role is similar to **useRegex** function later but is separated for it is not easy to find working codes for this purpose. You may find more usages with [React Easy Markdown] NPM package.
 
-I had a JavaScript function **copy**(textFromWeb) that you can use to copy contents from the webpages.
-
-It is similar to the code snippet below and you can also pass helper function to modify the text from the web before copy it to clipboard in your machine.
+Before I wrote **useRegex**, I had a JavaScript function copy(textFromWeb) that you can use to copy contents from the webpages. It is similar to the code snippet below and you can also pass helper function to modify the text from the web before copy it to clipboard in your machine.
 
 ```js
 function copy(
@@ -182,20 +178,19 @@ function copy(
   textField.select(); // select copies html value
   document.execCommand("copy");
   textField.remove();
-  return;
 }
 ```
 
-I want to share code snippets as it is but the browsers and some web frameworks sanitize them for the safety. So I need to find the way to nullify them with regex.
+I wanted to share code snippets as it is but the browsers and some web frameworks sanitize them for the safety. So I need to find the way to nullify them with regex.
 
-Then, I wrote **useRegex** function.
+So I wrote **useRegex** function.
 
 ```js
 let useRegex = (set = [
     [/<br\s*?>/gi, "\r\n"],
-    [/&lt;/g, "<"],
-    [/&gt;/g, ">"],
-    [/&amp;/g, "&"],
+    [/</g, "<"],
+    [/>/g, ">"],
+    [/&/g, "&"],
 ]) => (draft = "") => {
     let text = draft;
     set.forEach(value => {
@@ -205,17 +200,13 @@ let useRegex = (set = [
 };
 ```
 
-It is simple and help you apply many regexes to help **copy** function we made before or can be used independently.
-
-They may be difficult for you if you are not familiar with JavaScript but they have real usages and are used for [Steadylearner] also.
-
-Testing them will help you be more familiar to Jest than simple tests you made before.
+It helps you apply many regexes to help **copy** function we made before or can be used independently.
 
 <br />
 
 ## 3. How to test them with Jest
 
-For we already have codes to test ready, it is time to write **Jest** tests for them. If you find it difficult, you can always visit [Steadylearner Code] repository.
+For we already have codes to test ready, it is time to write tests with **Jest** for them. If you have problem, you can always visit [Steadylearner Code] repository.
 
 Inside __tests__ folder, you can first write, **useShortcut.test.js** similar to
 
@@ -274,7 +265,7 @@ describe('Test with part of .md file', () => {
 
 If you read the documentation from Jest, you already know that it tests every **.js** files inside __tests__ folder or with **.test** before its file name.
 
-**reverseSet** is to help you use **useShortcut** funtion in opposite direction without need to write entire set of shortcut and links. You may refer to the code snippet below if you want to include them in your test.
+**reverseSet** here is to help you use **useShortcut** funtion in opposite direction without need to write entire set of shortcut and links. You may refer to the code snippet below if you want to include them in your test.
 
 ```js
 let reverseSet = (arrayOfArrays = [[]]) => {
@@ -282,7 +273,7 @@ let reverseSet = (arrayOfArrays = [[]]) => {
 };
 ```
 
-and when you test them with `$yarn test`, it will pass without problem.
+and when you test them with `$yarn test`, it will pass.
 
 Then, we will test **useRegex** function we made before also.
 
@@ -294,11 +285,11 @@ const { useRegex } = require("..");
 describe('Test simple cases', () => {
   const set = [
     [/<br\s*?>/gi, "\r\n"],
-    [/&lt;/g, "<"],
-    [/&gt;/g, ">"],
-    [/&amp;/g, "&"]
+    [/</g, "<"],
+    [/>/g, ">"],
+    [/&/g, "&"]
   ];
-  const before = "&lt;, &gt;, &amp;"
+  const before = "<, >, &"
   const after = "<, >, &"
   test("Simply verfiy that set works with useRegex.", () => {
     expect(useRegex(set)(before))
@@ -309,14 +300,14 @@ describe('Test simple cases', () => {
 describe('Test with part of code snippet', () => {
   const set = [
     [/<br\s*?>/gi, "\r\n"],
-    [/&lt;/g, "<"],
-    [/&gt;/g, ">"],
-    [/&amp;/g, "&"]
+    [/</g, "<"],
+    [/>/g, ">"],
+    [/&/g, "&"]
   ];
   const before = `
-    &lt;title&gt;React Easy Markdown&lt;/title&gt;
-    &lt;p&gt;It is made with React and JavaScript by Steadylearner&lt;/p&gt;
-    &amp;variable // It is for Rust
+    <title>React Easy Markdown</title>
+    <p>It is made with React and JavaScript by Steadylearner</p>
+    &variable // It is for Rust
     I can't search every example of sanitization for each framework and web browsers.
     Then, I will give freedom for users to define regexp that they can use for react-easy-md.
   `
@@ -335,9 +326,7 @@ describe('Test with part of code snippet', () => {
 });
 ```
 
-Its structure is very similar to the previous test for **useShortcut** and you will find that many parts are same.
-
-You can test it with **$yarn test** and it will pass. You already have some **Jest test codes** used for a real project.
+Its structure is very similar to the previous test for **useShortcut** and you will find that many parts are same. You can test it with **$yarn test** and it will pass also. You already have some **Jest test codes** used for a real project.
 
 <br />
 

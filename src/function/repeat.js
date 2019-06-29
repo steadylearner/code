@@ -1,4 +1,6 @@
-const repeat = fn => (times = 1) => {
+import { useless } from "./useless";
+
+const repeat = (fn = useless) => (times = 1) => {
     if (times > 1000) {
         console.warn("'repeat' may pause your system");
     }

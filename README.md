@@ -28,9 +28,42 @@ The main image is made by © [Steadylearner] with CSS. It is not allowed to use 
 
 ```js
 import {
+  hello,
+  //
+  social,
+  //
   localStorage,
   sessionStorage,
-} from 'code';
+  //
+  copy,
+  readLocalFileWithHow,
+  saveTextFromWeb,
+  //
+  html,
+  markdown,
+  //
+  substitutePrefix,
+  substitutePrefixes,
+  //
+  useShortcut,
+  useRegex,
+  //
+  reverseSet,
+  clone,
+  isReserved,
+  //
+  key,
+  //
+  useless,
+  commonKeys,
+  cutLeft,
+  repeat,
+  strRemover,
+  hasOwnProperty,
+  objectFromArray,
+  //
+  Social,
+} from 'steadylearner';
 ```
 
 ## Version Specific
