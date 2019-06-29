@@ -1,9 +1,9 @@
 <!--
   Post {
-    subtitle:  "Learn how to write JavaScript tests with Jest and Enzyme.",
+    subtitle:  "Learn how to write tests for React with Jest and Enzyme.",
     image:  "/code/Jest_from_the_website.png",
-    image_decription: "Jest Image from the website",
-    tags: "Jest test React JavaScript",
+    image_decription: "Image from its website",
+    tags: "How Jest React test",
   }
 -->
 
