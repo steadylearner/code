@@ -114,7 +114,7 @@ Then, Your entire **package.json** would be similar to
 
 I hope you made it. We already have the minimal dependencies to write test codes for **React** with **Jest** and **Enzyme**.
 
-We also have to write some configuration files for.
+We also have to write some configuration files.
 
 We will first modify **babel.config.js** file.
 
@@ -205,8 +205,6 @@ We already have React code ready from its official example. You may save the cod
 ```jsx
 // __tests__/CheckBoxWithLabel.test.js
 import React from 'react';
-// shallow for unit test and mount for integration test
-// To test static html file use render method from enzyme
 import { shallow } from 'enzyme';
 
 import CheckboxWithLabel from '../CheckboxWithLabel';
@@ -221,6 +219,9 @@ it('CheckboxWithLabel changes the text after click', () => {
 
   expect(checkbox.text()).toEqual('On');
 });
+
+// shallow for unit test and mount for integration test
+// To test static html file use render method from enzyme
 ```
 
 and `$yarn test` and verify the test result.
@@ -228,15 +229,13 @@ and `$yarn test` and verify the test result.
 It will show message similar to this.
 
 ```console
-$ jest
-
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
 Ran all test suites.
 ```
 
-The final folder structure of this project will be similar to this(without node_modules for simpicity)
+The final folder structure of this project will be similar to this(without node_modules for simplicity)
 
 ```console
 ├── babel.config.js
