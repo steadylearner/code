@@ -36,7 +36,7 @@ I want to share my experience and some examples used for [Steadylearner] with th
 
 ---
 
-I hope you already know JavaSript well. You may visit documentation from [Mozilla][How to use JavaScript] whenever you need. I also want you to visit [Jest Offical Website] and follow the instruction.
+I hope you already know JavaScript well. You may visit documentation from [Mozilla][How to use JavaScript] whenever you need. I also want you to visit [Jest Offical Website] and follow the instruction.
 
 The easiest way for you to be ready to write tests for **JavaScript** and later **React** with **Jest** will be clone [Steadylearner Code] repository.
 
@@ -187,16 +187,16 @@ So I wrote **useRegex** function.
 
 ```js
 let useRegex = (set = [
-    [/<br\s*?>/gi, "\r\n"],
-    [/</g, "<"],
-    [/>/g, ">"],
-    [/&/g, "&"],
+  [/<br\s*?>/gi, "\r\n"],
+  [/&lt;/g, "<"],
+  [/&gt;/g, ">"],
+  [/&amp;/g, "&"],
 ]) => (draft = "") => {
-    let text = draft;
-    set.forEach(value => {
-        text = text.replace(value[0], value[1]);
-    });
-    return text;
+  let text = draft;
+  set.forEach(value => {
+      text = text.replace(value[0], value[1]);
+  });
+  return text;
 };
 ```
 
@@ -209,6 +209,8 @@ It helps you apply many regexes to help **copy** function we made before or can 
 For we already have codes to test ready, it is time to write tests with **Jest** for them. If you have problem, you can always visit [Steadylearner Code] repository.
 
 Inside __tests__ folder, you can first write, **useShortcut.test.js** similar to
+
+<!-- Use console in Websit to make it work -->
 
 ```js
 const { useShortcut, reverseSet } = require("..");
@@ -267,17 +269,7 @@ If you read the documentation from Jest, you already know that it tests every **
 
 **reverseSet** here is to help you use **useShortcut** funtion in opposite direction without need to write entire set of shortcut and links. You may refer to the code snippet below if you want to include them in your test.
 
-```js
-let reverseSet = (arrayOfArrays = [[]]) => {
-    return arrayOfArrays.map(array => array.reverse());
-};
-```
-
-and when you test them with `$yarn test`, it will pass.
-
-Then, we will test **useRegex** function we made before also.
-
-You can write test file **useRegex.test.js** similar to
+<!-- Use console in Websit to make it work -->
 
 ```js
 const { useRegex } = require("..");
@@ -285,11 +277,11 @@ const { useRegex } = require("..");
 describe('Test simple cases', () => {
   const set = [
     [/<br\s*?>/gi, "\r\n"],
-    [/</g, "<"],
-    [/>/g, ">"],
-    [/&/g, "&"]
+    [/&lt;/g, "<"],
+    [/&gt;/g, ">"],
+    [/&amp;/g, "&"]
   ];
-  const before = "<, >, &"
+  const before = "&lt;, &gt;, &amp;"
   const after = "<, >, &"
   test("Simply verfiy that set works with useRegex.", () => {
     expect(useRegex(set)(before))
@@ -300,14 +292,14 @@ describe('Test simple cases', () => {
 describe('Test with part of code snippet', () => {
   const set = [
     [/<br\s*?>/gi, "\r\n"],
-    [/</g, "<"],
-    [/>/g, ">"],
-    [/&/g, "&"]
+    [/&lt;/g, "<"],
+    [/&gt;/g, ">"],
+    [/&amp;/g, "&"]
   ];
   const before = `
-    <title>React Easy Markdown</title>
-    <p>It is made with React and JavaScript by Steadylearner</p>
-    &variable // It is for Rust
+    &lt;title&gt;React Easy Markdown&lt;/title&gt;
+    &lt;p&gt;It is made with React and JavaScript by Steadylearner&lt;/p&gt;
+    &amp;variable // It is for Rust
     I can't search every example of sanitization for each framework and web browsers.
     Then, I will give freedom for users to define regexp that they can use for react-easy-md.
   `
