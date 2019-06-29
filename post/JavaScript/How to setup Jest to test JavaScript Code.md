@@ -1,6 +1,6 @@
 <!--
   Post {
-    subtitle:  "Learn how to write tests for JavaScript codes with Jest.",
+    subtitle:  "Install Jest and test some JavaScript codes.",
     image:  "/code/Jest.png",
     image_decripton: "Jest Official Image",
     tags: "test JavaScript Jest Steadylearner",
@@ -11,24 +11,12 @@
 
 [Steadylearner]: https://www.steadylearner.com
 [Steadylearner Github Repository]: https://github.com/steadylearner/Steadylearner
-[React Official Website]: https://reactjs.org/
-[React Hook API]: https://reactjs.org/docs/hooks-intro.html
-[React Spring]: https://react-spring.surge.sh/
-[Github Repository for React Marked Markdown]: https://github.com/vincent-p/react-marked-markdown#readme
-[React Markdown Improved]: https://codesandbox.io/s/wz9pp1xpn8
-[How to use markdown]: https://www.markdowntutorial.com/
 [How to use JavaScript]: https://developer.mozilla.org/en/docs/Web/JavaScript
-[How to setup Jest for beginners]: https://jestjs.io/docs/en/getting-started.html
+[Jest Offical Website]: https://jestjs.io/docs/en/getting-started.html
 
 <!-- / -->
 
 <!-- Post -->
-
-[How to turn class React component into functional component]: https://www.steadylearner.com/blog/read/How-to-turn-React-class-component-into-functional-component
-
-[How to write less code for links in markdown with React]: https://www.steadylearner.com/blog/read/How-to-write-plugin-to-write-markdown-easily-with-React
-
-[How to enable Code Syntax Highlight in React App]: https://medium.com/@steadylearner/how-to-enable-code-syntax-highlight-in-react-app-38463498fa6e?source=---------8------------------
 
 <!-- /  -->
 
