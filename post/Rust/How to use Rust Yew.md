@@ -300,10 +300,9 @@ We have only **main.rs** to care for and we will write code for it in the next p
 
 So we will take minimal example from from its author.
 
-It will be similar to
+It will be similar to the code snippet below and copy it your **main.rs** file.
 
 ```rust
-// Copy it to your main.rs
 #[macro_use]
 extern crate yew;
 use yew::prelude::*;
@@ -315,7 +314,6 @@ struct Model {
 }
 
 // C in MVC
-
 enum Msg {
     DoIt,
 }
@@ -362,29 +360,29 @@ If you are familar with other frontend framework such as [React](https://www.ste
 You should know that
 
 ```rust
-    fn create(_: Self::Properties, _: ComponentLink<Self>) -> Self {
-        Self {
-            value: 0,
-        }
+fn create(_: Self::Properties, _: ComponentLink<Self>) -> Self {
+    Self {
+        value: 0,
     }
+}
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        match msg {
-            Msg::DoIt => self.value = self.value + 1
-        }
-        true
+fn update(&mut self, msg: Self::Message) -> ShouldRender {
+    match msg {
+        Msg::DoIt => self.value = self.value + 1
     }
+    true
+}
 ```
 
 is payload to control the app and
 
 ```rust
-    html! {
-        <div>
-            <button onclick=|_| Msg::DoIt,>{ "+1" }</button>
-            <p>{ self.value }</p>
-        </div>
-    }
+html! {
+    <div>
+        <button onclick=|_| Msg::DoIt,>{ "+1" }</button>
+        <p>{ self.value }</p>
+    </div>
+}
 ```
 
 is to render the view of it.
@@ -517,14 +515,7 @@ I hope you made it and we will find how to upload it in the website such as [Yew
 If you build the file with **$yarn prod** at this point, you will see console message similar to
 
 ```console
-$ cp target/deploy/index.css release/ && cp target/deploy/
-   ┌───────────────────────────────────────────────────┐
-   │                                                   │
-   │   Serving!                                        │
-   │                                                   │
-   │   - Local:            http://localhost:8080       │
-   │                                                   │
-   └───────────────────────────────────────────────────┘
+$cp target/deploy/index.css release/ && cp target/deploy/
 ```
 
 and your production files ready at **release** folder.
@@ -653,7 +644,7 @@ It would not be difficult to find what happens here if [you know how to deploy a
 and in your **index.js**, you can see that code to serve webassembly files similar to
 
 ```js
-    if (typeof process === "object") {
+if (typeof process === "object") {
     var path = require("path");
 
     var wasm_path = path.join(__dirname, "index.wasm");
@@ -661,27 +652,25 @@ and in your **index.js**, you can see that code to serve webassembly files simil
     var mod = new WebAssembly.Module(buffer);
     var wasm_instance = new WebAssembly.Instance(mod, instance.imports);
     return instance.initialize(wasm_instance);
-    } else {
-      var file = fetch("index.wasm", {
-        credentials: "same-origin"
-    });
+} else {
+    var file = fetch("index.wasm", {
+    credentials: "same-origin"
+});
 ```
 
 It may not work in your serverside so you may modify it to
 
 ```js
-    if (typeof process === "object") {
-    var path = require("path");
-
+if (typeof process === "object") {
     var wasm_path = "/static/yew_counter/index.wasm";
     var buffer = fs.readFileSync(wasm_path);
     var mod = new WebAssembly.Module(buffer);
     var wasm_instance = new WebAssembly.Instance(mod, instance.imports);
     return instance.initialize(wasm_instance);
-    } else {
+} else {
     var file = fetch("/static/yew_counter/index.wasm", {
     credentials: "same-origin"
-    });
+});
 ```
 
 It is JavaScript but what we do is the same. You just modify paths to work well inside with other files in your machine.
