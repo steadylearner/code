@@ -1,7 +1,7 @@
 <!--
     Post{
         subtitle: "Prepare development environment for Rust yew",
-        image: "post/web/how-to-use-yew.png",
+        image: "post/web/how-to-use-rust-yew.png",
         image_decription: "Image made with CSS by Steadylearner",
         tags: "How Rust Yew code",
     }
@@ -37,7 +37,7 @@ yarn watch:rs for devlopment then yarn prod(include build) for production
 
 <!-- / -->
 
-In this post, we will prepare development environment for Rust **Yew**. Then, we will write minimal code with it and learn how to deploy it in your website also.
+In this post, we will prepare development environment for Rust **Yew**. Then, we will write minimal code with it and learn how to deploy it in [your website][Steadylearner] also.
 
 If you just want to see what you will get with this post, please visit [Yew Counter] in [Steadylearner].
 
@@ -66,9 +66,8 @@ then make a route to serve **index.html** modify paths to link them if you find 
 1. [How to install Rust]
 2. [Build a rust frontend with yew]
 3. [Cargo Web]
-4. [Yew GitHub]
-5. [Yew Examples]
-6. [rollupjs]
+4. [Yew]
+5. [rollupjs]
 
 ---
 
@@ -76,15 +75,15 @@ I want you to install Rust first if you haven't yet. The blog post [How to insta
 
 This post is based on the information from another blog post for **Yew** [Build a rust frontend with Yew]. You can read until second part of it. You will find that this post will have many common parts with it.
 
-When you read this post, you will have everything ready to develop Rust **Yew*** Web application. Before you invest more time for it, read the documentations from [Yew](especially **src** and **examples** folders). If you see the source code of it, you can see that many of them are from [Cargo Web]. So it will be helpful for you to read its documentation also.
+With this post, you will have everything ready to develop Rust **Yew** Web application. Before you invest more time for it, read the documentations from [Yew](especially **src** and **examples** folders). If you see the source code of it, you can see that many of them are from [Cargo Web]. So it will be helpful for you to read its documentation also.
 
-In case of [rollupjs], you may read its doucumentation. But, It will be sufficient to know that
+In case of [rollupjs], it will be sufficient for you to know that
 
-['To use it with a configuration file, pass the --config or -c flags.'](https://rollupjs.org/guide/en#configuration-files)
+**'To use it with a configuration file, pass the --config or -c flags.'**(https://rollupjs.org/guide/en#configuration-files)
 
 If you want to use your own favicon after you read this post or [Build a rust frontend with Yew], please clear cache of your webrowser first and use your file with name favicon.ico instead in **static** folder.
 
-(**grep "favicon.ico" .** will not solve this.)
+(**$grep "favicon.ico" .** and delete files relevant to it  will not help you.)
 
 <br />
 
@@ -99,7 +98,7 @@ If you want to use your own favicon after you read this post or [Build a rust fr
 
 ---
 
-You can skip part 1 if you already read [Build a rust frontend with Yew].
+You can skip some parts if you already read [Build a rust frontend with Yew].
 
 <br />
 
@@ -130,15 +129,19 @@ It will be to execute command below to make [Cargo Web] work well.
 $echo 'default-target = "wasm32-unknown-unknown"' > Web.toml
 ```
 
-Then, build some files and install NPM packages to make the entire Rust Yew project work. It is just matter of **copy and paste**
+Then, build some files and install NPM packages to make the entire Rust Yew project work. It is just matter of **copy and paste**.
 
-If you want to save time, you can clone [Steadylearner Web] repository and move to **Yew** folder. Then, open the console in it and type **$yarn watch:rs** or **$yarn prod** and you will see the latest **Yew** example from [Steadylearner] in your browser.
+If you want to save time, you can clone [Steadylearner Web] repository and use **Yew** folder.
+
+Then, open the console in it and type **$yarn watch:rs** or **$yarn prod** and you will see the latest **Yew** example from [Steadylearner] in your browser.
 
 <br />
 
 ## 2. How to prepare minimal files for it
 
-If you read [the blog post][Build a rust frontend with Yew] or cloned [Steadylearner Web], you should have everything to start development with Rust Yew already. But having the minimal folder structure to start with will always be helpful. So I will help you.
+If you read [the blog post][Build a rust frontend with Yew] or cloned [Steadylearner Web], you should have everything to start development with Rust Yew already.
+
+Having the minimal folder structure to start with will always be helpful.
 
 It will be similar to
 
@@ -157,13 +160,13 @@ It will be similar to
 ├── Web.toml
 ```
 
-We don't need to edit **Web.toml** and you may modify folder or file names for **Cargo.toml**, **rollup.config.js** as your project advance or when you want to customize them.
+We don't need to edit **Web.toml** and you may modify folder or file names for **Cargo.toml**, **rollup.config.js** when you want to customize them.
 
 So what left are **package.json**, and **src** and **static** folders. I already gave you a information about **favicon.ico** you can use your image instead of it.
 
-You don't have to care for **components** and **lib.rs** file also. You may delete all files in **components** and empty **lib.rs** file but don't delete it because it is defined in **Cargo.toml**.
+You don't have to care for **components** and **lib.rs** file also. You may delete all files in **components** and empty **lib.rs** file but don't delete it because it is included in **Cargo.toml**.
 
-In those processes, we removed the options and what we need to care for are only
+In those processes, we removed some options and what we need to care for are only
 
 ```console
 ├── package.json
@@ -174,7 +177,7 @@ In those processes, we removed the options and what we need to care for are only
 │   ├── index.html
 ```
 
-We have a few payloads for this project. We will start from package.json.
+We have payloads for this project. We will start from **package.json**.
 
 If you see the scripts and the devDependencies parts of **package.json** from the [the blog post][Build a rust frontend with Yew]
 
@@ -293,7 +296,9 @@ We have only **main.rs** to care for and we will write code for it in the next p
 
 ## 3. Rust Yew example from its official website
 
-[Yew] has many [examples][Yew Examples]. But the purpose of this post is to help you have minimal setup to start the development with it. So we will take minimal example from [Yew Documentaion] from its author.
+[Yew] has many examples. But the purpose of this post is to help you have minimal setup and start the development with it.
+
+So we will take minimal example from from its author.
 
 It will be similar to
 
@@ -386,11 +391,13 @@ is to render the view of it.
 
 The entire main.rs file is the minimal example to show how to control state with [Yew].
 
-We don't need to edit **fn create** part that much because we just need them when we start it.
+We do not need to edit **fn create** part that much because we just need them only when we start it.
 
 If you use **$yarn watch:rs or yarn prod** in your folder it will show you counter app in your [localhost](http://localhost:8080/).
 
-If you made it, you have minimal development environment ready to start to use **Yew**. You may refer to [Yew] documentation and its examples or follow the next part if you want to advance this simple example more.
+If you made it, you have minimal development environment ready to start to use **Yew**.
+
+You may refer to [Yew] documentation and its examples or follow the next part.
 
 <br />
 
@@ -491,6 +498,7 @@ You can see that
 3. Include some class names, title and event handlers for html! macro to work
 
 For **html!** is macro, we don't need to invest time to find what they do, just follow the rules.
+
 It is important to notice that you should write **,** when ever you write prop(atrribute) for your html tags.
 
 You can live edit your app with **$yarn watch:rs**. Whenever you modify the html example, you will see message similar to this
@@ -504,19 +512,17 @@ and it take a little bit long because **Rust** will statically verify your web a
 
 I hope you made it. You could include **steadylearner.css** in [Steadylearner Web] repository for your index.css or use your own CSS if you want.
 
-I hope you made it and we will find how to upload it in our website such as [Steadylearner].
+I hope you made it and we will find how to upload it in the website such as [Yew Counter] in [Steadylearner].
 
 If you build the file with **$yarn prod** at this point, you will see console message similar to
 
 ```console
-$ cp target/deploy/index.css release/ && cp target/deploy/index.wasm release/ && cp target/deploy/index.html release/ && cp target/deploy/favicon.ico release/
+$ cp target/deploy/index.css release/ && cp target/deploy/
    ┌───────────────────────────────────────────────────┐
    │                                                   │
    │   Serving!                                        │
    │                                                   │
    │   - Local:            http://localhost:8080       │
-   │                                                   │
-   │   Copied local address to clipboard!              │
    │                                                   │
    └───────────────────────────────────────────────────┘
 ```
@@ -533,9 +539,9 @@ and your production files ready at **release** folder.
 
 It won't be that different from **static** folder and we will learn how to modify it to work for in [our Rust Website][Steadylearner].
 
-The entire app is simple but you may call yourself "Full Stack Rust Devloper" after you write more advanced.
+The entire app is simple but you may call yourself "Full Stack Rust Devloper" after you deploy more advanced apps later.
 
-(You may edit frontend part of [Rust Chat App] with [Yew] if you want challenge.)
+(You may edit frontend part of [Rust Chat App] with [Yew] if you want a challenge.)
 
 ## 5. How to upload it in your website
 
@@ -555,11 +561,11 @@ I do not have any favor of it. Just use it for [Steadylearner] and [blog posts](
 
 2. It is better to use **path** first framework when you need many webpages with different paths.
 
-You can use whatever webframework and languages you want and just refer the process here.
+You can use whatever web framework and languages you want and just refer the process here.
 
-If you want quick example for this part, you may refer to files and folder structure used for [Rust Chat App].
+If you want the entire example for this part, you may refer to files and folder structure used for [Rust Chat App] and use static files you made.
 
-We will first start with get.rs to write a route to server **index.html** file we made before
+We will first start with get.rs to write a route to serve **index.html** file we made before.
 
 ```rust
 use std::io;
@@ -595,7 +601,7 @@ fn rocket() -> rocket::Rocket {
 
                 get::index,
 
-                // Web, I use Web instead of Webassembly.
+                // Web, I use it instead of Webassembly.
 
                 get::yew_counter,
             ],
@@ -610,7 +616,7 @@ fn main() {
 
 They are simplified and you can use your own codes instead.
 
-and you are ready with your serverside code.
+You are ready with your serverside code.
 
 I hope you already made **yew_counter** folder and we should edit **index.html** and **index.js** file.
 
@@ -640,8 +646,9 @@ You can modify it to
 </body>
 ```
 
-I had already equivalent CSS for [Steadylearner] so used path for it instead of **yew_counter** folder not to duplicate here.
-It would not be difficult to find what happens here if [you have already deployed your website](https://www.google.com/search?q=how+to+deploy+Rust).
+I had already equivalent CSS for [Steadylearner] so I used path for it instead of **yew_counter** folder not to duplicate here.
+
+It would not be difficult to find what happens here if [you know how to deploy a website](https://www.google.com/search?q=how+to+deploy+Rust).
 
 and in your **index.js**, you can see that code to serve webassembly files similar to
 
@@ -677,9 +684,9 @@ It may not work in your serverside so you may modify it to
     });
 ```
 
-It is JavaScript but what we do is the same. You just modify paths to work well inside your machine.
+It is JavaScript but what we do is the same. You just modify paths to work well inside with other files in your machine.
 
-You may use static files as they are but hope this example helpful whenever you find a path relevant problem.
+You may use static files as they are and worked. But hope this example helpful whenever you find a path relevant problem.
 
 Everything is ready. You can use **$cargo run --bin main** or other command to start your app in production.
 
@@ -687,7 +694,7 @@ You will see your webpage similar to [Yew Counter] in [Steadylearner].
 
 I used term **production** here because what you need to do after this process is just to copy and paste them if you use virtual machine for Linux to deploy your website.
 
-You can see the exact example [Steadylearner] and its many webpages.
+You can see [the exact example][Yew Counter] at [Steadylearner] and its many webpages.
 
 ## 6. Conclusion
 
@@ -695,9 +702,11 @@ I hope you made it.
 
 We could set up development environment for Rust [Yew]. Then, we improved the official example. We could learn [how to deploy it][Yew Counter].
 
-If you had already [a website built with Rust][Steadylearner], it wouldn't be difficult to follow this post. Because what we made are just static files and no difference from other CSS, HTML and JavaScirpt files etc.
+If you had already [a website built with Rust][Steadylearner], it wouldn't be difficult to follow this post. Because what we made are just static files and there is no difference from other CSS, HTML and JavaScirpt files etc.
 
-In the next post, we will learn how to build [Rust Chat App] with [Yew] instead of JavaScript. It would not be difficult we already have the minimal code and know how to deploy it.
+In the next post, we will learn how to build [Rust Chat App] with [Yew] instead of JavaScript. It would not be difficult because we already have the minimal code and know how to deploy it.
+
+If you want more advanced example, you may visit [Rocket Yew starter pack] or [Web completely in Rust].
 
 I want to people know that type of framework and languages are not important but programmers with these posts.
 
