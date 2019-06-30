@@ -387,7 +387,7 @@ It is also important for you to understand that the most of the code used above 
 
 ![Rust Chat App](https://www.steadylearner.com/static/images/post/chat/rust-chat.png)
 
-We briefly learnt the Rust serverside code to build our chat app. It is time to build Frotnend part to help users.
+We briefly learnt the Rust serverside code to build our chat app. It is time to build frontend part to help users.
 
 If you see the [index.html](https://github.com/steadylearner/Chat/blob/master/ws_rs_with_rocket/static/chat/index.html) file, The important part will be
 

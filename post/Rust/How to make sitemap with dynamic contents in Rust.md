@@ -1,8 +1,8 @@
 <!--
     Post{
-        subtitle: "Use datas to build sitemap.xml with Rust Diesel",
-        image: "code/Rust-Diesel.png",
-        image_decription: "Image from its website",
+        subtitle: "Use datas to build sitemap.xml with Rust",
+        image: "code/Rust_r.png",
+        image_decription: "Image by Steadylearner",
         tags: "Rust How sitemap code",
     }
 -->
