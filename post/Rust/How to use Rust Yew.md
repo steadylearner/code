@@ -2,7 +2,7 @@
     Post{
         subtitle: "Prepare development environment for Rust yew",
         image: "post/web/how-to-use-yew.png",
-        image_decription: "Image by Steadylearner",
+        image_decription: "Image made with CSS by Steadylearner",
         tags: "How Rust Yew code",
     }
 -->
@@ -33,10 +33,31 @@ yarn watch:rs for devlopment then yarn prod(include build) for production
 [How to install Rust]: https://www.steadylearner.com/blog/read/How-to-install-Rust
 [Rust Chat App]: https://www.steadylearner.com/blog/read/How-to-start-Rust-Chat-App
 [Steadylearner Rust Blog Posts]: https://www.steadylearner.com/blog/search/Rust
+[Yew Counter]: https://www.steadylearner.com/yew_counter
 
 <!-- / -->
 
 In this post, we will prepare development environment for Rust **Yew**. Then, we will write minimal code with it and learn how to deploy it in your website also.
+
+If you just want to see what you will get with this post, please visit [Yew Counter] in [Steadylearner].
+
+If you want to save your time and have experience in Rust, just clone the [Steadylearner Web] repository with
+
+```console
+$git clone https://github.com/steadylearner/Webassembly.git
+```
+
+then inside Yew folder
+
+```console
+$yarn
+$rustup default set nightly
+$cargo install cargo-web
+```
+
+and **$yarn watch:rs** for development and **$yarn prod** for production files in **release**.
+
+then make a route to serve **index.html** modify paths to link them if you find a problem with it.
 
 <br />
 
@@ -252,7 +273,6 @@ We have index.html, index.css and main.rs at this point. If you have experience 
   <!-- Custom CSS -->
 
   <link rel="stylesheet" type="text/css" href="steadylearner.css" />
-  <link rel="stylesheet" type="text/css" href="normalize.css" />
 
   <!-- / -->
 
@@ -527,9 +547,9 @@ If you have experience in single page apps and how to make them work in your web
 
 2. Edit path for other static files such as **index.css**, **index.js**, **index.wasm** and **favicon.ico** etc.
 
-In this part, we will use **Rust** Rocket framework and its relevant codes. 
+In this part, we will use **Rust** Rocket framework and its relevant codes.
 
-I do not have any favor of it. Just use it because 
+I do not have any favor of it. Just use it for [Steadylearner] and [blog posts](https://www.steadylearner.com/blog) because
 
 1. It has many examples.
 
@@ -537,8 +557,148 @@ I do not have any favor of it. Just use it because
 
 You can use whatever webframework and languages you want and just refer the process here.
 
+If you want quick example for this part, you may refer to files and folder structure used for [Rust Chat App].
+
+We will first start with get.rs to write a route to server **index.html** file we made before
+
+```rust
+use std::io;
+use std::path::{PathBuf};
+use rocket::response::{NamedFile, Redirect};
+
+// [Web]
+
+#[get("/yew_counter")]
+pub fn yew_counter() -> io::Result<NamedFile> {
+    NamedFile::open("static/yew_counter/index.html")
+}
+```
+
+You can infer that you should incldue all the static files you made before in **static/yew_counter** folder.
+
+and **main.rs** to serve routes and start your application.
+
+```rust
+#![feature(proc_macro_hygiene, decl_macro, custom_attribute, rustc_private, type_ascription, async_await)]
+#[macro_use] extern crate rocket;
+#[macro_use] extern crate rocket_contrib;
+
+mod route;
+use crate::route::{static_files, get};
+
+fn rocket() -> rocket::Rocket {
+    rocket::ignite()
+        .mount(
+            "/",
+            routes![
+                static_files::file,
+
+                get::index,
+
+                // Web, I use Web instead of Webassembly.
+
+                get::yew_counter,
+            ],
+        )
+        .register(catchers![error::not_found])
+}
+
+fn main() {
+    rocket().launch();
+}
+```
+
+They are simplified and you can use your own codes instead.
+
+and you are ready with your serverside code.
+
+I hope you already made **yew_counter** folder and we should edit **index.html** and **index.js** file.
+
+Because the environment to serve file is different between development and production, we have to modify paths to make everything work in serverside.
+
+You can refer to [Steadylearner Web] repository and **static_files_in_server_example** in **Yew/referenece** folder if you want the entire example.
+
+Inside **index.html** it have parts to link CSS files and JavaScript files to it.
+
+```html
+<link rel="stylesheet" type="text/css" href="steadylearner.css" />
+<link rel="stylesheet" type="text/css" href="index.css" />
+
+<body>
+  <script src="index.js"></script>
+</body>
+```
+
+You can modify it to
+
+```html
+<link rel="stylesheet" type="text/css" href="/static/css/steadylearner.css" />
+<link rel="stylesheet" type="text/css" href="/static/yew_counter/index.css" />
+
+<body>
+  <script src="/static/yew_counter/index.js"></script>
+</body>
+```
+
+I had already equivalent CSS for [Steadylearner] so used path for it instead of **yew_counter** folder not to duplicate here.
+It would not be difficult to find what happens here if [you have already deployed your website](https://www.google.com/search?q=how+to+deploy+Rust).
+
+and in your **index.js**, you can see that code to serve webassembly files similar to
+
+```js
+    if (typeof process === "object") {
+    var path = require("path");
+
+    var wasm_path = path.join(__dirname, "index.wasm");
+    var buffer = fs.readFileSync(wasm_path);
+    var mod = new WebAssembly.Module(buffer);
+    var wasm_instance = new WebAssembly.Instance(mod, instance.imports);
+    return instance.initialize(wasm_instance);
+    } else {
+      var file = fetch("index.wasm", {
+        credentials: "same-origin"
+    });
+```
+
+It may not work in your serverside so you may modify it to
+
+```js
+    if (typeof process === "object") {
+    var path = require("path");
+
+    var wasm_path = "/static/yew_counter/index.wasm";
+    var buffer = fs.readFileSync(wasm_path);
+    var mod = new WebAssembly.Module(buffer);
+    var wasm_instance = new WebAssembly.Instance(mod, instance.imports);
+    return instance.initialize(wasm_instance);
+    } else {
+    var file = fetch("/static/yew_counter/index.wasm", {
+    credentials: "same-origin"
+    });
+```
+
+It is JavaScript but what we do is the same. You just modify paths to work well inside your machine.
+
+You may use static files as they are but hope this example helpful whenever you find a path relevant problem.
+
+Everything is ready. You can use **$cargo run --bin main** or other command to start your app in production.
+
+You will see your webpage similar to [Yew Counter] in [Steadylearner].
+
+I used term **production** here because what you need to do after this process is just to copy and paste them if you use virtual machine for Linux to deploy your website.
+
+You can see the exact example [Steadylearner] and its many webpages.
+
 ## 6. Conclusion
 
-The latest code for [sitemap] can be found at [Steadylearner Sitemap] repository. It is the end of the posts for [sitemap] with Rust.
+I hope you made it.
+
+We could set up development environment for Rust [Yew]. Then, we improved the official example. We could learn [how to deploy it][Yew Counter].
+
+If you had already [a website built with Rust][Steadylearner], it wouldn't be difficult to follow this post. Because what we made are just static files and no difference from other CSS, HTML and JavaScirpt files etc.
+
+In the next post, we will learn how to build [Rust Chat App] with [Yew] instead of JavaScript. It would not be difficult we already have the minimal code and know how to deploy it.
+
+I want to people know that type of framework and languages are not important but programmers with these posts.
 
 **Thanks and please share this post with others.**
