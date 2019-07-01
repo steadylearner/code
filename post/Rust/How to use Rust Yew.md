@@ -57,7 +57,7 @@ $cargo install cargo-web
 
 and **$yarn watch:rs** for development and **$yarn prod** for production files in **release**.
 
-then make a route to serve **index.html** modify paths to link them if you find a problem with it.
+Then, make a route to serve **index.html** and modify paths to link them if you find a problem with it.
 
 <br />
 
@@ -221,29 +221,31 @@ It is not easy to find what they do. If you spent time for that, you may find th
 Therefore, if you remove parts for them it will be
 
 ```json
-  "scripts": {
-    "build:js": "rollup -c",
-    "build:rs": "cargo web deploy --release",
-    "build:copy": "cp target/deploy/index.css release/ && cp target/deploy/index.wasm release/ && cp target/deploy/index.html release/ && cp target/deploy/favicon.ico release/",
-    "build": "run-s clean:deploy build:rs build:js build:copy",
-    "clean:deploy": "rm -rf /release",
-    "prod": "run-s build serve",
-    "serve": "serve -p 8080 release",
-    "watch:rs": "cargo web start --release",
-    "test": "echo \"Error: no tests!\" && exit 1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
-    "autoprefixer": "^9.3.1",
-    "nodemon": "^1.18.6",
-    "npm-run-all": "^4.1.3",
-    "rollup": "^0.67.3",
-    "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-uglify": "^6.0.0",
-    "rollup-plugin-wasm": "^3.0.0",
-    "serve": "^11.0.2"
-  }
+{
+    "scripts": {
+        "build:js": "rollup -c",
+        "build:rs": "cargo web deploy --release",
+        "build:copy": "cp target/deploy/index.css release/ && cp target/deploy/index.wasm release/ && cp target/deploy/index.html release/ && cp target/deploy/favicon.ico release/",
+        "build": "run-s clean:deploy build:rs build:js build:copy",
+        "clean:deploy": "rm -rf /release",
+        "prod": "run-s build serve",
+        "serve": "serve -p 8080 release",
+        "watch:rs": "cargo web start --release",
+        "test": "echo \"Error: no tests!\" && exit 1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.1.6",
+        "@babel/preset-env": "^7.1.6",
+        "autoprefixer": "^9.3.1",
+        "nodemon": "^1.18.6",
+        "npm-run-all": "^4.1.3",
+        "rollup": "^0.67.3",
+        "rollup-plugin-babel": "^4.0.3",
+        "rollup-plugin-uglify": "^6.0.0",
+        "rollup-plugin-wasm": "^3.0.0",
+        "serve": "^11.0.2"
+    }
+}
 ```
 
 and what you need are
