@@ -12,3 +12,15 @@ echo "You got 3rd prize" ;;
 *)
 echo "Sorry, try for the next time" ;;
 esac
+
+#!/bin/bash
+
+printf "$0\n"
+
+case "$1" in 
+"start" )
+  echo "start";;
+"stop" )
+  echo "stop";;
+esac
+exit 0
