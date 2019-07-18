@@ -1,9 +1,9 @@
 <!--
     Post{
-        subtitle: "Learn to use JavaScript with Rust Frontend",
-        image: "post/web/npm-and-rust-by-Steadylearner.png",
+        subtitle: "Learn how to render markdown with Rust frontend.",
+        image: "post/web/code-with-yew.png",
         image_decription: "Image by Steadylearner",
-        tags: "How NPM Rust Yew",
+        tags: "How markdown Rust Yew",
     }
 -->
 
@@ -50,7 +50,7 @@ yarn watch:rs for devlopment then yarn prod(include build) for production
 
 <!-- Steadylearner Post -->
 
-[Rust blog posts]: https://www.steadylearnerc.om/blog/search/Rust
+[Rust blog posts]: https://www.steadylearner.com/blog/search/Rust
 [How to install Rust]: https://www.steadylearner.com/blog/read/How-to-install-Rust
 [Rust Chat App]: https://www.steadylearner.com/blog/read/How-to-start-Rust-Chat-App
 [Yew Counter]: https://www.steadylearner.com/yew_counter
@@ -64,15 +64,22 @@ yarn watch:rs for devlopment then yarn prod(include build) for production
 
 <!-- / -->
 
+<!-- Steadylearner Twitter and LinkedIn  -->
+
+[Twitter]: https://twitter.com/steadylearner_p
+[LinkedIn]: https://www.linkedin.com/in/steady-learner-3151b7164/
+
+<!--  -->
+
 In the previous post [How to use NPM packages with Rust Frontend], we learnt how to use JavaScript in Rust frontend project.
 
-You could use both Rust crates and JavaScript modules whenever you want in it.
+You could use both Rust crates and JavaScript modules whenever you want.
 
-In this post, we will learn how to use **markdown** with Rust frontend app. You will find we can render a text, video, image, code and whatever html allows in it.
+In this post, we will learn how to use **markdown** with Rust frontend app. You will find we can render a text, video, image, code and whatever you want with it.
 
-If you visit [Rust Full Stack], you will find that we already have [Rust] files for that. We will focus on **How to use markdown** because it will show that you can use other visual HTML elements with Rust frontend also.
+If you visit [Rust Full Stack], you will find that we already have **Rust files** for that. We will focus on **How to use markdown** because it will show you can use other visual HTML elements with Rust frontend also.
 
-If you want to save your time, clone [Rust Full Stack] repository. Then, install NPM dependencies with **yarn** at **web** folder and **web/static** and test it with **yarn watch:rs**.
+If you want to save your time, clone [Rust Full Stack] repository and follow the instruction there.
 
 The payload of this post will be **web/src/components/code.rs**.
 
@@ -92,7 +99,7 @@ The payload of this post will be **web/src/components/code.rs**.
 
 I want you already have Rust installed in your machine. The blog post [How to install Rust] will help you for that.
 
-If you haven't setup development environment for [Yew], please read the previous post [How to use Rust Yew]. Then, visit [Fullstack Rust with Yew].
+If you haven't setup development environment for [Yew], please read the previous post [How to use Rust Yew]. Then, visit [Fullstack Rust with Yew] and [How to use NPM packages with Rust Frontend].
 
 I hope you already read the previous [Rust blog posts]. It will help you to find this post better.
 
@@ -113,15 +120,13 @@ If you could build your [Rust Full Stack] project, you can easily deploy it with
 
 ---
 
-You can skip the part for **CSS** if you already have own CSS files to render markdown.
+You can skip the part for **CSS** if you already have your CSS files to render markdown.
 
 <br />
 
 ## 1. How to use inner HTML in Rust Frontend
 
-When I built project for [How to start Rust Chat App], I found that we can render markdown with pure JavaScript with **inner HTML** and [Marked].
-
-It was much easier for I already have [React Easy Markdown] NPM package and used it there.
+When I built project for [How to start Rust Chat App], I found that we can render markdown with pure JavaScript with **inner HTML** and [Marked]. It was much easier because I already have written [React Easy Markdown] NPM package and used it there.
 
 So what we need to render markdown in Rust frontend will be find
 
@@ -129,7 +134,7 @@ So what we need to render markdown in Rust frontend will be find
 
 2. How to use [Marked] with it.
 
-We already learnt [How to use NPM packages with Rust Frontend] before and we will learn how to use **inner HTML** in Rust frontend first.
+We already learnt [How to use NPM packages with Rust Frontend] before so **2.** will be easy. Therefore, we will learn how to use **inner HTML** in Rust frontend first.
 
 If you visit [Yew inner HTML example], you can see its payload is similar to
 
@@ -155,13 +160,15 @@ impl Renderable<Model> for Model {
 
 and the other parts are just to make it a complete single file example.
 
-The **js!** macro from [stdweb] is used again. It won't be difficult to [find what the code snippet do]([How to use NPM packages with Rust Frontend]).
+The **js!** macro from [stdweb] is used again. It won't be difficult to [find what the code snippet do][How to use NPM packages with Rust Frontend].
 
-The important part here are **JavaScript** and others are just to make FFI between **JavaScript and Rust** work. It will be sufficient for you to know that you can use **inner HTML** in Rust [Yew] or other Rust frontend.
+The important part here are **JavaScript** and others are just to make **FFI** between **JavaScript and Rust** work.
+
+It will be sufficient for you to know that you can use **inner HTML** in Rust [Yew] or other Rust frontend.
 
 ## 2. Write Rust code with Marked
 
-For we already have working example at [Rust Full Stack], we will just handle important parts to save your time.
+For we already have the working example at [Rust Full Stack], we will just handle important parts to save your time.
 
 To make it work, you need to include
 
@@ -170,9 +177,9 @@ To make it work, you need to include
 </script>
 ```
 
-in your **/web/static/index.html** following the example from [Marked].
+in your **/web/static/index.html** following the example from [Marked] first.
 
-If you read the [previous post][How to use NPM packages with Rust Frontend], you already know that you can use [Browserify] or others also. Just use the easiest way or whatever you want.
+If you read the [previous post][How to use NPM packages with Rust Frontend], you already know that you can use [Browserify] or others also for this purpose. Just use the easiest way or whatever you want.
 
 Then, your file to render markdown in **Rust frontend** will be similar to
 
@@ -220,13 +227,13 @@ pub fn view_code(value: &str) -> Html<Model> {
 }
 ```
 
-and we already know that **js!** is payload. Then, you can just copy and paste some parts of code from [React Easy Markdown].
+and we already know that **js!** is payload. Then, you can just copy and paste some parts from [React Easy Markdown].
 
-It will work without problem but a little help will be useful.
+It is just JavaScript and will be easy but a little help will be useful.
 
-1. Include **use crate::Model;** to modulize your project. You can easily find this in other files in **components** folder.
+1. Include **use crate::Model;** to modulize your [Yew] project. You can easily find this in other files in **components** folder.
 
-2. Those **JavaScript** variables will not be accessable in global scope(window etc). So you may use them without caution or you may need opinions from [stdweb] author or more experts if you care for security.
+2. Those **JavaScript** variables are not usable in JavaScript global scope(window etc). So you may write them without caution or you may need opinions from [stdweb] author or more experts if you care for security.
 
 3. You will want your custom CSS for markdown when you render them. So include similiar to **div.className = "markdown"** and write CSS file for that later.
 
@@ -234,7 +241,7 @@ It will work without problem but a little help will be useful.
 
 5. It is to render programming languages differently in markdown with hljs.
 
-and other parts are just copy and paste with different variable name **markdown**.
+and other parts are just for **copy and paste** with different variable name **markdown**.
 
 That was all. You can test it with **yarn watch:rs** in **web** directory after clone [Rust Full Stack].
 
@@ -244,11 +251,13 @@ Test it with
 I can use **markdown** in my Rust frontend app.
 ```
 
-in the input part.
+in the input part of your app.
 
-I hope you made it work. It was just **JavaScript** what made everything work.
+[![Rust full stack chat app](https://www.steadylearner.com/static/images/post/web/full-stack-rust-chat-app-by-steadylearner.png)](https://www.steadylearner.com/static/images/post/web/full-stack-rust-chat-app-by-steadylearner.png)
 
-If you become familiar with [Yew] or other **Rust frontend framework**, you will find that to write code for them is very similar to do it with **JavaScript and its frameworks**.
+I hope you made it work. It was just **JavaScript** that made everything work.
+
+If you become familiar with [Yew] or other **Rust frontend framework**, you will find that it is very similar to write code with **JavaScript and its frameworks**.
 
 <br />
 
@@ -258,9 +267,11 @@ You can use whatever CSS and other files you want for your markdown files. You a
 
 I will briefly expalin how they work in this part to help you.
 
-I already have [CSS][Stedylearner CSS] files to render [Steadylearner] and one of them are for markdown. You already have **markdown.css** in your **web/static** folder if you cloned [Rust Full Stack].
+I already have [CSS][Stedylearner CSS] files to render [Steadylearner] built with React and Rust.
 
-The original file of it at [Stedylearner CSS] will be similar to
+One of them are for markdown and you could find **markdown.css** in **web/static** folder if you cloned [Rust Full Stack].
+
+The original file at [Stedylearner CSS] will be similar to
 
 ```js
 const ContentCSS = `
@@ -273,13 +284,30 @@ const ContentCSS = `
 export default ContentCSS;
 ```
 
-and I use this syntax just to include it in other React **Styled Component** CSS with ${ContentCSS} because it is a large file.
+and I use this syntax to include it in other React **Styled Component** CSS with ${ContentCSS} because it is a large file and reusable easily.
+
+For example,
+
+```js
+import React from "react";
+import styled from "styled-components";
+
+import ContentCSS from "../../CSS/ContentCSS";
+
+const BlogCSS = styled.article`
+    .blog-contents {
+        ${ContentCSS}
+    }
+`;
+
+export default BlogCSS;
+```
 
 That was just to explain how it was used in **React** app such as [Steadylearner] and we will see how to make it work for this post.
 
-If you are familiar with CSS or whatever its extension, you will see that it can be easily converted to CSS.
+If you are familiar with CSS or whatever its extensions, you will see that it can be easily converted to CSS.
 
-To make it work, write CSS file similar to
+To make it work, copy only CSS parts before and write CSS file similar to
 
 ```css
 .markdown {
@@ -292,11 +320,11 @@ To make it work, write CSS file similar to
 
 It has become normal CSS file with **CSS extension** syntax.
 
-You can see that we just pasted CSS from the previous file inside **.markdown** class. We use it to help **div.className = "markdown";** we made before in **web/src/components/code.rs** to work.
+We just pasted CSS from the previous file inside **.markdown** class. We use it to help **div.className = "markdown";** we made before in **web/src/components/code.rs** to work.
 
-What you need next is just to find how to convert them into normal **CSS**.
+What you need next is to find how to convert them into normal **CSS**.
 
-[You can search on your own](https: //www.google.com/search?client=firefox-b-d&q=sass+to+css+online) and use what you want.
+[You can search on your own](https: //www.google.com/search?q=sass+to+css+online) and use what you want.
 
 Then, include all the relevant files to it in **index.html**.
 
@@ -307,30 +335,34 @@ Then, include all the relevant files to it in **index.html**.
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 ```
 
-For this is about **CSS**, you could use your own instead. I let this brief explaniation part to help you find the project at [Full Stack Rust] better and for someone who may need the similar process to use CSS from their previous project.
+and it will help you to render markdown in a better layout.
+
+I let this brief explanation part to help you find the project at [Full Stack Rust] better. It will be helpful for people who need the similar process to use CSS from their previous project.
 
 <br />
 
 ## 4. Conclusion
 
-[![Rust full stack chat app](https://www.steadylearner.com/static/images/post/web/full-stack-rust-chat-app-by-steadylearner.png)](https://www.steadylearner.com/static/images/post/web/full-stack-rust-chat-app-by-steadylearner.png)
+In this post, we learnt how to use **markdown** files in Rust frontend. We wrote **JavaScript** code and modfiy it to use in your **Rust frontend**.
 
-In this post, we learnt how to use markdown files in Rust frontend. What you need was just **JavaScript** code and how to include it in your **Rust frontend**.
+You could already find how to render a text, image, video etc with [Rust Full Stack] also.
 
-You already know how to render **markdown** in your [Rust Full Stack] project. You could already find how to render a text, image, video etc with it also.
-
-I hope you could find that it is easy to write Rust frontend code.
+It is easy to write Rust frontend code.
 
 What you need are
 
-1. How to use your previous experience in other langauges for Rust frotnend.
+1. How to use your previous experience with other programming languages.
 
 2. Write Rust code with it.
 
-and that was all.
+and that is all.
 
-You can see that the code size of [Full Stack Rust] is becoming larger and we need to modulize it more. So in the next [Rust blog posts], we will learn how to make components in Rust [Yew]. Then, we will full stack Rust chat app with Rust frontend and server side code.
+In the next [Rust blog posts], we will learn how to make components in Rust [Yew] and modulize the project. Then, we will write full stack Rust chat app with Rust frontend and server side code.
 
-You can learn how with documentation from [Yew], [How to start Rust Chat App] and [Full Stack Rust] on your own also.
+You can learn it with documentation from [Yew], [How to start Rust Chat App] and [Full Stack Rust] on your own also.
+
+If you need a full stack Rust developer, contact me with [LinkedIn] or be one of them.
+
+I update [Full Stack Rust] repository and announce new posts at [Twitter]. So, please follow me at [Twitter] if you want the latest contents.
 
 **Thanks and please share this post with others.**
