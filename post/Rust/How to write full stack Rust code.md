@@ -111,7 +111,7 @@ If you could build your [Rust Full Stack] project, you can deploy it with [How t
 
 1. **websocket_json.rs** to connect server and client
 2. WebSocket Server with [ws-rs]
-3. Client with [Rust]
+3. Client with Rust [Yew]
 4. **Conclusion**
 
 ---
@@ -275,7 +275,7 @@ It is the **single source of truth for messages user will receive and render in 
 
 <br />
 
-## 3. Client with Rust
+## 3. Client with Rust Yew
 
 We will improve the previous Rust frontend code from [Full Stack Rust]. If you visited it already, you can fidn that it is not that simple as it was in [How to use Rust Yew] or [Yew Counter].
 
