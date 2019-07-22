@@ -86,7 +86,7 @@ You will find writing full stack Rust code is not difficult. You can even just *
 1. [How to install Rust]
 2. [Yew]
 3. [ws-rs]
-4. [sere]
+4. [serde]
 5. [How to start Rust Chat App]
 6. [How to use Rust Yew]
 7. [Fullstack Rust with Yew]
