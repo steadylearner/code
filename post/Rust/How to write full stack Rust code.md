@@ -1,7 +1,7 @@
 <!--
     Post{
         subtitle: "Learn how to write server and client side code for Rust",
-        image: "post/web/how-to-write-full-stack-rust-code.png",
+        image: "post/web/client-server-rust-chat-app.png",
         image_decription: "Image by Steadylearner",
         tags: "How wrtie Rust code",
     }
@@ -119,6 +119,8 @@ If you could build your [Rust Full Stack] project, you can deploy it with [How t
 <br />
 
 ## 1. websocket_json.rs to connect server and client
+
+[![Rust equivalent server and client code](https://www.steadylearner.com/static/images/post/web/client-server-equal-rust-code.png)](https://www.steadylearner.com/static/images/post/web/client-server-equal-rust-code.png)
 
 For our goal is to write [Rust Full Stack] code, we should write code that help you to use **Rust** in both server and frontend. We will write **websocket_json.rs** in **server/src/http_model** folder.
 
