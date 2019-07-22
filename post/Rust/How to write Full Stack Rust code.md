@@ -275,7 +275,7 @@ It is the **single source of truth for messages user will receive and render in 
 
 <br />
 
-## 3. Client with Rust Yew
+## 3. Client with Rust
 
 We will improve the previous Rust frontend code from [Full Stack Rust]. If you visited it already, you can fidn that it is not that simple as it was in [How to use Rust Yew] or [Yew Counter].
 
@@ -613,11 +613,11 @@ It is the **single source of truth for messages(server responses) user will rece
 
 If you are familar with system programming, you may think it is similar to **shell**. Then websocket server will be **kernel** and clients will be processes.
 
-**7.** Use this to use **ws_responses** we defined in **state.rs**. You can see that this syntax is used many times in [Yew Example]. 
+**7.** Use this to use **ws_responses** we defined in **state.rs**. You can see that this syntax is used many times in [Yew Example].
 
 We use this because there is already almost same variable(self.state.client and client). We used them to make server and client easily compatible but you can use other variable name also.
 
-That was all important part for **lib.rs** file. If you need more information, please read [Full Stack Rust] code and [Rust blog posts].
+That was all important part for **lib.rs** file. If you need more information, please read [Rust Full Stack] code and [Rust blog posts].
 
 We yet have **message.rs** to render messages and to make all we prepared to be meaningful.
 
@@ -695,7 +695,9 @@ pub fn view_message(
 }
 ```
 
-You can first see that there are many **html! { { "" } }** part. Use them to render nothing but be compatible with Html<Model> return type. 
+You can first see that there are many **html! { { "" } }** part.
+
+Use them to render nothing but be compatible with `HTML<Model>` return type.
 
 **1.** We will return when had **""** empty message. You may remove it if you think it is unnecessary.
 
