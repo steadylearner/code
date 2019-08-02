@@ -14,6 +14,7 @@
 
 [Rust Rocket]: https://rocket.rs/
 [Rocket Getting Started]: https://rocket.rs/v0.4/guide/getting-started
+[Tera]: https://tera.netlify.com/
 
 [Rust Full Stack]: https://github.com/steadylearner/Rust-Full-Stack
 
