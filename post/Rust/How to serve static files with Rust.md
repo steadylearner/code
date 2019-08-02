@@ -325,13 +325,9 @@ What you need is to move all of them (index.html, main.css, main.js, favicon.png
 
 Then, use **cargo run** to debug or **cargo run --release** for production to verify the result.
 
-You will see the message similar to this in your console after long wait.
+You will see the message with link you can visit after long wait.
 
-```console
-has launched from http://0.0.0.0:8000
-```
-
-Then, visit it and verify that you could serve static files easily with Rust
+Then, verify that you could serve static files easily with Rust
 
 1. HTML with **You know what?**
 
