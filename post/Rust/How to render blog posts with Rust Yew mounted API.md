@@ -149,7 +149,7 @@ Then,
 4. **$cd web/before/rust_blog && $./install.sh && yarn watch:rs** for a Rust blog example.
 ```
 
-You can use yours instead or test the project with [this post at GitHub](https://raw.githubusercontent.com/steadylearner/code/master/post/Rust/How%20to%20render%20blog%20posts%20with%20Rust%20Yew.md) and other posts at [Posts](https://raw.githubusercontent.com/steadylearner/code/master/post) repository.
+You can use yours instead or test the project with [this post at GitHub](https://raw.githubusercontent.com/steadylearner/code/master/post/Rust/How%20to%20render%20blog%20posts%20with%20Rust%20Yew%20mounted%20API.md) and other posts at [Posts](https://raw.githubusercontent.com/steadylearner/code/master/post) repository.
 
 If you are reading this post with your desktop, [you can verify the how the result will be fast with this](https://www.steadylearner.com/markdown).
 
