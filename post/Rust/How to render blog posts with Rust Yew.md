@@ -1,7 +1,7 @@
 <!--
     Post{
         subtitle: "Learn how to use Rust Yew mounted API with it.",
-        image: "post/web/rust-json-webservice-example.png",
+        image: "post/web/rust-blog-example.png",
         image_decription: "Image by Steadylearner",
         tags: "How Rust YouTube fetch",
     }
@@ -130,11 +130,9 @@ We already have many [Rust Full Stack] projects and [Rust blog posts] to learn h
 
 ## 1. Prepare a blog post
 
-Before we learn how to build Rust Frontend app to render blog posts, we need to find where to get the datas for it.
+Before we learn how to build Rust Frontend app to render blog posts with markdown files, we need to find where to get the datas for it.
 
-In this post, [we will use the raw text file for this post at GitHub](https://raw.githubusercontent.com/steadylearner/Rust-Full-Stack/master/README.md).
-
-You can use yours instead or use [Rust Full Stack] repository also. When you visit [it](https://raw.githubusercontent.com/steadylearner/Rust-Full-Stack/master/README.md), the page will show the raw text file similar to this.
+In this post, we will use [README file](https://raw.githubusercontent.com/steadylearner/Rust-Full-Stack/master/README.md) from [Rust Full Stack] for that purpose, the page will show the raw text file similar to this.
 
 ```md
 ## Start
@@ -151,15 +149,19 @@ Then,
 4. **$cd web/before/rust_blog && $./install.sh && yarn watch:rs** for a Rust blog example.
 ```
 
+You can use yours instead or test the project with [this post at GitHub](https://raw.githubusercontent.com/steadylearner/code/master/post/Rust/How%20to%20render%20blog%20posts%20with%20Rust%20Yew.md) and other posts at [Posts](https://raw.githubusercontent.com/steadylearner/code/master/post) repository.
+
+If you are reading this post with your desktop, [you can verify the how the result will be fast with this](https://www.steadylearner.com/markdown).
+
 <br />
 
 ## 2. Render it with Rust Yew mounted and fetch API
 
-The main file of the Rust Yew project will be **lib.rs**. We will build it with the codes we made in the previous [Rust blog posts] and Rust Yew **mounted** and **fetch** api to get the data from GitHub.
+The main file of the Rust Yew project will be **lib.rs**. We will build it with the codes we made in the previous [Rust blog posts] and Rust Yew **mounted** and **fetch** API.
 
 If you have experience with React, you can see **mounted** and **update** are very similar to use **componetDidMount** and **componentDidUpdate** in it.
 
-The parts relevant to this post will be similar to this for the logic.
+The parts relevant to this post will be similar to this for the logic
 
 ```rust
 use yew::services::{
@@ -336,23 +338,21 @@ impl Model {
 }
 ```
 
-There are many codes in this example. You could modulize it on your own first with [How to modulize your Rust Frontend].
+There are many codes in this example. You could modulize it first with [How to modulize your Rust Frontend].
 
 Many of them are already explained before with [YouTube vlog example][How to render a YouTube vlog with Rust Yew fetch API] and [Full Stack Rust Chat App we made before][How to write Full Stack Rust Code].
 
 Therefore, we will only handle the parts relevant to this post.
 
-**1.** We already verifired the data we will get from the GitHub will be **the law text** in the previous part. We normally send no data in the body part of **GET request**. So, we will use **Nothing** API from the authors for that purpose.
+**1.** We already verifired the data we will get from the GitHub will be **the raw text** in the previous part. We normally send no data in the body part of **GET request**. So, we will use **Nothing** API from the authors for that purpose.
 
-**2.** **self.fecthing** will be used to show loader when data is not fetched yet. It will be **"Loading..."** in this project. You can use yours with custom CSS instead.
+**2.** **self.fecthing** will be used to show loader when data is not fetched yet. It will be **"Loading..."** in this project.
 
 **3.** [In the previous post][How to render a YouTube vlog with Rust Yew fetch API], we used **Video** struct to type the YouTube JSON data. For we know that GitHub page will return the raw texts, we will use **String** to represent it.
 
-It is relevant to **1.** and **data** will be the most important part whenever you plan to build Rust projects.
+**4.** We don't have **FetchData** message type here compared to the previous post. We extract it inside **impl Model** to make it more reusable.
 
-**4.** We don't have **FetchData** message type here compared to the previous post. We will extract it inside impl Model part to make it more reusable.
-
-**5.** We use the default value instead of **None** or **"".to_string()** to help the Yew **mounted** API to render the blog post when user first visit the webpage.
+**5.** We use the default value instead of **None** or **"".to_string()** to use it with Yew **mounted** API.
 
 ```rust
 fn mounted(&mut self) -> ShouldRender {
@@ -362,19 +362,29 @@ fn mounted(&mut self) -> ShouldRender {
 }
 ```
 
+It is to render the blog post when user visit the webpage.
+
 You can compare it with [YouTue vlog example][JSON Webservice] without this part.(The user won't have to click anything to render datas with the **mounted** API.)
 
-**6.** This is the payload to render the view part of your app. For we already made [Rust Yew module to render markdown files][How to use markdown with code snippets in Rust Yew Frontend], you can just pass the **data** with **view_code(&value)**.
+[It will be helpful to find information about the lifecycle of single page apps](https://www.google.com/search?&q=react+lifecycle)
 
-It will show you the blog content part simialr to this post.
+**6.** This is the payload to render the view part of your app. For we already made [Rust Yew module to render markdown files][How to use markdown with code snippets in Rust Yew Frontend], you can just pass the **data** with **view_code(&value)**.
 
 **7.** When you make a single page app with dynamic contents, it may be not easy to handle **footer** or other less important parts that affect the layout of the entire webpage.
 
 Use this logic to show it only after the more important parts of your app are rendered first.
 
-**8.** It is the same code from the **input** part of [Rust Full Stack] chat app.
+**8.** It is the same code from the **input** part of [Rust Full Stack] chat app. You can see that many files of it are reusable.
 
-You can see that many files of it are reusable.
+Run the app **web** folder in [Rust Blog Example] with
+
+```console
+$install.sh && yarn watch:rs
+```
+
+if you haven't yet.
+
+It will show you the blog contents similar to what you read if you are at [Steadylearner].
 
 <br />
 
@@ -386,7 +396,7 @@ With **mounted** and **update** API from [Rust Yew Frontend], you could prototyp
 
 We already have sufficient examples to build a full stack website similar to [Steadylearner] with Rust only.
 
-In the next blog posts, we will learn how to manage the blog posts and ohter files in GitHub with its API. Then, we will find how to include the database, build CLI, login page with session and JSON Web Token etc with Rust.
+In the next blog posts, we will learn how to manage the blog posts and other files in GitHub with its API. Then, we will find how to include the database, build CLI, login page with session and JSON Web Token etc with Rust.
 
 If you want the latest contents from Steadylearner, follow me at [Twitter].
 
