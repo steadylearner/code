@@ -10,7 +10,7 @@
     "highlight.js": "^9.15.6",
     "jsdom": "^14.0.0",
     "lodash": "^4.17.11",
-    "marked": "^0.6.2",
+    "marked": "^0.7.0",
     "node-emoji": "^1.10.0",
     "prop-passer": "^1.1.1-3",
     "prop-types": "^15.7.2",
