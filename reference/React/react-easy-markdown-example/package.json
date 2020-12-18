@@ -5,7 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "dompurify": "^1.0.10",
+    "dompurify": "^2.0.17",
     "has-emoji": "^1.1.0",
     "highlight.js": "^9.15.6",
     "jsdom": "^14.0.0",
